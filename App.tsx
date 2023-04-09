@@ -6,8 +6,12 @@
  */
 
 import { NavigationContainer } from '@react-navigation/native';
+import { IconComponentProvider } from "@react-native-material/core";
+/* @ts-ignore */
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+
 import React from 'react';
-import type {PropsWithChildren} from 'react';
+import type { PropsWithChildren } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -31,7 +35,7 @@ type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({children, title}: SectionProps): JSX.Element {
+function Section({ children, title }: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -65,9 +69,13 @@ function App(): JSX.Element {
   };
 
   return (
-  <NavigationContainer>
-    <Home />
-  </NavigationContainer>
+    // Navigation
+    <NavigationContainer>
+        {/* @ts-ignore */}
+        <IconComponentProvider IconComponent={MaterialIcons}>
+      <Home />
+      </IconComponentProvider>
+    </NavigationContainer>
   );
 }
 
