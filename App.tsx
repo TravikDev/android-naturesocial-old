@@ -25,6 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { Home } from './src/pages/Home/Home';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -65,7 +66,7 @@ function App(): JSX.Element {
 
   return (
   <NavigationContainer>
-    <Text>SomeWhat</Text>
+    <Home />
   </NavigationContainer>
   );
 }
