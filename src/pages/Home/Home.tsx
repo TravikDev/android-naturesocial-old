@@ -5,9 +5,12 @@ import { Button, Icon, Surface, ListItem, Chip, Avatar } from "@react-native-mat
 import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+
 function HomeScreen() {
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={{ flex: 1 }} bounces >
       <View style={{ borderBottomWidth: 1, borderColor: "#3e9b46" }}>
         <Image style={{ width: undefined, height: 210 }} source={require('../../assets/images/lol2.jpg')} />
       </View>
@@ -20,6 +23,51 @@ function HomeScreen() {
         <ListItem
           title="Drafts"
           leading={<Icon name="nature-people" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="eco" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="grass" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="park" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="pest-control" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="spa" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="visibility" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="wb-sunny" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="invert-colors" size={24} />}
+          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="emoji-nature" size={24} />}
           trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
@@ -77,31 +125,7 @@ function HomeScreen() {
 
         <Text>Home!</Text>
         <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-        <Text>Home!</Text>
+
       </View>
     </ScrollView>
   );
@@ -139,7 +163,7 @@ const CustomDrawerContent = ({ navigation }) => {
               <Text style={styles.username}>John Doe</Text>
               <Text style={styles.rank}>1-ый уровень</Text>
             </View>
-            <Animated.View style={{ transform: [{ rotate }]}}>
+            <Animated.View style={{ transform: [{ rotate }] }}>
               <TouchableOpacity onPress={handleRotate}>
                 <Icon name="keyboard-arrow-down" size={24} color='#fff' />
               </TouchableOpacity>
@@ -147,24 +171,41 @@ const CustomDrawerContent = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <View style={{ top: -10}}>
+      <View style={{ top: -10 }}>
         <ListItem
           onPress={() => navigation.navigate('Home')}
-          title="Home"
+          title="Home page"
           leading={<Icon name="home" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
-        />
-        <ListItem
-          onPress={() => navigation.navigate('Settings')}
-          title="Inbox"
-          leading={<Icon name="inbox" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
           onPress={() => navigation.navigate('Another')}
-          title="Inbox"
-          leading={<Icon name="inbox" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
+          title="Diaries"
+          leading={<Icon name="book" size={24} />}
+        />
+        <ListItem
+          onPress={() => navigation.navigate('Another')}
+          title="Cultures"
+          leading={<Icon name="local-florist" size={24} />}
+        />
+        <ListItem
+          onPress={() => navigation.navigate('Another')}
+          title="Environment"
+          leading={<Icon name="device-thermostat" size={24} />}
+        />
+        <ListItem
+          onPress={() => navigation.navigate('Calculator')}
+          title="Calculator"
+          leading={<Icon name="calculate" size={24} />}
+        />
+        <ListItem
+          onPress={() => navigation.navigate('Another')}
+          title="Bookmarks"
+          leading={<Icon name="bookmarks" size={24} />}
+        />
+        <ListItem
+          onPress={() => navigation.navigate('Community')}
+          title="Community"
+          leading={<Icon name="people" size={24} />}
         />
       </View>
       <Text></Text>
@@ -174,10 +215,11 @@ const CustomDrawerContent = ({ navigation }) => {
 };
 
 
+
 function SettingsScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
+      <Text>Posts!</Text>
     </View>
   );
 }
@@ -185,12 +227,122 @@ function SettingsScreen() {
 function AnotherScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Another!</Text>
+      <Text>Another One!</Text>
     </View>
   );
 }
 
-const Tab = createBottomTabNavigator();
+function ThirdScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Third!</Text>
+    </View>
+  );
+}
+
+function PostsListScreen() {
+  return (
+    <>
+    <ListItem title="List Item"  />
+    <ListItem title="List Item" />
+    <ListItem title="List Item" />
+  </>
+  );
+}
+
+function PostsPeopleScreen() {
+  return (
+    <>
+    <ListItem
+      leadingMode="avatar"
+      leading={
+        <Avatar image={{ uri: "https://mui.com/static/images/avatar/1.jpg" }} />
+      }
+      title="Brunch this weekend?"
+      secondaryText="I'll be in your neighborhood doing errands this…"
+    />
+    <ListItem
+      leadingMode="avatar"
+      leading={
+        <Avatar image={{ uri: "https://mui.com/static/images/avatar/2.jpg" }} />
+      }
+      title="Summer BBQ"
+      secondaryText="Wish I could come, but I'm out of town this…"
+    />
+    <ListItem
+      leadingMode="avatar"
+      leading={
+        <Avatar image={{ uri: "https://mui.com/static/images/avatar/3.jpg" }} />
+      }
+      title="Oui Oui"
+      secondaryText="Do you have Paris recommendations? Have you ever…"
+    />
+  </>
+  );
+}
+
+const Tab = createMaterialTopTabNavigator();
+
+const CommunityNavigator = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Posts" component={PostsListScreen}  />
+      <Tab.Screen name="Diaries" component={ThirdScreen} />
+      <Tab.Screen name="People" component={PostsPeopleScreen} />
+    </Tab.Navigator>
+  );
+};
+
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={AnotherScreen} />
+      <Tab.Screen name="Settings" component={ThirdScreen} />
+    </Tab.Navigator>
+  );
+};
+
+
+function MacroElementsScreen() {
+  return (
+    <>
+    <ListItem title="List Item"  />
+    <ListItem title="List Item" />
+    <ListItem title="List Item" />
+  </>
+  );
+}
+
+function MicroElementsScreen() {
+  return (
+    <>
+    <ListItem title="List Item"  />
+    <ListItem title="List Item" />
+    <ListItem title="List Item" />
+  </>
+  );
+}
+
+function ConcentratesScreen() {
+  return (
+    <>
+    <ListItem title="List Item"  />
+    <ListItem title="List Item" />
+    <ListItem title="List Item" />
+  </>
+  );
+}
+
+const CalculatorNavigator = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Macro" component={MacroElementsScreen} />
+      <Tab.Screen name="Micro" component={MicroElementsScreen} />
+      <Tab.Screen name="Concentrates" component={ConcentratesScreen} />
+    </Tab.Navigator>
+  );
+};
+
 const Drawer = createDrawerNavigator();
 
 export const Home = () => {
@@ -206,7 +358,9 @@ export const Home = () => {
         headerRight: () => (<View style={{ marginRight: 10 }}><Icon name="person-outline" size={28} onPress={() => { }} /></View>),
       }} />
       <Drawer.Screen name="Settings" component={SettingsScreen} />
-      <Drawer.Screen name="Another" component={AnotherScreen} />
+      <Drawer.Screen name="Another" component={TabNavigator} />
+      <Drawer.Screen name="Community" component={CommunityNavigator} />
+      <Drawer.Screen name="Calculator" component={CalculatorNavigator} />
     </Drawer.Navigator>
   );
 }
