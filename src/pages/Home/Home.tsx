@@ -6,11 +6,14 @@ import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigatio
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { NavigatorCalculator } from '../NavigatorCalculator';
+import { NavigatorCommunity } from '../NavigatorCommunity';
+import { NavigatorMonitoring } from '../NavigatorMonitoring';
 
 
 function HomeScreen() {
   return (
-    <ScrollView style={{ flex: 1 }} bounces >
+    <ScrollView style={{ flex: 1 }} >
       <View style={{ borderBottomWidth: 1, borderColor: "#3e9b46" }}>
         <Image style={{ width: undefined, height: 210 }} source={require('../../assets/images/lol2.jpg')} />
       </View>
@@ -18,65 +21,146 @@ function HomeScreen() {
         <ListItem
           title="Inbox"
           leading={<Icon name="local-florist" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
           title="Drafts"
           leading={<Icon name="nature-people" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
           title="Drafts"
           leading={<Icon name="eco" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
           title="Drafts"
           leading={<Icon name="grass" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
           title="Drafts"
           leading={<Icon name="park" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
           title="Drafts"
           leading={<Icon name="pest-control" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="poll" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="pie-chart" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="pie-chart-outlined" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="wb-incandescent" size={24} />}
         />
         <ListItem
           title="Drafts"
           leading={<Icon name="spa" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
           title="Drafts"
           leading={<Icon name="visibility" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
           title="Drafts"
           leading={<Icon name="wb-sunny" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
           title="Drafts"
           leading={<Icon name="invert-colors" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="opacity" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="online-prediction" size={24} />}
         />
         <ListItem
           title="Drafts"
           leading={<Icon name="emoji-nature" size={24} />}
-          trailing={props => <Icon name="chevron-right" {...props} />}
         />
         <ListItem
-          title="Trash"
-          trailing={props => <Icon name="chevron-right" {...props} />}
+          title="Drafts"
+          leading={<Icon name="wb-incandescent" size={24} />}
         />
         <ListItem
-          title="Spam"
-          trailing={props => <Icon name="chevron-right" {...props} />}
+          title="Drafts"
+          leading={<Icon name="wb-sunny" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="tune" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="military-tech" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="military-tech" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="miscellaneous-services" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="miscellaneous-services" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="local-drink" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="leaderboard" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="memory" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="filter-vintage" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="terrain" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="today" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="tonality" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="toys" size={24} />}
+        />
+                <ListItem
+          title="Community"
+          leading={<Icon name="event-available" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="event-busy" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="emoji-events" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="science" size={24} />}
         />
         <View style={{ margin: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Button
@@ -205,7 +289,17 @@ const CustomDrawerContent = ({ navigation }) => {
         <ListItem
           onPress={() => navigation.navigate('Community')}
           title="Community"
-          leading={<Icon name="people" size={24} />}
+          leading={<Icon name="groups" size={24} />}
+        />
+        <ListItem
+          onPress={() => navigation.navigate('Community')}
+          title="Community"
+          leading={<Icon name="event" size={24} />}
+        />
+        <ListItem
+          onPress={() => navigation.navigate('Monitoring')}
+          title="Monitoring"
+          leading={<Icon name="speed" size={24} />}
         />
       </View>
       <Text></Text>
@@ -243,102 +337,20 @@ function ThirdScreen() {
 function PostsListScreen() {
   return (
     <>
-    <ListItem title="List Item"  />
-    <ListItem title="List Item" />
-    <ListItem title="List Item" />
-  </>
-  );
-}
-
-function PostsPeopleScreen() {
-  return (
-    <>
-    <ListItem
-      leadingMode="avatar"
-      leading={
-        <Avatar image={{ uri: "https://mui.com/static/images/avatar/1.jpg" }} />
-      }
-      title="Brunch this weekend?"
-      secondaryText="I'll be in your neighborhood doing errands this…"
-    />
-    <ListItem
-      leadingMode="avatar"
-      leading={
-        <Avatar image={{ uri: "https://mui.com/static/images/avatar/2.jpg" }} />
-      }
-      title="Summer BBQ"
-      secondaryText="Wish I could come, but I'm out of town this…"
-    />
-    <ListItem
-      leadingMode="avatar"
-      leading={
-        <Avatar image={{ uri: "https://mui.com/static/images/avatar/3.jpg" }} />
-      }
-      title="Oui Oui"
-      secondaryText="Do you have Paris recommendations? Have you ever…"
-    />
-  </>
+      <ListItem title="List Item" />
+      <ListItem title="List Item" />
+      <ListItem title="List Item" />
+    </>
   );
 }
 
 const Tab = createMaterialTopTabNavigator();
-
-const CommunityNavigator = () => {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Posts" component={PostsListScreen}  />
-      <Tab.Screen name="Diaries" component={ThirdScreen} />
-      <Tab.Screen name="People" component={PostsPeopleScreen} />
-    </Tab.Navigator>
-  );
-};
 
 const TabNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={AnotherScreen} />
       <Tab.Screen name="Settings" component={ThirdScreen} />
-    </Tab.Navigator>
-  );
-};
-
-
-function MacroElementsScreen() {
-  return (
-    <>
-    <ListItem title="List Item"  />
-    <ListItem title="List Item" />
-    <ListItem title="List Item" />
-  </>
-  );
-}
-
-function MicroElementsScreen() {
-  return (
-    <>
-    <ListItem title="List Item"  />
-    <ListItem title="List Item" />
-    <ListItem title="List Item" />
-  </>
-  );
-}
-
-function ConcentratesScreen() {
-  return (
-    <>
-    <ListItem title="List Item"  />
-    <ListItem title="List Item" />
-    <ListItem title="List Item" />
-  </>
-  );
-}
-
-const CalculatorNavigator = () => {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Macro" component={MacroElementsScreen} />
-      <Tab.Screen name="Micro" component={MicroElementsScreen} />
-      <Tab.Screen name="Concentrates" component={ConcentratesScreen} />
     </Tab.Navigator>
   );
 };
@@ -359,8 +371,9 @@ export const Home = () => {
       }} />
       <Drawer.Screen name="Settings" component={SettingsScreen} />
       <Drawer.Screen name="Another" component={TabNavigator} />
-      <Drawer.Screen name="Community" component={CommunityNavigator} />
-      <Drawer.Screen name="Calculator" component={CalculatorNavigator} />
+      <Drawer.Screen name="Community" component={NavigatorCommunity} />
+      <Drawer.Screen name="Calculator" component={NavigatorCalculator} />
+      <Drawer.Screen name="Monitoring" component={NavigatorMonitoring} />
     </Drawer.Navigator>
   );
 }
