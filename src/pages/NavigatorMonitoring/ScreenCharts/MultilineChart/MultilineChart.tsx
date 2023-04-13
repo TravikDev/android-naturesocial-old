@@ -1,86 +1,186 @@
-import React from 'react';
-import { View } from 'react-native';
-import Svg, { Line, Path, Text } from 'react-native-svg';
+import React, { useState } from 'react'
+import { StyleSheet, TextInput } from 'react-native';
+import { VictoryChart, VictoryStack, VictoryArea, VictoryTheme } from 'victory-native';
 
 export const MultilineChart = () => {
+
   const data1 = [
-    { x: 0, y: 5 },
-    { x: 5, y: 3 },
-    { x: 10, y: 8 },
-    { x: 15, y: 4 },
-    { x: 20, y: 7 },
-  ];
+    { x: "start", y: 220 },
+    { x: "vega", y: 240 },
+    { x: "bloom", y: 280 },
+    { x: "fruit", y: 300 },
+    { x: "end", y: 260 },
+  ]
 
   const data2 = [
-    { x: 0, y: 2 },
-    { x: 5, y: 6 },
-    { x: 10, y: 5 },
-    { x: 15, y: 8 },
-    { x: 20, y: 3 },
-  ];
-
+    { x: "start", y: 180 },
+    { x: "vega", y: 200 },
+    { x: "bloom", y: 220 },
+    { x: "fruit", y: 240 },
+    { x: "end", y: 180 },
+  ]
   const data3 = [
-    { x: 0, y: 8 },
-    { x: 5, y: 4 },
-    { x: 10, y: 2 },
-    { x: 15, y: 6 },
-    { x: 20, y: 9 },
-  ];
+    { x: "start", y: 120 },
+    { x: "vega", y: 140 },
+    { x: "bloom", y: 180 },
+    { x: "fruit", y: 160 },
+    { x: "end", y: 140 },
+  ]
+  const data4 = [
+    { x: "start", y: 40 },
+    { x: "vega", y: 40 },
+    { x: "bloom", y: 50 },
+    { x: "fruit", y: 50 },
+    { x: "end", y: 40 },
+  ]
 
-  /* @ts-ignore */
-  const xScale = (value) => (value / 20) * 300;
-    /* @ts-ignore */
-  const yScale = (value) => (value / 10) * 300;
+  const data5 = [
+    { x: "start", y: 30 },
+    { x: "vega", y: 35 },
+    { x: "bloom", y: 40 },
+    { x: "fruit", y: 45 },
+    { x: "end", y: 35 },
+  ]
 
-  const pathData1 = data1.reduce((acc, { x, y }, index) => {
-    const xCoord = xScale(x) + 10;
-    const yCoord = yScale(y) + 10;
-    if (index === 0) {
-      return `M ${xCoord} ${yCoord} `;
-    } else {
-      return `${acc} L ${xCoord} ${yCoord} `;
-    }
-  }, '');
-
-  const pathData2 = data2.reduce((acc, { x, y }, index) => {
-    const xCoord = xScale(x) + 10;
-    const yCoord = yScale(y) + 10;
-    if (index === 0) {
-      return `M ${xCoord} ${yCoord} `;
-    } else {
-      return `${acc} L ${xCoord} ${yCoord} `;
-    }
-  }, '');
-
-  const pathData3 = data3.reduce((acc, { x, y }, index) => {
-    const xCoord = xScale(x) + 10;
-    const yCoord = yScale(y) + 10;
-    if (index === 0) {
-      return `M ${xCoord} ${yCoord} `;
-    } else {
-      return `${acc} L ${xCoord} ${yCoord} `;
-    }
-  }, '');
+  const [howMuch, setHowMuch] = useState(5)
 
   return (
-    <View>
-      <Svg width="320" height="320">
-        <Line x1="10" y1="10" x2="10" y2="310" stroke="black" strokeWidth="2" />
-        <Line x1="10" y1="310" x2="310" y2="310" stroke="black" strokeWidth="2" />
-        {Array.from({ length: 5 }).map((_, index) => (
-          <Text key={index} x={xScale(index * 5) + 10} y="325" fontSize="14" textAnchor="middle">
-            {index * 5}
-          </Text>
-        ))}
-        {Array.from({ length: 11 }).map((_, index) => (
-          <Text key={index} x="0" y={yScale(index * 1) + 15} fontSize="14" textAnchor="end">
-            {index}
-          </Text>
-        ))}
-        <Path d={pathData1} stroke="red" strokeWidth="2" fill="none" />
-        <Path d={pathData2} stroke="blue" strokeWidth="2" fill="none" />
-        <Path d={pathData3} stroke="green" strokeWidth="2" fill="none" />
-      </Svg>
-    </View>
-  );
-};
+    <>
+      <TextInput
+        onChangeText={() => setHowMuch}
+        /* @ts-ignore */
+        value={howMuch}
+        placeholder="useless placeholder"
+        keyboardType="numeric"
+      />
+
+      <VictoryChart
+        theme={VictoryTheme.material}
+        events={[{
+          childName: ["area-1"],
+          target: "data",
+          eventHandlers: {
+            onPress: () => {
+              return [{
+                childName: "area-1",
+                mutation: (props) => {
+                  const fill = props.style.fill;
+                  return fill === "#3e9b45" ? null : { style: { fill: "#3e9b45", stroke: "#000", strokeWidth: 1, strokeLinecap: "round" } };
+                }
+              }];
+            }
+          }
+        },
+        {
+          childName: ["area-2"],
+          target: "data",
+          eventHandlers: {
+            onPress: () => {
+              return [{
+                childName: "area-2",
+                mutation: (props) => {
+                  const fill = props.style.fill;
+                  return fill === "#3e9b45" ? null : { style: { fill: "#3e9b45", stroke: "#000", strokeWidth: 1, strokeLinecap: "round" } };
+                }
+              }];
+            }
+          }
+        },
+        {
+          childName: ["area-3"],
+          target: "data",
+          eventHandlers: {
+            onPress: () => {
+              return [{
+                childName: "area-3",
+                mutation: (props) => {
+                  const fill = props.style.fill;
+                  return fill === "#3e9b45" ? null : { style: { fill: "#3e9b45", stroke: "#000", strokeWidth: 1, strokeLinecap: "round" } };
+                }
+              }];
+            }
+          }
+        },
+        {
+          childName: ["area-4"],
+          target: "data",
+          eventHandlers: {
+            onPress: () => {
+              return [{
+                childName: "area-4",
+                mutation: (props) => {
+                  const fill = props.style.fill;
+                  return fill === "#3e9b45" ? null : { style: { fill: "#3e9b45", stroke: "#000", strokeWidth: 1, strokeLinecap: "round" } };
+                }
+              }];
+            }
+          }
+        },
+        {
+          childName: ["area-5"],
+          target: "data",
+          eventHandlers: {
+            onPress: () => {
+              return [{
+                childName: "area-5",
+                mutation: (props) => {
+                  const fill = props.style.fill;
+                  return fill === "#3e9b45" ? null : { style: { fill: "#3e9b45", stroke: "#000", strokeWidth: 1, strokeLinecap: "round" } };
+                }
+              }];
+            }
+          }
+        }
+        ]}
+      >
+        {/* <VictoryStack> */}
+        <VictoryArea
+          interpolation="monotoneX"
+          style={styles}
+          name="area-1"
+          /* @ts-ignore */
+          data={data1.slice(0, howMuch)}
+        />
+        <VictoryArea
+          interpolation="monotoneX"
+          style={styles}
+          name="area-2"
+          /* @ts-ignore */
+          data={data2.slice(0, howMuch)}
+        />
+        <VictoryArea
+          interpolation="monotoneX"
+          style={styles}
+          name="area-3"
+          /* @ts-ignore */
+          data={data3.slice(0, howMuch)}
+        />
+        <VictoryArea
+          interpolation="monotoneX"
+          style={styles}
+          name="area-4"
+          /* @ts-ignore */
+          data={data4.slice(0, howMuch)}
+        />
+        <VictoryArea
+          interpolation="monotoneX"
+          style={styles}
+          name="area-5"
+          /* @ts-ignore */
+          data={data5.slice(0, howMuch)}
+        />
+        {/* </VictoryStack> */}
+      </VictoryChart>
+    </>
+  )
+}
+
+const styles = StyleSheet.create({
+  data: {
+    fill: "#3e9b46",
+    opacity: 0.25,
+    stroke: "#000",
+    strokeWidth: 1,
+    strokeLinecap: "round"
+  }
+})
