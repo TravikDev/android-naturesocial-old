@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Image, Text, View, StyleSheet, Animated, TouchableOpacity } from "react-native"
-import { Button, Icon, Surface, ListItem, Chip, Avatar } from "@react-native-material/core";
+import { Button, Icon, Surface, ListItem, Chip, Avatar, Pressable } from "@react-native-material/core";
 import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -146,7 +146,7 @@ function HomeScreen() {
           title="Drafts"
           leading={<Icon name="toys" size={24} />}
         />
-                <ListItem
+        <ListItem
           title="Community"
           leading={<Icon name="event-available" size={24} />}
         />
@@ -161,6 +161,42 @@ function HomeScreen() {
         <ListItem
           title="Community"
           leading={<Icon name="science" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="highlight" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="hourglass-bottom" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="model-training" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="bedtime" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="beach-access" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="science" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="lightbulb-outline" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="wash" size={24} />}
+        />
+        <ListItem
+          title="Environment"
+          leading={<Icon name="device-thermostat" size={24} />}
         />
         <View style={{ margin: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
           <Button
@@ -256,54 +292,100 @@ const CustomDrawerContent = ({ navigation }) => {
         </View>
       </View>
       <View style={{ top: -10 }}>
+        <View>
+
+          <ListItem
+            onPress={() => navigation.navigate('Home')}
+            title="News"
+            leading={<Icon name="campaign" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('Home')}
+            title="Posts"
+            leading={<Icon name="history-edu" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('Another')}
+            title="Cultures"
+            leading={<Icon name="local-florist" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('Community')}
+            title="Community"
+            leading={<Icon name="groups" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('Community')}
+            title="Events"
+            leading={<Icon name="event-note" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('Community')}
+            title="Learning"
+            leading={<Icon name="school" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('Community')}
+            title="Questions"
+            leading={<Icon name="help-outline" size={24} />}
+          />
+        </View>
+        <View style={{ marginTop: 20, borderBottomColor: '#aaa', borderStyle: 'solid', borderBottomWidth: 1 }}>
+          <Pressable style={{ height: 48, display: 'flex', justifyContent: 'center', paddingLeft: 16 }}>
+            <Text style={{ color: '#333', fontSize: 16 }}>User</Text>
+          </Pressable>
+        </View>
         <ListItem
-          onPress={() => navigation.navigate('Home')}
-          title="Home page"
-          leading={<Icon name="home" size={24} />}
+          onPress={() => navigation.navigate('Community')}
+          title="Account"
+          leading={<Icon name="account-circle" size={24} />}
         />
         <ListItem
-          onPress={() => navigation.navigate('Another')}
-          title="Diaries"
+          onPress={() => navigation.navigate('Community')}
+          title="My posts"
+          leading={<Icon name="event" size={24} />}
+        />
+        <ListItem
+          onPress={() => navigation.navigate('Monitoring')}
+          title="Diary"
           leading={<Icon name="book" size={24} />}
         />
         <ListItem
-          onPress={() => navigation.navigate('Another')}
-          title="Cultures"
-          leading={<Icon name="local-florist" size={24} />}
+          onPress={() => navigation.navigate('Monitoring')}
+          title="Bookmarks"
+          leading={<Icon name="bookmarks" size={24} />}
         />
+        <View style={{ marginTop: 20, borderBottomColor: '#aaa', borderStyle: 'solid', borderBottomWidth: 1 }}>
+          <Pressable style={{ height: 48, display: 'flex', justifyContent: 'center', paddingLeft: 16 }}>
+            <Text style={{ color: '#333', fontSize: 16 }}>Tools</Text>
+          </Pressable>
+        </View>
         <ListItem
-          onPress={() => navigation.navigate('Another')}
-          title="Environment"
-          leading={<Icon name="device-thermostat" size={24} />}
+          onPress={() => navigation.navigate('Monitoring')}
+          title="Monitoring"
+          leading={<Icon name="speed" size={24} />}
         />
         <ListItem
           onPress={() => navigation.navigate('Calculator')}
           title="Calculator"
           leading={<Icon name="calculate" size={24} />}
         />
-        <ListItem
-          onPress={() => navigation.navigate('Another')}
-          title="Bookmarks"
-          leading={<Icon name="bookmarks" size={24} />}
-        />
-        <ListItem
-          onPress={() => navigation.navigate('Community')}
-          title="Community"
-          leading={<Icon name="groups" size={24} />}
-        />
-        <ListItem
-          onPress={() => navigation.navigate('Community')}
-          title="Community"
-          leading={<Icon name="event" size={24} />}
-        />
+        <View style={{ marginTop: 20, borderBottomColor: '#aaa', borderStyle: 'solid', borderBottomWidth: 1 }}>
+          <Pressable style={{ height: 48, display: 'flex', justifyContent: 'center', paddingLeft: 16 }}>
+            <Text style={{ color: '#333', fontSize: 16 }}>Preferences</Text>
+          </Pressable>
+        </View>
         <ListItem
           onPress={() => navigation.navigate('Monitoring')}
-          title="Monitoring"
-          leading={<Icon name="speed" size={24} />}
+          title="Language"
+          leading={<Icon name="language" size={24} />}
+        />
+        <ListItem
+          onPress={() => navigation.navigate('Calculator')}
+          title="Theme"
+          leading={<Icon name="calculate" size={24} />}
         />
       </View>
-      <Text></Text>
-      <Chip style={{ marginHorizontal: 10 }} label="Outlined" />
     </DrawerContentScrollView>
   );
 };
