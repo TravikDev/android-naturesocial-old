@@ -1,4 +1,5 @@
 {
   "name": "ponicslife",
-  "displayName": "ponicslife"
+  "displayName": "ponicslife",
+  "icon": "./assets/svg/logo.svg"
 }

@@ -46,13 +46,6 @@ export const MultilineChart = () => {
 
   return (
     <>
-      <TextInput
-        onChangeText={() => setHowMuch}
-        /* @ts-ignore */
-        value={howMuch}
-        placeholder="useless placeholder"
-        keyboardType="numeric"
-      />
 
       <VictoryChart
         theme={VictoryTheme.material}

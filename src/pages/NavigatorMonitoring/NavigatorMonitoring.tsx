@@ -11,7 +11,11 @@ const Tab = createMaterialTopTabNavigator();
 
 export const NavigatorMonitoring = () => {
     return (
-        <Tab.Navigator 
+        <Tab.Navigator screenOptions={{
+            tabBarActiveTintColor: '#1A6111',
+            tabBarInactiveTintColor: "#000",
+            tabBarIndicatorStyle: { backgroundColor: '#1B8113' },
+        }}
         // screenOptions={({ route }) => ({
         //     tabBarIcon: ({ focused, color }) => {
         //         let iconName = ''

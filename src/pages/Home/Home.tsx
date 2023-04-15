@@ -9,6 +9,11 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { NavigatorCalculator } from '../NavigatorCalculator';
 import { NavigatorCommunity } from '../NavigatorCommunity';
 import { NavigatorMonitoring } from '../NavigatorMonitoring';
+import { ScreenPosts } from '../NavigatorPosts';
+import { ButtonIconCircle } from '../../atoms/Button/ButtonIconCircle';
+import { Filter } from '../../atoms/Portals/Filter';
+import { ScreenCategories } from '../NavigatorCultures/ScreenCulturesCategories';
+import { NavigatorUser } from '../NavigatorUser';
 
 
 function HomeScreen() {
@@ -112,6 +117,10 @@ function HomeScreen() {
         />
         <ListItem
           title="Drafts"
+          leading={<Icon name="waves" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
           leading={<Icon name="miscellaneous-services" size={24} />}
         />
         <ListItem
@@ -181,6 +190,10 @@ function HomeScreen() {
         <ListItem
           title="Community"
           leading={<Icon name="beach-access" size={24} />}
+        />
+        <ListItem
+          title="Community"
+          leading={<Icon name="park" size={24} />}
         />
         <ListItem
           title="Community"
@@ -300,14 +313,9 @@ const CustomDrawerContent = ({ navigation }) => {
             leading={<Icon name="campaign" size={24} />}
           />
           <ListItem
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('Posts')}
             title="Posts"
             leading={<Icon name="history-edu" size={24} />}
-          />
-          <ListItem
-            onPress={() => navigation.navigate('Another')}
-            title="Cultures"
-            leading={<Icon name="local-florist" size={24} />}
           />
           <ListItem
             onPress={() => navigation.navigate('Community')}
@@ -319,25 +327,40 @@ const CustomDrawerContent = ({ navigation }) => {
             title="Events"
             leading={<Icon name="event-note" size={24} />}
           />
+          <View style={{ marginTop: 20, borderBottomColor: '#aaa', borderStyle: 'solid', borderBottomWidth: 1 }}>
+            <Pressable style={{ height: 48, display: 'flex', justifyContent: 'center', paddingLeft: 16 }}>
+              <Text style={{ color: '#333', fontSize: 16 }}>Library</Text>
+            </Pressable>
+          </View>
+          <ListItem
+            onPress={() => navigation.navigate('Cultures')}
+            title="Cultures"
+            leading={<Icon name="local-florist" size={24} />}
+          />
           <ListItem
             onPress={() => navigation.navigate('Community')}
             title="Learning"
             leading={<Icon name="school" size={24} />}
-          />
+          /> 
           <ListItem
             onPress={() => navigation.navigate('Community')}
             title="Questions"
             leading={<Icon name="help-outline" size={24} />}
           />
+          <ListItem
+            onPress={() => navigation.navigate('Community')}
+            title="Best practices"
+            leading={<Icon name="star" size={24} />}
+          />
         </View>
         <View style={{ marginTop: 20, borderBottomColor: '#aaa', borderStyle: 'solid', borderBottomWidth: 1 }}>
           <Pressable style={{ height: 48, display: 'flex', justifyContent: 'center', paddingLeft: 16 }}>
-            <Text style={{ color: '#333', fontSize: 16 }}>User</Text>
+            <Text style={{ color: '#333', fontSize: 16 }}>Account</Text>
           </Pressable>
         </View>
         <ListItem
-          onPress={() => navigation.navigate('Community')}
-          title="Account"
+          onPress={() => navigation.navigate('User')}
+          title="User"
           leading={<Icon name="account-circle" size={24} />}
         />
         <ListItem
@@ -369,6 +392,11 @@ const CustomDrawerContent = ({ navigation }) => {
           onPress={() => navigation.navigate('Calculator')}
           title="Calculator"
           leading={<Icon name="calculate" size={24} />}
+        />
+        <ListItem
+          onPress={() => navigation.navigate('Calculator')}
+          title="Helper"
+          leading={<Icon name="support-agent" size={24} />}
         />
         <View style={{ marginTop: 20, borderBottomColor: '#aaa', borderStyle: 'solid', borderBottomWidth: 1 }}>
           <Pressable style={{ height: 48, display: 'flex', justifyContent: 'center', paddingLeft: 16 }}>
@@ -416,15 +444,6 @@ function ThirdScreen() {
   );
 }
 
-function PostsListScreen() {
-  return (
-    <>
-      <ListItem title="List Item" />
-      <ListItem title="List Item" />
-      <ListItem title="List Item" />
-    </>
-  );
-}
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -452,7 +471,18 @@ export const Home = () => {
         headerRight: () => (<View style={{ marginRight: 10 }}><Icon name="person-outline" size={28} onPress={() => { }} /></View>),
       }} />
       <Drawer.Screen name="Settings" component={SettingsScreen} />
+      <Drawer.Screen
+        name="Posts"
+        component={ScreenPosts}
+        options={{
+          headerRight: () => (
+            <Filter IconTitle="tune" size={32} color={"#000"}><Text>Text</Text></Filter>
+          ),
+        }}
+      />
+      <Drawer.Screen name="User" component={NavigatorUser} />
       <Drawer.Screen name="Another" component={TabNavigator} />
+      <Drawer.Screen name="Cultures" component={ScreenCategories} />
       <Drawer.Screen name="Community" component={NavigatorCommunity} />
       <Drawer.Screen name="Calculator" component={NavigatorCalculator} />
       <Drawer.Screen name="Monitoring" component={NavigatorMonitoring} />
