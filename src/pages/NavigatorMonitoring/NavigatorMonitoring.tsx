@@ -30,12 +30,12 @@ export const NavigatorMonitoring = () => {
         // })}
         >
             <Tab.Screen name="State" component={ScreenState} />
-            <Tab.Screen name="Charts" component={ScreenCharts} />
+            {/* <Tab.Screen name="Charts" component={ScreenCharts} />
             <Tab.Screen
                 name="Control"
                 component={ScreenControl}
                 // options={{ tabBarBadge: 3 }}
-            />
+            /> */}
         </Tab.Navigator>
     );
 };

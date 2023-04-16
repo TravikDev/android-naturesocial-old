@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export const MultiplicationTable = () => {
+export const ElementsRatiosTable = () => {
     return (
         <View style={styles.container}>
 

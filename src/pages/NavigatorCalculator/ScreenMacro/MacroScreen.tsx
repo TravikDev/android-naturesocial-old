@@ -1,9 +1,11 @@
 import { useState } from "react"
-import { ListItem } from "@react-native-material/core";
+import { Divider, Icon, IconButton, ListItem } from "@react-native-material/core";
 import { Dimensions, StyleSheet, Text, View, TextInput } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { InputMinerals } from "../../../atoms/Inputs/InputMinerals";
-import { MultiplicationTable } from "../../../atoms/Inputs/Some";
+import { ElementsRatiosTable } from "../../../atoms/Inputs/ElementsRatios";
+import { CustomSpoiler } from "../../../atoms/Spoiler/CustomSpoiler";
+import { ButtonIconCircle } from "../../../atoms/Button/ButtonIconCircle";
 
 const srcWidth = Dimensions.get('window').width
 
@@ -22,7 +24,23 @@ export const MacroElementsScreen = () => {
   const [numberDivS, onChangeNumberDivS] = useState('0.50');
 
   return (
-    <ScrollView contentContainerStyle={{ backgroundColor: '#fff', padding: 10, gap: 10 }}>
+    <ScrollView contentContainerStyle={{ backgroundColor: '#fff', padding: 10, paddingBottom: 25, gap: 10 }}>
+      
+      {/* <Divider style={{ marginTop: 10 }} /> */}
+
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Text style={{ fontSize: 18, fontWeight: '300', color: '#111', paddingVertical: 3 }}>
+          Profile
+        </Text>
+        <View>
+          <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>
+            mg / litre
+          </Text>
+        </View>
+      </View>
+
+      <Divider style={{ top: -10 }} />
+
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
         <InputMinerals element="N" number={numberN} onChange={onChangeNumberN} />
         <InputMinerals element="P" number={numberP} onChange={onChangeNumberP} />
@@ -110,11 +128,75 @@ export const MacroElementsScreen = () => {
         </View>
       </View> */}
 
-      <MultiplicationTable />
+      {/* <Divider style={{ marginTop: 10 }} /> */}
 
-      <ListItem title="List Item" />
-      <ListItem title="List Item" />
-      <ListItem title="List Item" />
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
+        <Text style={{ fontSize: 18, fontWeight: '300', color: '#111', top: 0 }}>
+          Ratios
+        </Text>
+        <View>
+          <ButtonIconCircle iconTitle='error-outline' color='#666' size={32} />
+        </View>
+      </View>
+
+      <Divider style={{ top: -10 }} />
+
+      <ElementsRatiosTable />
+
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
+        <Text style={{ fontSize: 18, fontWeight: '300', color: '#111', top: 0 }}>
+          Salt composition
+        </Text>
+        <View>
+          <Text style={{ fontSize: 16, fontWeight: '300', color: '#111', top: 0 }}>grams</Text>
+        </View>
+      </View>
+
+      <Divider style={{ top: -5, marginBottom: 5 }} />
+
+
+      <CustomSpoiler title='Calcium Nitrate' grams={30}>
+        <View style={{ paddingHorizontal: 5 }}>
+          <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>Ca(NO3)2 · 4H2O</Text>
+        </View>
+      </CustomSpoiler>
+
+      <CustomSpoiler title='Potassium Nitrate' grams={234}>
+        <View>
+          <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KNO3</Text>
+        </View>
+      </CustomSpoiler>
+
+      <CustomSpoiler title='Ammonium Nitrate' grams={1234}>
+        <View>
+          <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>NH4NO3</Text>
+        </View>
+      </CustomSpoiler>
+
+      <CustomSpoiler title='Magnesium sulfate' grams={1234}>
+        <View>
+          <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>MgSO4 · 7H2O</Text>
+        </View>
+      </CustomSpoiler>
+
+
+      <CustomSpoiler title='Potassium phosphate' grams={13}>
+        <View>
+          <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KH2PO4</Text>
+        </View>
+      </CustomSpoiler>
+
+      <CustomSpoiler title='Potassium Sulfate' grams={9}>
+        <View>
+          <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>K2SO4</Text>
+        </View>
+      </CustomSpoiler>
+
+      <CustomSpoiler title='Magnesium Nitrate' grams={44}>
+        <View>
+          <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>Mg(NO3)2 · 6H2O</Text>
+        </View>
+      </CustomSpoiler>
     </ScrollView>
   );
 }

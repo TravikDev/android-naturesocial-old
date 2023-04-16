@@ -185,6 +185,53 @@ export const ScreenCategories = () => {
                 <ListItem title="Пион" leading={<Icon name='navigate-next' title='title' />} />
                 <ListItem title="Роза" leading={<Icon name='navigate-next' title='title' />} />
             </Spoiler>
+            <View style={{ marginTop: 20, borderBottomColor: '#aaa', borderStyle: 'solid', borderBottomWidth: 1 }}>
+                <Pressable style={{ height: 48, display: 'flex', justifyContent: 'center', paddingLeft: 16 }}>
+                    <Text style={{ color: '#333', fontSize: 16 }}>Экзотические культуры</Text>
+                </Pressable>
+            </View>
+            <Spoiler title="Кактусы">
+                <ListItem title="Антуриум" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Бегония" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Газания" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Георгина" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Гелихризум" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Георгиния" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Жоржина" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Ирис" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Календула" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Космея" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Маргаритка" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Настурция" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Петуния" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Подсолнух" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Роза" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Сальвия" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Снежноягодник" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Тагетес" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Циния" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Тюльпан" leading={<Icon name='navigate-next' title='title' />} />
+            </Spoiler>
+            <Spoiler title="Многолетние">
+                <ListItem title="Астильба" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Барвинок" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Вероника" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Виола" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Геум" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Дельфиниум" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Жасмин" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Жимолость" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Ирис" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Кампанула" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Лаванда" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Ландыш" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Лилия" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Мальва" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Василёк" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Монарда" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Пион" leading={<Icon name='navigate-next' title='title' />} />
+                <ListItem title="Роза" leading={<Icon name='navigate-next' title='title' />} />
+            </Spoiler>
         </ScrollView>
     )
 }

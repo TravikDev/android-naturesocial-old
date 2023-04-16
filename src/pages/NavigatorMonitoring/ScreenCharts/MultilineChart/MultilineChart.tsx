@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, TextInput } from 'react-native';
-import { VictoryChart, VictoryStack, VictoryArea, VictoryTheme } from 'victory-native';
+import { VictoryChart, VictoryStack, VictoryArea, VictoryTheme, VictoryCursorContainer } from 'victory-native';
 
 export const MultilineChart = () => {
 
@@ -49,6 +49,12 @@ export const MultilineChart = () => {
 
       <VictoryChart
         theme={VictoryTheme.material}
+        containerComponent={
+          <VictoryCursorContainer
+            cursorDimension="x"
+            cursorLabel={({ datum }) => `${datum.x}, ${datum.y}`}
+          />
+        }
         events={[{
           childName: ["area-1"],
           target: "data",
