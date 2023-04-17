@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 /* @ts-ignore */
-export const CustomSpoiler = ({ title, grams, children, leadingIcon = '' }) => {
+export const CustomSpoiler = ({ title, value, children, leadingIcon = '' }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleExpansion = () => {
@@ -21,8 +21,8 @@ export const CustomSpoiler = ({ title, grams, children, leadingIcon = '' }) => {
                 <View>
                     <Text style={styles.text}>{title}</Text>
                 </View>
-                <View style={styles.viewGrams}>
-                    <Text style={styles.text}>{grams}</Text>
+                <View style={styles.viewValue}>
+                    <Text style={styles.text}>{value}</Text>
                 </View>
             </Pressable>
             {isExpanded && (
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     spoilerContent: {
         padding: 5
     },
-    viewGrams: {
-        width: 80,
+    viewValue: {
+        width: 150,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-end',

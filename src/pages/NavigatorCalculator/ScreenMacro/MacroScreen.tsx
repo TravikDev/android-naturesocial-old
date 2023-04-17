@@ -155,44 +155,44 @@ export const MacroElementsScreen = () => {
       <Divider style={{ top: -5, marginBottom: 5 }} />
 
 
-      <CustomSpoiler title='Calcium Nitrate' grams={30}>
+      <CustomSpoiler title='Calcium Nitrate' value={30}>
         <View style={{ paddingHorizontal: 5 }}>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>Ca(NO3)2 · 4H2O</Text>
         </View>
       </CustomSpoiler>
 
-      <CustomSpoiler title='Potassium Nitrate' grams={234}>
+      <CustomSpoiler title='Potassium Nitrate' value={234}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KNO3</Text>
         </View>
       </CustomSpoiler>
 
-      <CustomSpoiler title='Ammonium Nitrate' grams={1234}>
+      <CustomSpoiler title='Ammonium Nitrate' value={1234}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>NH4NO3</Text>
         </View>
       </CustomSpoiler>
 
-      <CustomSpoiler title='Magnesium sulfate' grams={1234}>
+      <CustomSpoiler title='Magnesium sulfate' value={1234}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>MgSO4 · 7H2O</Text>
         </View>
       </CustomSpoiler>
 
 
-      <CustomSpoiler title='Potassium phosphate' grams={13}>
+      <CustomSpoiler title='Potassium phosphate' value={13}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KH2PO4</Text>
         </View>
       </CustomSpoiler>
 
-      <CustomSpoiler title='Potassium Sulfate' grams={9}>
+      <CustomSpoiler title='Potassium Sulfate' value={9}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>K2SO4</Text>
         </View>
       </CustomSpoiler>
 
-      <CustomSpoiler title='Magnesium Nitrate' grams={44}>
+      <CustomSpoiler title='Magnesium Nitrate' value={44}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>Mg(NO3)2 · 6H2O</Text>
         </View>

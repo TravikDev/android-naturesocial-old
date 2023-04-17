@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { StyleSheet, TextInput } from 'react-native';
-import { VictoryChart, VictoryStack, VictoryArea, VictoryTheme, VictoryCursorContainer } from 'victory-native';
+import { VictoryChart, VictoryStack, VictoryArea, VictoryTheme, VictoryCursorContainer, VictoryVoronoiContainer } from 'victory-native';
+import { LinearGradient, Stop } from 'react-native-svg';
 
 export const MultilineChart = () => {
-
+  
   const data1 = [
     { x: "start", y: 220 },
     { x: "vega", y: 240 },
@@ -50,88 +51,22 @@ export const MultilineChart = () => {
       <VictoryChart
         theme={VictoryTheme.material}
         containerComponent={
-          <VictoryCursorContainer
-            cursorDimension="x"
-            cursorLabel={({ datum }) => `${datum.x}, ${datum.y}`}
+          <VictoryVoronoiContainer
+            labels={({ datum }) => `${Math.round(datum.x)}, ${Math.round(datum.y)}`}
           />
         }
-        events={[{
-          childName: ["area-1"],
-          target: "data",
-          eventHandlers: {
-            onPress: () => {
-              return [{
-                childName: "area-1",
-                mutation: (props) => {
-                  const fill = props.style.fill;
-                  return fill === "#3e9b45" ? null : { style: { fill: "#3e9b45", stroke: "#000", strokeWidth: 1, strokeLinecap: "round" } };
-                }
-              }];
-            }
-          }
-        },
-        {
-          childName: ["area-2"],
-          target: "data",
-          eventHandlers: {
-            onPress: () => {
-              return [{
-                childName: "area-2",
-                mutation: (props) => {
-                  const fill = props.style.fill;
-                  return fill === "#3e9b45" ? null : { style: { fill: "#3e9b45", stroke: "#000", strokeWidth: 1, strokeLinecap: "round" } };
-                }
-              }];
-            }
-          }
-        },
-        {
-          childName: ["area-3"],
-          target: "data",
-          eventHandlers: {
-            onPress: () => {
-              return [{
-                childName: "area-3",
-                mutation: (props) => {
-                  const fill = props.style.fill;
-                  return fill === "#3e9b45" ? null : { style: { fill: "#3e9b45", stroke: "#000", strokeWidth: 1, strokeLinecap: "round" } };
-                }
-              }];
-            }
-          }
-        },
-        {
-          childName: ["area-4"],
-          target: "data",
-          eventHandlers: {
-            onPress: () => {
-              return [{
-                childName: "area-4",
-                mutation: (props) => {
-                  const fill = props.style.fill;
-                  return fill === "#3e9b45" ? null : { style: { fill: "#3e9b45", stroke: "#000", strokeWidth: 1, strokeLinecap: "round" } };
-                }
-              }];
-            }
-          }
-        },
-        {
-          childName: ["area-5"],
-          target: "data",
-          eventHandlers: {
-            onPress: () => {
-              return [{
-                childName: "area-5",
-                mutation: (props) => {
-                  const fill = props.style.fill;
-                  return fill === "#3e9b45" ? null : { style: { fill: "#3e9b45", stroke: "#000", strokeWidth: 1, strokeLinecap: "round" } };
-                }
-              }];
-            }
-          }
-        }
-        ]}
+      // containerComponent={
+      //   <VictoryCursorContainer
+      //     cursorDimension="x"
+      //     cursorLabel={({ datum }) => `${datum.x}, ${datum.y}`}
+      //   />
+      // }
+
       >
+        <LinearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <Stop offset="100%" stopColor="#fff" />
+          <Stop offset="0%" stopColor="#3e9b46" />
+        </LinearGradient>
         {/* <VictoryStack> */}
         <VictoryArea
           interpolation="monotoneX"
@@ -176,7 +111,8 @@ export const MultilineChart = () => {
 
 const styles = StyleSheet.create({
   data: {
-    fill: "#3e9b46",
+    fill: 'url(#gradient)',
+    // fill: "#3e9b46",
     opacity: 0.25,
     stroke: "#000",
     strokeWidth: 1,
