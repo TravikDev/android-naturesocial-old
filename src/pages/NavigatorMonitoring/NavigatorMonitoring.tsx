@@ -2,19 +2,20 @@ import { Icon } from '@react-native-material/core';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react'
 import { ScreenState } from './ScreenState';
-import { ScreenControl } from './ScreenControl';
-import { ScreenCharts } from './ScreenCharts';
+import { ScreenMonitoringSettings } from './ScreenMonitoringSettings';
+// import { ScreenCharts } from './ScreenCharts';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
-const Tab = createMaterialTopTabNavigator();
+const Tab = createBottomTabNavigator();
 
 export const NavigatorMonitoring = () => {
     return (
         <Tab.Navigator screenOptions={{
             tabBarActiveTintColor: '#1A6111',
             tabBarInactiveTintColor: "#000",
-            tabBarIndicatorStyle: { backgroundColor: '#1B8113' },
+            // tabBarIndicatorStyle: { backgroundColor: '#1B8113' },
         }}
         // screenOptions={({ route }) => ({
         //     tabBarIcon: ({ focused, color }) => {
@@ -29,7 +30,24 @@ export const NavigatorMonitoring = () => {
         //     tabBarInactiveTintColor: 'gray',
         // })}
         >
-            <Tab.Screen name="State" component={ScreenState} />
+            <Tab.Screen 
+            name="State" 
+            component={ScreenState}
+            options={{ 
+                headerShown: false, 
+                tabBarIcon: () => <Icon name="speed" size={32} color='#666' />
+            }}
+            
+            />
+            <Tab.Screen 
+            name="Settings" 
+            component={ScreenMonitoringSettings}
+            options={{ 
+                headerShown: false,
+                tabBarIcon: () => <Icon name="miscellaneous-services" size={32} color='#666' />
+             }}
+
+            />
             {/* <Tab.Screen name="Charts" component={ScreenCharts} />
             <Tab.Screen
                 name="Control"

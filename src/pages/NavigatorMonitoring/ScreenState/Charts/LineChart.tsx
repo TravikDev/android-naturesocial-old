@@ -37,6 +37,7 @@ export const LineChart = ({
 
   return (
     <VictoryChart
+      style={{ parent: { left: -20 } }}
       height={250}
       domain={{ y: [tempMin*0.9, maxValueY*1.1] }}
       theme={VictoryTheme.material}
@@ -77,14 +78,18 @@ export const LineChart = ({
       <VictoryAxis
         dependentAxis
         style={{
-          tickLabels: { fontSize: 10, padding: 5 }
+          tickLabels: { fontSize: 10, padding: 5 },
+          axisLabel: { fontSize: 12, dx: 5, dy: -90, angle: 0 }
         }}
+        label="Liters"
       />
       <VictoryAxis
         crossAxis
         style={{
-          tickLabels: { fontSize: 10, padding: 5 }
+          tickLabels: { fontSize: 10, padding: 5 },
+          axisLabel: { fontSize: 12, dx: 155, dy: 20 }
         }}
+        label="Time"
       />
 
       <VictoryArea

@@ -1,19 +1,16 @@
-import React, { useRef, useState } from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import React, { useState } from 'react'
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Image, Text, View, StyleSheet, Animated, TouchableOpacity } from "react-native"
 import { Button, Icon, Surface, ListItem, Chip, Avatar, Pressable } from "@react-native-material/core";
-import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContent, DrawerContentScrollView } from '@react-navigation/drawer';
 import { ScrollView } from 'react-native-gesture-handler';
-
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigatorCalculator } from '../NavigatorCalculator';
 import { NavigatorCommunity } from '../NavigatorCommunity';
 import { NavigatorMonitoring } from '../NavigatorMonitoring';
-import { ScreenPosts } from '../NavigatorPosts';
-import { ButtonIconCircle } from '../../atoms/Button/ButtonIconCircle';
-import { Filter } from '../../atoms/Portals/Filter';
 import { ScreenCategories } from '../NavigatorCultures/ScreenCulturesCategories';
 import { NavigatorUser } from '../NavigatorUser';
+import { NavigationPosts } from '../NavigatorPosts';
 
 
 function HomeScreen() {
@@ -150,6 +147,18 @@ function HomeScreen() {
         <ListItem
           title="Drafts"
           leading={<Icon name="tonality" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="emoji-objects" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="router" size={24} />}
+        />
+        <ListItem
+          title="Drafts"
+          leading={<Icon name="filter-alt" size={24} />}
         />
         <ListItem
           title="Drafts"
@@ -420,41 +429,13 @@ const CustomDrawerContent = ({ navigation }) => {
 
 
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Posts!</Text>
-    </View>
-  );
-}
-
-function AnotherScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Another One!</Text>
-    </View>
-  );
-}
-
-function ThirdScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Third!</Text>
-    </View>
-  );
-}
-
-
-const Tab = createMaterialTopTabNavigator();
-
-const TabNavigator = () => {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={AnotherScreen} />
-      <Tab.Screen name="Settings" component={ThirdScreen} />
-    </Tab.Navigator>
-  );
-};
+// function SettingsScreen() {
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Posts!</Text>
+//     </View>
+//   );
+// }
 
 const Drawer = createDrawerNavigator();
 
@@ -462,26 +443,28 @@ export const Home = () => {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      drawerContent={(props) => <DrawerContent {...props} />}
     >
       <Drawer.Screen name="Home" component={HomeScreen} options={{
         drawerIcon: () => <Icon name="home" color='#fff' size={24} />,
         drawerActiveBackgroundColor: "#3e9b46",
         drawerActiveTintColor: "#fff",
-        headerRight: () => (<View style={{ marginRight: 10 }}><Icon name="person-outline" size={28} onPress={() => { }} /></View>),
+        headerRight: () => (
+          <View style={{ marginRight: 10 }}>
+            <Icon name="person-outline" size={28} onPress={() => { }} />
+          </View>),
       }} />
-      <Drawer.Screen name="Settings" component={SettingsScreen} />
+      {/* <Drawer.Screen name="Settings" component={SettingsScreen} /> */}
       <Drawer.Screen
         name="Posts"
-        component={ScreenPosts}
-        options={{
-          headerRight: () => (
-            <Filter IconTitle="tune" size={32} color={"#000"}><Text>Text</Text></Filter>
-          ),
-        }}
+        component={NavigationPosts}
+        // options={{
+        //   headerRight: () => (
+        //     <Filter IconTitle="tune" size={32} color={"#000"}><Text>Text</Text></Filter>
+        //   ),
+        // }}
       />
       <Drawer.Screen name="User" component={NavigatorUser} />
-      <Drawer.Screen name="Another" component={TabNavigator} />
       <Drawer.Screen name="Cultures" component={ScreenCategories} />
       <Drawer.Screen name="Community" component={NavigatorCommunity} />
       <Drawer.Screen name="Calculator" component={NavigatorCalculator} />

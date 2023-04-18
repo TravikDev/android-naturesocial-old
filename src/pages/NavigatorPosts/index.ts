@@ -1,1 +1,1 @@
-export * from "./ScreenPosts"
+export * from "./NavigationPosts"
