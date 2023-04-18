@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Image, Text, View, StyleSheet, Animated, TouchableOpacity } from "react-native"
 import { Button, Icon, Surface, ListItem, Chip, Avatar, Pressable } from "@react-native-material/core";
-import { createDrawerNavigator, DrawerContent, DrawerContentScrollView } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer';
 import { ScrollView } from 'react-native-gesture-handler';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigatorCalculator } from '../NavigatorCalculator';
@@ -443,7 +443,7 @@ export const Home = () => {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
-      drawerContent={(props) => <DrawerContent {...props} />}
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
       <Drawer.Screen name="Home" component={HomeScreen} options={{
         drawerIcon: () => <Icon name="home" color='#fff' size={24} />,
