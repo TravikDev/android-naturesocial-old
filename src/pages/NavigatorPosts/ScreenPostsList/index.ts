@@ -1,1 +1,1 @@
-export * from "./ScreenPostsLists"
+export * from "./ScreenPostsList"

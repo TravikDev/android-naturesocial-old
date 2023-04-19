@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState, createContext } from 'react'
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Image, Text, View, StyleSheet, Animated, TouchableOpacity } from "react-native"
 import { Button, Icon, Surface, ListItem, Chip, Avatar, Pressable } from "@react-native-material/core";
@@ -11,7 +11,8 @@ import { NavigatorMonitoring } from '../NavigatorMonitoring';
 import { ScreenCategories } from '../NavigatorCultures/ScreenCulturesCategories';
 import { NavigatorUser } from '../NavigatorUser';
 import { NavigationPosts } from '../NavigatorPosts';
-
+// import { ScreenPostsList } from '../NavigatorPosts/ScreenPostsList';
+// import { NavigationPosts } from '../NavigatorPosts';
 
 function HomeScreen() {
   return (
@@ -428,19 +429,18 @@ const CustomDrawerContent = ({ navigation }) => {
 };
 
 
-
-// function SettingsScreen() {
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>Posts!</Text>
-//     </View>
-//   );
-// }
+// export const DrawerContext = createContext(null);
 
 const Drawer = createDrawerNavigator();
 
 export const Home = () => {
+
+  // const [drawerBar, setDrawerBar] = useState(true)
+
+  // let drawerBar = false
+
   return (
+    /* @ts-ignore */
     <Drawer.Navigator
       initialRouteName="Home"
       drawerContent={(props) => <CustomDrawerContent {...props} />}
@@ -458,6 +458,8 @@ export const Home = () => {
       <Drawer.Screen
         name="Posts"
         component={NavigationPosts}
+
+        options={{ headerShown: false}}
         // options={{
         //   headerRight: () => (
         //     <Filter IconTitle="tune" size={32} color={"#000"}><Text>Text</Text></Filter>
@@ -470,6 +472,7 @@ export const Home = () => {
       <Drawer.Screen name="Calculator" component={NavigatorCalculator} />
       <Drawer.Screen name="Monitoring" component={NavigatorMonitoring} />
     </Drawer.Navigator>
+
   );
 }
 

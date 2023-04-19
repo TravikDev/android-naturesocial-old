@@ -1,25 +1,43 @@
 import { Avatar, Button, Divider, Icon, Surface } from '@react-native-material/core'
-import React from 'react'
+import React, { useContext, useEffect, useLayoutEffect } from 'react'
 import { ScrollView, Text, View, Image, Dimensions } from 'react-native'
 import { ButtonIconCircle } from '../../../atoms/Button/ButtonIconCircle'
+// import { DrawerContext } from '../../Home/Home'
+// import { DrawerContext } from "../../Home/Home"
+// import { useNavigation } from '@react-navigation/native'
+// import { DrawerItem, DrawerItemList } from '@react-navigation/drawer'
 
 const scrHeight = Dimensions.get('screen').height
 
 /* @ts-ignore */
 export const ScreenPostsList = ({ navigation }) => {
+
+    // const navigation = useNavigation();
+
+    /* @ts-ignore */
+    // const {drawerBar} = useContext(DrawerContext)
+
+
+    // console.log(drawerBar)
+
+    // useEffect(() => {
+    //     /* @ts-ignore */
+    //     console.log(drawerBar)
+    // }, [navigation]);
+
     return (
         <ScrollView contentContainerStyle={{ }}>
 
             <View style={{ display: 'flex', alignItems: 'center', backgroundColor: '#fff', height: scrHeight, paddingTop: 20, paddingBottom: 20, gap: 20 }}>
                 <View
-                    style={{ width: "90%", display: 'flex', backgroundColor: '#fff', borderWidth: 1, borderColor: '#ccc', borderRadius: 5, overflow: 'hidden' }}
+                    style={{ width: "90%", display: 'flex', backgroundColor: '#fbfbfb', borderWidth: 1, borderColor: '#ccc', borderRadius: 5, overflow: 'hidden' }}
                 >
                     <View style={{ padding: 15, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <View style={{ display: 'flex', flexDirection: 'row', gap: 15 }}>
                             <Avatar label="Kent Dodds" autoColor size={48} />
                             <View style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Text style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>OverGrower</Text>
-                                <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>Алексей Петрович</Text>
+                                <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>30 level</Text>
                             </View>
                         </View>
                         <View>
@@ -38,7 +56,7 @@ export const ScreenPostsList = ({ navigation }) => {
 
                         <Divider />
 
-                        <Text style={{ fontWeight: "300", fontSize: 17, color: "#444" }}>
+                        <Text style={{ fontWeight: "300", fontSize: 16, color: "#444" }}>
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                         </Text>
                     </View>
@@ -51,11 +69,11 @@ export const ScreenPostsList = ({ navigation }) => {
                         </View>
                         <View style={{ marginBottom: 5 }}>
                             <Button
-                                title="More"
+                                title="Read"
                                 tintColor='#fff'
                                 color='#3FB049'
                                 variant='outlined'
-                                onPress={() => navigation.navigate('PostDetails')}
+                                onPress={() => navigation.push('PostDetails')}
                                 trailing={
                                     /* @ts-ignore */
                                     props => <Icon name="send" size={30} color="#3e9b46" {...props} />
