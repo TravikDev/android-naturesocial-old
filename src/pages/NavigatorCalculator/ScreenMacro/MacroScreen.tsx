@@ -4,8 +4,8 @@ import { Dimensions, StyleSheet, Text, View, TextInput } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { InputMinerals } from "../../../atoms/Inputs/InputMinerals";
 import { ElementsRatiosTable } from "../../../atoms/Inputs/ElementsRatios";
-import { CustomSpoiler } from "../../../atoms/Spoiler/CustomSpoiler";
-import { ButtonIconCircle } from "../../../atoms/Button/ButtonIconCircle";
+import { CustomSpoiler } from "../../../atoms/Spoilers/CustomSpoiler";
+import { ButtonIconCircle } from "../../../atoms/Buttons/ButtonIconCircle";
 
 const srcWidth = Dimensions.get('window').width
 

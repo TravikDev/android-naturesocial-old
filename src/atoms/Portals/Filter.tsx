@@ -2,7 +2,7 @@ import { Portal, Pressable, Text } from '@react-native-material/core'
 import { Dimensions } from "react-native"
 import React, { useState } from 'react'
 import { View } from "react-native"
-import { ButtonIconCircle } from '../Button/ButtonIconCircle'
+import { ButtonIconCircle } from '../Buttons/ButtonIconCircle'
 
 /* @ts-ignore */
 export const Filter = ({ IconTitle, size, color, children }) => {

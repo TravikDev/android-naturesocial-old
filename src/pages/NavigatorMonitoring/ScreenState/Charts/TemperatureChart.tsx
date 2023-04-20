@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { LinearGradient, Stop } from 'react-native-svg';
-import { VictoryChart, VictoryStack, VictoryArea, VictoryTheme, VictoryCursorContainer, VictoryScatter, VictoryLabel, VictoryAxis, VictoryLegend, VictoryTooltip, VictoryPortal } from 'victory-native';
+import { VictoryChart, VictoryArea, VictoryTheme, VictoryCursorContainer, VictoryScatter, VictoryLabel, VictoryAxis, VictoryLegend, VictoryTooltip, VictoryPortal } from 'victory-native';
 
 
 /* @ts-ignore */

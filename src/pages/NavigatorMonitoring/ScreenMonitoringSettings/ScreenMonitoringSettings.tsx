@@ -1,14 +1,10 @@
-// import { Text } from '@react-native-material/core'
-import { StyleSheet, Text, View, Dimensions
- } from "react-native"
+import { StyleSheet, Text, View, Dimensions } from "react-native"
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { CheckBoxes } from "../../../atoms/Inputs/CheckBoxes"
-import { Spoiler } from "../../../atoms/Spoiler/Spoiler"
-import { CustomSpoiler } from "../../../atoms/Spoiler/CustomSpoiler"
-import { Divider, ListItem } from "@react-native-material/core"
-import { SpoilerSettings } from "../../../atoms/Spoiler/SpoilerSettings"
-import { ButtonIconCircle } from "../../../atoms/Button/ButtonIconCircle"
+import { Divider } from "@react-native-material/core"
+import { SpoilerSettings } from "../../../atoms/Spoilers/SpoilerSettings"
+import { ButtonIconCircle } from "../../../atoms/Buttons/ButtonIconCircle"
 
 const scrHeight = Dimensions.get('screen').height
 

@@ -1,13 +1,15 @@
 import { Avatar, ListItem } from '@react-native-material/core'
 import React from 'react'
 
-export const ScreenMembers = () => {
+/* @ts-ignore */
+export const ScreenUsersList = ({ navigation }) => {
     return (
         <>
             <ListItem
+                onPress={() => navigation.navigate('SingleUser')}
                 leadingMode="avatar"
                 leading={
-                    <Avatar image={{ uri: "https://mui.com/static/images/avatar/1.jpg" }} />
+                    <Avatar image={{ uri: "https://mui.com/static/images/avatar/4.jpg" }} />
                 }
                 title="Brunch this weekend?"
                 secondaryText="I'll be in your neighborhood doing errands this…"
@@ -15,7 +17,7 @@ export const ScreenMembers = () => {
             <ListItem
                 leadingMode="avatar"
                 leading={
-                    <Avatar image={{ uri: "https://mui.com/static/images/avatar/2.jpg" }} />
+                    <Avatar image={{ uri: "https://mui.com/static/images/avatar/5.jpg" }} />
                 }
                 title="Summer BBQ"
                 secondaryText="Wish I could come, but I'm out of town this…"

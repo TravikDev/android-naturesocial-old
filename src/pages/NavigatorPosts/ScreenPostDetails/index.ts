@@ -1,1 +1,1 @@
-export * from "./ScreenPostDetails"
+export * from "./ScreenSinglePost"

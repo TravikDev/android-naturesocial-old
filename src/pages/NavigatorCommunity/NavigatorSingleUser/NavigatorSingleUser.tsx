@@ -1,13 +1,13 @@
 import React from 'react'
-import { FlatList, ScrollView } from 'react-native-gesture-handler'
+import { ScrollView } from 'react-native-gesture-handler'
 import { View, Text, Image, Dimensions, StyleSheet } from "react-native"
-import { Avatar, Divider, Icon, ListItem } from '@react-native-material/core'
+import { Avatar, Divider, Icon } from '@react-native-material/core'
 import { ProgressBar } from '../../../atoms/Progress/ProgressBar'
-import { Spoiler } from '../../../atoms/Spoiler/Spoiler'
+import { Spoiler } from '../../../atoms/Spoilers/Spoiler'
 
 const scrWidth = Dimensions.get('screen').width
 
-export const ScreenUserProfile = () => {
+export const ScreenSingleUser = () => {
   return (
     <ScrollView>
       <View style={{ backgroundColor: "#fff" }}>
@@ -15,7 +15,7 @@ export const ScreenUserProfile = () => {
           <View>
             <Image
               style={{ width: scrWidth, height: 150 }}
-              source={require('../../../assets/images/lol2.jpg')} />
+              source={require('../../../assets/images/profileLayout.jpg')} />
           </View>
           <View style={{ position: 'absolute', top: 25 }}>
             <Avatar style={{ borderRadius: 50, borderWidth: 2, borderColor: '#fff'}} label="Kent Dodds" autoColor size={100} />
@@ -46,12 +46,6 @@ export const ScreenUserProfile = () => {
             <View style={styles.secondContainer}>
               <Text style={styles.textStyle}>Surname</Text>
             </View>
-          </View>
-          <View style={styles.container}>
-            <Icon name='email' size={24} /><Text style={styles.textStyle}>Mail</Text>
-          </View>
-          <View style={styles.container}>
-            <Icon name='location-on' size={24} /><Text style={styles.textStyle}>Country</Text>
           </View>
         </View>
 

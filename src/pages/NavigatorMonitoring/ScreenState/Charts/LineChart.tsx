@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { LinearGradient, Stop } from 'react-native-svg';
-import { VictoryChart, VictoryStack, VictoryArea, VictoryTheme, VictoryCursorContainer, VictoryScatter, VictoryLabel, VictoryAxis, VictoryLegend, VictoryTooltip, VictoryPortal } from 'victory-native';
+import { VictoryChart, VictoryArea, VictoryTheme, VictoryCursorContainer, VictoryScatter, VictoryLabel, VictoryAxis, VictoryLegend, VictoryTooltip, VictoryPortal } from 'victory-native';
 
 
 /* @ts-ignore */
@@ -16,30 +15,20 @@ export const LineChart = ({
 
 }) => {
 
-
-  // const legendArray = Object.keys(data)
-
   /* @ts-ignore */
   const maxValueY = data?.reduce((acc, val) => (val.y > acc ? acc = val.y : acc), 0)
   /* @ts-ignore */
-  
+
   let tempMin = 999999
   /* @ts-ignore */
   data?.forEach(val => { val.y < tempMin && (tempMin = val.y) })
   /* @ts-ignore */
-// console.log(tempMin)
-  // console.log(minValueY)
-  // const maxValueY = (maxValueAirTempY = 0, maxValueRootTempY = 0, maxValueSolutionTempY = 0) => {
-  //   return Math.max(maxValueAirTempY, maxValueRootTempY, maxValueSolutionTempY)
-  // }
-
-  // const maxValueY = data2.reduce((ac, val) => (val.y > ac ? ac = val.y : ac), 0)
 
   return (
     <VictoryChart
       style={{ parent: { left: -20 } }}
       height={250}
-      domain={{ y: [tempMin*0.9, maxValueY*1.1] }}
+      domain={{ y: [tempMin * 0.9, maxValueY * 1.1] }}
       theme={VictoryTheme.material}
       containerComponent={
         <VictoryCursorContainer
@@ -65,15 +54,14 @@ export const LineChart = ({
       </LinearGradient>
 
       {legendTitle !== '' && (
-      <VictoryLegend
-        orientation="horizontal"
-        gutter={20}
-        // style={{ border: { stroke: "#ccc", strokeOpacity: 0.5, fill: '#fff' } }}
-        colorScale={["#00ff00"]}
-        data={[
-          { name: `${legendTitle}` }
-        ]}
-      />)}
+        <VictoryLegend
+          orientation="horizontal"
+          gutter={20}
+          colorScale={["#00ff00"]}
+          data={[
+            { name: `${legendTitle}` }
+          ]}
+        />)}
 
       <VictoryAxis
         dependentAxis
@@ -112,8 +100,7 @@ export const LineChart = ({
       <VictoryScatter
         data={data}
         style={{ data: { fill: "white", strokeWidth: 1, stroke: '#3e9b46', fontSize: 18 } }}
-      labels={({ datum }) => `${datum.y}`}
-      // labelComponent={<VictoryLabel />}
+        labels={({ datum }) => `${datum.y}`}
       />
 
 

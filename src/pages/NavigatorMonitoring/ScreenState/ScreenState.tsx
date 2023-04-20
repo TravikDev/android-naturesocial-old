@@ -1,13 +1,11 @@
 import { useState } from 'react'
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { CustomSpoiler } from '../../../atoms/Spoiler/CustomSpoiler';
+import { CustomSpoiler } from '../../../atoms/Spoilers/CustomSpoiler';
 import { TemperatureChart } from './Charts/TemperatureChart';
 import { LineChart } from './Charts/LineChart';
-import { StateControlButton } from '../../../atoms/Button/StateControlButton';
+import { StateControlButton } from '../../../atoms/Buttons/StateControlButton';
 
-
-// const scrWidth = Dimensions.get('window').width
 
 export const ScreenState = () => {
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { StyleSheet, TextInput } from 'react-native';
-import { VictoryChart, VictoryStack, VictoryArea, VictoryTheme, VictoryCursorContainer, VictoryVoronoiContainer } from 'victory-native';
+import { StyleSheet } from 'react-native';
+import { VictoryChart, VictoryArea, VictoryTheme, VictoryVoronoiContainer } from 'victory-native';
 import { LinearGradient, Stop } from 'react-native-svg';
 
 export const MultilineChart = () => {
@@ -54,20 +54,12 @@ export const MultilineChart = () => {
           <VictoryVoronoiContainer
             labels={({ datum }) => `${Math.round(datum.x)}, ${Math.round(datum.y)}`}
           />
-        }
-      // containerComponent={
-      //   <VictoryCursorContainer
-      //     cursorDimension="x"
-      //     cursorLabel={({ datum }) => `${datum.x}, ${datum.y}`}
-      //   />
-      // }
-
-      >
+        }>
         <LinearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <Stop offset="100%" stopColor="#fff" />
           <Stop offset="0%" stopColor="#3e9b46" />
         </LinearGradient>
-        {/* <VictoryStack> */}
+
         <VictoryArea
           interpolation="monotoneX"
           style={styles}

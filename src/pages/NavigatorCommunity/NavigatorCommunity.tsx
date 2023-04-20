@@ -1,49 +1,23 @@
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { ScreenDiaries } from "./ScreenDiaries";
-import { ScreenGroups } from "./ScreenGroups";
-import { ScreenMembers } from "./ScreenMembers/";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Icon } from "@react-native-material/core";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle';
+import { View } from 'react-native';
+import { NavigatorCommunityLists } from './NavigatorCommunityLists';
+import { ScreenSingleUser } from './NavigatorSingleUser';
 
-const Tab = createMaterialTopTabNavigator();
+const Stack = createNativeStackNavigator();
 
-export const NavigatorCommunity = () => {
-    return (
-        <Tab.Navigator screenOptions={({ route }) => ({
-            tabBarActiveTintColor: '#1A6111',
-            tabBarInactiveTintColor: "#000",
-            tabBarIndicatorStyle: { backgroundColor: '#1B8113' },
-            // tabBarItemStyle: { borderBottomColor: '#1B6113', borderBottomWidth: 2 },
-            // tabBarIcon: ({ focused, color, size }) => {
-            //     let iconName = ''
 
-            //     if (route.name === 'Members') {
-            //         iconName = focused
-            //             ? 'supervised-user-circle'
-            //             : 'wc';
-            //     } else if (route.name === 'Diaries') {
-            //         iconName = focused
-            //             ? 'import-contacts'
-            //             : 'menu-book';
-            //     } else if (route.name === 'Groups') {
-            //         iconName = focused
-            //             ? 'group'
-            //             : 'groups';
-            //     }
+/* @ts-ignore */
+export const NavigatorCommunity = ({ navigation }) => {
 
-            //     // You can return any component that you like here!
-            //     return <Icon name={iconName} size={size} color={color} />;
-            // },
-            // tabBarActiveTintColor: 'tomato',
-            // tabBarInactiveTintColor: 'gray',
-        })}>
-            <Tab.Screen name="Members" component={ScreenMembers} />
-            <Tab.Screen
-                name="Diaries"
-                component={ScreenDiaries}
-                // options={{ tabBarBadge: 3 }}
-            />
-            <Tab.Screen name="Groups" component={ScreenGroups} />
-        </Tab.Navigator>
-    );
-};
+  return (
+    <Stack.Navigator initialRouteName="CommunityLists">
+      <Stack.Screen name="CommunityLists" component={NavigatorCommunityLists}
+      options={{
+        headerLeft: () => <View style={{ marginRight: 20}}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>
+      }}
+      />
+      <Stack.Screen name="SingleUser" component={ScreenSingleUser} />
+    </Stack.Navigator>
+  )
+}

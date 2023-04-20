@@ -1,29 +1,11 @@
-import { Avatar, Button, Divider, Icon, Surface } from '@react-native-material/core'
-import React, { useContext, useEffect, useLayoutEffect } from 'react'
+import { Avatar, Button, Divider, Icon } from '@react-native-material/core'
 import { ScrollView, Text, View, Image, Dimensions } from 'react-native'
-import { ButtonIconCircle } from '../../../atoms/Button/ButtonIconCircle'
-// import { DrawerContext } from '../../Home/Home'
-// import { DrawerContext } from "../../Home/Home"
-// import { useNavigation } from '@react-navigation/native'
-// import { DrawerItem, DrawerItemList } from '@react-navigation/drawer'
+import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
 
 const scrHeight = Dimensions.get('screen').height
 
 /* @ts-ignore */
 export const ScreenPostsList = ({ navigation }) => {
-
-    // const navigation = useNavigation();
-
-    /* @ts-ignore */
-    // const {drawerBar} = useContext(DrawerContext)
-
-
-    // console.log(drawerBar)
-
-    // useEffect(() => {
-    //     /* @ts-ignore */
-    //     console.log(drawerBar)
-    // }, [navigation]);
 
     return (
         <ScrollView contentContainerStyle={{ }}>

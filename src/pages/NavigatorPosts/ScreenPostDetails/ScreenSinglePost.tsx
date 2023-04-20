@@ -1,37 +1,18 @@
 import React from 'react'
-import { View, Text, Button, ScrollView, Dimensions, Image } from "react-native"
-import { ButtonIconCircle } from '../../../atoms/Button/ButtonIconCircle'
+import { View, Text, ScrollView, Dimensions, Image } from "react-native"
+import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
 import { Avatar, Divider } from '@react-native-material/core'
-import { CustomSpoiler } from '../../../atoms/Spoiler/CustomSpoiler'
-import { Spoiler } from '../../../atoms/Spoiler/Spoiler'
-import { SpoilerSettings } from '../../../atoms/Spoiler/SpoilerSettings'
-import { SpoilerComments } from '../../../atoms/Spoiler/SpoilerComments'
-import { StateControlButton } from '../../../atoms/Button/StateControlButton'
+import { SpoilerComments } from '../../../atoms/Spoilers/SpoilerComments'
 import { PostDetailsIndicator } from '../../../atoms/Indicators/PostDetailsIndicator'
 
 const scrHeight = Dimensions.get('screen').height
 
 /* @ts-ignore */
-export const ScreenPostDetails = ({ navigation }) => {
-
-  // useEffect(() => {
-  //   navigation.setOptions({
-  //     headerTitle: 'Posts',
-  //   });
-  //   navigation.dangerouslyGetParent().setOptions({
-  //     drawerLabel: 'All Posts',
-  //   });
-  // }, []);
-
-  // console.log(navigation)
+export const ScreenSinglePost = ({ navigation }) => {
 
   return (
     <ScrollView>
       <View style={{ backgroundColor: '#fff' }}>
-        {/* <View>
-          <Image style={{ height: 180, width: "100%" }} source={require('../../../assets/images/posts/post1.jpeg')} />
-        </View> */}
-        {/* <View> */}
         <View
           style={{ width: "100%", display: 'flex', overflow: 'hidden' }}
         >

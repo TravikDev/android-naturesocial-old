@@ -1,7 +1,7 @@
 import { Avatar, ListItem } from '@react-native-material/core'
 import React from 'react'
 
-export const ScreenGroups = () => {
+export const ScreenGardensList = () => {
     return (
         <>
         <ListItem

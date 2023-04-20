@@ -1,7 +1,6 @@
 import { Icon, ListItem, Pressable, Text } from '@react-native-material/core'
-import React from 'react'
 import { View } from "react-native"
-import { Spoiler } from '../../../atoms/Spoiler/Spoiler'
+import { Spoiler } from '../../../atoms/Spoilers/Spoiler'
 import { ScrollView } from 'react-native-gesture-handler'
 
 
