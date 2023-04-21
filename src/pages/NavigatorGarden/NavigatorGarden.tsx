@@ -1,30 +1,25 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import React from 'react'
-// import { ScreenUserProfile } from './ScreenUserProfile'
-// import { ScreenUserSettings } from './ScreenUserSettings'
-import { Icon } from '@react-native-material/core'
-import { ScreenGardenPage } from './ScreenGardenPage'
-import { ScreenGardenSettings } from './ScreenGardenSettings'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import { ScreenSinglePost } from './ScreenPostDetails';
+// import { ScreenPostsList } from './ScreenPostsList';
+import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle';
+import { View } from 'react-native';
+import { NavigatorGardenPage } from './NavigatorGardenPage';
+import { NavigatorGardenSettings } from './NavigatorGardenSettings';
 
-const Tab = createBottomTabNavigator()
+const Stack = createNativeStackNavigator();
 
-export const NavigatorGarden = () => {
+
+/* @ts-ignore */
+export const NavigatorGarden = ({ navigation }) => {
+
   return (
-    <Tab.Navigator screenOptions={{ }}>
-        <Tab.Screen 
-          name="GardenPage" 
-          component={ScreenGardenPage}
-          options={{ 
-            headerShown: false,
-            tabBarIcon: () => <Icon name='nature-people' size={26} color='#666' />
-          }} />
-        <Tab.Screen 
-          name="Settings" 
-          component={ScreenGardenSettings} 
-          options={{ 
-            headerShown: false,
-            tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
-          }} />
-      </Tab.Navigator>
+    <Stack.Navigator initialRouteName="GardenPage">
+      <Stack.Screen name="GardenPage" component={NavigatorGardenPage}
+      options={{
+        headerLeft: () => <View style={{ marginRight: 20}}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>
+      }}
+      />
+      <Stack.Screen name="GardenSettings" component={NavigatorGardenSettings} />
+    </Stack.Navigator>
   )
 }

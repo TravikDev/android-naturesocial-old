@@ -1,15 +1,15 @@
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { View, Text, Image, Dimensions, StyleSheet } from "react-native"
-import { SpoilerGardenPage } from '../../../atoms/Spoilers/SpoilerGardenPage'
-import { Button, Divider, Icon, Pressable } from '@react-native-material/core'
-import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
-import { GardenStateIndicator } from '../../../atoms/Indicators/GardenStateIndicator'
+import { SpoilerGardenPage } from '../../../../atoms/Spoilers/SpoilerGardenPage'
+import { Divider, Icon, Pressable } from '@react-native-material/core'
+// import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
+// import { GardenStateIndicator } from '../../../../atoms/Indicators/GardenStateIndicator'
 
 const scrWidth = Dimensions.get('screen').width
 const scrHeight = Dimensions.get('screen').height
 
-export const ScreenGardenPage = () => {
+export const ScreenGardenInfo = () => {
   return (
     <ScrollView>
 
@@ -19,7 +19,7 @@ export const ScreenGardenPage = () => {
           <View>
             <Image
               style={{ width: scrWidth, height: 200 }}
-              source={require('../../../assets/images/gardenLayout.jpg')} />
+              source={require('../../../../assets/images/gardenLayout.jpg')} />
           </View>
         </View>
 
@@ -90,7 +90,7 @@ export const ScreenGardenPage = () => {
 
             <View style={{ display: 'flex', flexDirection: 'row', gap: 10, marginTop: 20 }}>
               <View>
-                <View style={{ paddingTop: 10 }}>
+                <View>
                   <ScrollView horizontal={true} contentContainerStyle={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
                     <View style={{
                       height: 150, width: 150, marginLeft: 10,

@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Dimensions } from "react-native"
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { CheckBoxes } from "../../../atoms/Inputs/CheckBoxes"
-import { Divider } from "@react-native-material/core"
+import { Divider, Switch } from "@react-native-material/core"
 import { SpoilerSettings } from "../../../atoms/Spoilers/SpoilerSettings"
 import { ButtonIconCircle } from "../../../atoms/Buttons/ButtonIconCircle"
 
@@ -11,6 +11,8 @@ const scrHeight = Dimensions.get('screen').height
 export const ScreenMonitoringSettings = () => {
 
   const [checked, toggleChecked] = useState(false)
+
+  const [loading, setLoading] = useState(true);
 
   return (
     <ScrollView contentContainerStyle={{ backgroundColor: '#fff', padding: 10 }}>
@@ -26,8 +28,11 @@ export const ScreenMonitoringSettings = () => {
 
             <View style={styles.spoilerContent}>
               {/* @ts-ignore */}
-              <CheckBoxes checked={checked} handleToggleCheck={toggleChecked} />
+              {/* <CheckBoxes checked={checked} handleToggleCheck={toggleChecked} /> */}
+              
               <Text style={styles.spoilerText}>Wega ESP32</Text>
+
+              <Switch value={loading} onValueChange={setLoading}  />
             </View>
 
             <Divider style={{ marginBottom: 5 }} />
@@ -195,6 +200,7 @@ const styles = StyleSheet.create({
   spoilerContent: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     gap: 8,
     paddingHorizontal: 10,

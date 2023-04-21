@@ -15,6 +15,7 @@ import { NavigatorCommunity } from '../NavigatorCommunity';
 // import { Spoiler } from '../../atoms/Spoiler/Spoiler';
 import { SpoilerMenu } from '../../atoms/Spoilers/SpoilerMenu';
 import { NavigatorGarden } from '../NavigatorGarden/NavigatorGarden';
+// import { NavigatorGarden } from '../NavigatorGarden/NavigatorGarden';
 // import { ScreenPostsList } from '../NavigatorPosts/ScreenPostsList';
 // import { NavigationPosts } from '../NavigatorPosts';
 
@@ -486,11 +487,12 @@ export const Home = () => {
       <Drawer.Screen name="Profile" component={NavigatorProfile} />
       <Drawer.Screen name="Garden" component={NavigatorGarden}
       options={{
-        headerRight: () => (
-          <View style={{ marginRight: 10 }}>
-            <Icon name='info-outline' size={26} />
-          </View>
-        )
+        headerShown: false
+        // headerRight: () => (
+        //   <View style={{ marginRight: 10 }}>
+        //     <Icon name='info-outline' size={26} />
+        //   </View>
+        // )
       }}
       />
       <Drawer.Screen name="Calculator" component={NavigatorCalculator} />
