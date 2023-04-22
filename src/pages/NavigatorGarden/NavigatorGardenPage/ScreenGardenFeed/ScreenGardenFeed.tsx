@@ -3,11 +3,15 @@ import { Animated, Dimensions, ScrollView, StyleSheet, Text, View, TextInput } f
 import { PostCard } from '../../../organisms/Posts/PostCard'
 import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
 import { Icon, Pressable } from '@react-native-material/core'
+// import { PostFilterCategories } from '../../../organisms/Posts/PostFilterCategories'
+import { PostFilterSingleCategories } from '../../../organisms/Posts/PostFilterSingleCategories'
+// import { Test } from '../../../organisms/Posts/Test'
 
 const scrHeight = Dimensions.get('screen').height
 const scrWidth = Dimensions.get('screen').width
 
-export const ScreenGardenFeed = () => {
+/* @ts-ignore */
+export const ScreenGardenFeed = ({ navigation }) => {
 
     const [optionsModal, toggleOptionsModal] = useState(false)
 
@@ -42,6 +46,50 @@ export const ScreenGardenFeed = () => {
         setInputValues(updatedValues);
     };
 
+    const [arrCatsTypes, setCatsTypes] = useState(['All Types', 'DNFT', 'DWC', 'Periodic', 'Backwater', 'Manual refill'])
+
+    const [arrCatsDevices, setCatsDevices] = useState(['All Devies', 'First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth'])
+
+    const [arrCatsCultures, setCatsCultures] = useState(['All Cultures', 'First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth'])
+
+    const [arrCatsVariety, setCatsVariety] = useState(['All Verieties', 'First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth'])
+
+    // const [arrCultures, setArrCultures] = useState(['All devices', 'DNFT', 'DWC'])
+
+    const [expandedTypes, toggleExpandedTypes] = useState(false)
+    const [expandedCultures, toggleExpandedCultures] = useState(false)
+
+    const [expandedDevices, toggleExpandedDevices] = useState(false)
+    const [expandedVerieties, toggleExpandedVerieties] = useState(false)
+
+    const handleToggleExpandedTypes = () => {
+        expandedDevices && toggleExpandedDevices(false)
+        expandedCultures && toggleExpandedCultures(false)
+        expandedVerieties && toggleExpandedVerieties(false)
+        toggleExpandedTypes(state => !state)
+    }
+
+    const handleToggleExpandedCultures = () => {
+        expandedDevices && toggleExpandedDevices(false)
+        expandedTypes && toggleExpandedTypes(false)
+        expandedVerieties && toggleExpandedVerieties(false)
+        toggleExpandedCultures(state => !state)
+    }
+
+    const handleToggleExpandedDevices = () => {
+        expandedCultures && toggleExpandedCultures(false)
+        expandedTypes && toggleExpandedTypes(false)
+        expandedVerieties && toggleExpandedVerieties(false)
+        toggleExpandedDevices(state => !state)
+    }
+
+    const handleToggleExpandedVerieties = () => {
+        expandedCultures && toggleExpandedCultures(false)
+        expandedDevices && toggleExpandedDevices(false)
+        expandedTypes && toggleExpandedTypes(false)
+        toggleExpandedVerieties(state => !state)
+    }
+
 
     // const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -57,10 +105,7 @@ export const ScreenGardenFeed = () => {
     // const [loading, setLoading] = useState(true);
 
     return (
-        <>
-            <View style={{ position: 'absolute', zIndex: 10, opacity: 0.9, backgroundColor: '#090', borderRadius: 25, justifyContent: 'center', alignItems: "center", borderWidth: 1, borderColor: '#fff', bottom: scrHeight / 50, right: scrWidth / 25 }}>
-                <ButtonIconCircle iconTitle='add' color='#fff' size={48} />
-            </View>
+        <View style={{}}>
 
 
             <ScrollView contentContainerStyle={{ backgroundColor: '#fff' }} >
@@ -76,11 +121,11 @@ export const ScreenGardenFeed = () => {
                 </View>
 
                 {optionsModal && (
-                    <View style={{ backgroundColor: '#fbfbfb', borderColor: '#ccc', borderWidth: 1, borderRadius: 5, marginBottom: 10, marginHorizontal: 10, overflow: 'hidden', gap: 10 }}>
+                    <View style={{ backgroundColor: '#fbfbfb', borderColor: '#ccc', borderWidth: 1, borderRadius: 5, marginBottom: 10, marginHorizontal: 10, gap: 10, zIndex: 10 }}>
 
-                        <View style={{ height: 50, }}>
+                        {/* <View style={{ }}>
                             <Text style={{ color: '#111', fontWeight: '300', fontSize: 18 }}>Filter</Text>
-                        </View>
+                        </View> */}
                         {/* <View style={{}}><Text>Filter</Text></View> */}
                         {/* <View style={{
                             width: '100%',
@@ -102,44 +147,67 @@ export const ScreenGardenFeed = () => {
                                 // borderWidth: 1,
                                 padding: 2, gap: 4
                             }}> */}
-                        <View style={{ display: 'flex', flexDirection: 'column', padding: 10, flexWrap: 'wrap', gap: 5 }}>
+
+
+                        <View style={{ display: 'flex', flexDirection: 'column', paddingHorizontal: 15, paddingVertical: 10, flexWrap: 'wrap', gap: 5 }}>
+
+                            <View style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', gap: 5, zIndex: 20, flexWrap: 'wrap' }}>
+
+                                <View style={{ width: '49%', zIndex: 24 }}>
+                                    <PostFilterSingleCategories expanded={expandedTypes} setExpanded={handleToggleExpandedTypes} arrCategories={arrCatsTypes} />
+                                </View>
+
+                                <View style={{ width: '49%', zIndex: 22 }}>
+                                    <PostFilterSingleCategories expanded={expandedCultures} setExpanded={handleToggleExpandedCultures} arrCategories={arrCatsCultures} />
+                                </View>
+
+                                <View style={{ width: '49%', zIndex: 23 }}>
+                                    <PostFilterSingleCategories expanded={expandedDevices} setExpanded={handleToggleExpandedDevices} arrCategories={arrCatsDevices} />
+                                </View>
+
+                                <View style={{ width: '49%', zIndex: 21 }}>
+                                    <PostFilterSingleCategories expanded={expandedVerieties} setExpanded={handleToggleExpandedVerieties} arrCategories={arrCatsVariety} />
+                                </View>
+                            </View>
+
+
                             {
                                 inputValues.map((input) => {
 
                                     // let someTag = tagList[idx]
 
                                     return (
-                                    <View
-                                        key={input.key}
-                                        style={{ height: 42, width: '100%', borderRadius: 5, borderWidth: 1, borderColor: "#ccc", display: 'flex', alignContent: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
+                                        <View
+                                            key={input.key}
+                                            style={{ height: 42, width: '100%', borderRadius: 5, borderWidth: 1, backgroundColor: '#fff', borderColor: "#ccc", display: 'flex', alignContent: 'center', justifyContent: 'space-between', flexDirection: 'row', zIndex: 0 }}>
                                             <>
-                                        <TextInput
-                                            /* @ts-ignore */
-                                            textAlignVertical='top'
-                                            // underlineColorAndroid='#393'
-                                            // selectionColor="#fff"
-                                            selectionColor="#393"
-                                            placeholder='tag'
-                                            placeholderTextColor='#111'
-                                            blurOnSubmit={true}
-                                            style={{ color: '#111' }}
-                                            // onBlur={handleBlurTag}
-                                            value={input.value}
-                                            onChangeText={(text) => handleInputChange(text, input.key)}
-                                        />
-                                        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                            <View style={{}}>
-                                                <ButtonIconCircle iconTitle='remove-circle-outline' size={40} color="#666" func={() => handleRemoveInput(input.key)} />
-                                            </View>
-                                        </View>
-                                        </>
-                                    </View>)
+                                                <TextInput
+                                                    /* @ts-ignore */
+                                                    textAlignVertical='top'
+                                                    // underlineColorAndroid='#393'
+                                                    // selectionColor="#fff"
+                                                    // selectionColor="#393"
+                                                    placeholder='tag'
+                                                    placeholderTextColor='#111'
+                                                    blurOnSubmit={true}
+                                                    style={{ color: '#111' }}
+                                                    // onBlur={handleBlurTag}
+                                                    value={input.value}
+                                                    onChangeText={(text) => handleInputChange(text, input.key)}
+                                                />
+                                                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', zIndex: 0 }}>
+                                                    <View style={{}}>
+                                                        <ButtonIconCircle iconTitle='remove-circle-outline' size={40} color="#666" func={() => handleRemoveInput(input.key)} />
+                                                    </View>
+                                                </View>
+                                            </>
+                                        </View>)
 
                                 })
                             }
 
                             {/* </View> */}
-                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', zIndex: 0 }}>
                                 <View style={{}}>
                                     <ButtonIconCircle iconTitle='add-circle-outline' size={40} color="#666" func={handleAddInput} />
                                 </View>
@@ -154,13 +222,17 @@ export const ScreenGardenFeed = () => {
 
                 {/* <Divider /> */}
 
-                <View style={{ display: 'flex', backgroundColor: '#fff', paddingHorizontal: 10, paddingBottom: 10, gap: 10 }}>
+                {/* <Test /> */}
+
+                <View style={{ display: 'flex', backgroundColor: '#fff', paddingHorizontal: 10, paddingBottom: 10, gap: 10, zIndex: 0 }}>
 
                     {/* <ButtonIconCircle iconTitle='settings-applications' color='#111' size={32} /> */}
+
 
                     <PostCard title='Second title' categories='Category 2, Category 3'>
                         Molestias, omnis aperiam est in blanditiis quo quod dolorum. Illo voluptate, voluptatem ducimus, alias iusto ipsam odit ad ratione tempore dicta.
                     </PostCard>
+
 
                     <PostCard title='Second title' categories='Category 2, Category 3'>
                         Molestias, omnis aperiam est in blanditiis quo quod dolorum. Illo voluptate, voluptatem ducimus, alias iusto ipsam odit ad ratione tempore dicta.
@@ -170,7 +242,10 @@ export const ScreenGardenFeed = () => {
 
             </ScrollView >
 
-        </>
+            <View style={{ opacity: 0.9, backgroundColor: '#090', borderRadius: 25, justifyContent: 'center', alignItems: "center", borderWidth: 1, borderColor: '#fff', bottom: scrHeight / 50, right: scrWidth / 25, position: 'absolute' }}>
+                <ButtonIconCircle iconTitle='add' color='#fff' size={48} func={() => navigation.navigate('AddGardenPost')} />
+            </View>
+        </View>
     )
 }
 
@@ -193,3 +268,4 @@ const styles = StyleSheet.create({
         marginVertical: 16,
     },
 });
+

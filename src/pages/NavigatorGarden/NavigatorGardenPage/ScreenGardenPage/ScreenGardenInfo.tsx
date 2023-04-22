@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { View, Text, Image, Dimensions, StyleSheet } from "react-native"
 import { SpoilerGardenPage } from '../../../../atoms/Spoilers/SpoilerGardenPage'
 import { Divider, Icon, Pressable } from '@react-native-material/core'
+import { CalendarTable } from '../../../organisms/GardenPage/Calendar/CalendarTable'
 // import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
 // import { GardenStateIndicator } from '../../../../atoms/Indicators/GardenStateIndicator'
 
@@ -11,9 +12,9 @@ const scrHeight = Dimensions.get('screen').height
 
 export const ScreenGardenInfo = () => {
   return (
-    <ScrollView>
+    <ScrollView style={{  }}>
 
-      <View style={{ height: scrHeight, backgroundColor: '#fff' }}>
+      <View style={{ backgroundColor: '#fff' }}>
 
         <View style={{ backgroundColor: "#fff", display: 'flex', alignItems: 'center' }}>
           <View>
@@ -142,16 +143,13 @@ export const ScreenGardenInfo = () => {
             <Text>Text</Text>
           </SpoilerGardenPage>
 
-          <SpoilerGardenPage title='Feed' >
+          <SpoilerGardenPage title='Calendar' leadingIcon='event' >
             <View>
-              <Text style={{ color: '#111'}}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa quam quasi tempora a, excepturi recusandae veniam autem facilis! Possimus, accusamus praesentium. Cupiditate neque consequuntur nisi expedita tempore error omnis ex.
-                Possimus voluptatum, minus, delectus necessitatibus exercitationem atque suscipit aperiam quod ratione aliquam dolore aspernatur voluptas repellat nostrum velit commodi facere eaque error cumque esse. Explicabo consequatur eius sunt unde aperiam?
-              </Text>
+              <CalendarTable />
             </View>
           </SpoilerGardenPage>
 
-          <View style={{ gap: 20 }}>
+          <View style={{ marginBottom: 50 }}>
 
           </View>
         </View>

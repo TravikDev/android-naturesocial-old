@@ -58,7 +58,7 @@ export const PostCard = ({ title, image = '', children, categories }) => {
         <ScrollView contentContainerStyle={{}}>
 
                 <View
-                    style={{ display: 'flex', backgroundColor: '#fbfbfb', borderWidth: 1, borderColor: '#ccc', borderRadius: 5, overflow: 'hidden' }}
+                    style={{ display: 'flex', backgroundColor: '#fbfbfb', borderWidth: 1, borderColor: '#ccc', borderRadius: 5 }}
                 >
                     {/* <View style={{ padding: 15, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <View style={{ display: 'flex', flexDirection: 'row', gap: 15 }}>

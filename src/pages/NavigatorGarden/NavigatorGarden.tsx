@@ -5,6 +5,7 @@ import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle';
 import { View } from 'react-native';
 import { NavigatorGardenPage } from './NavigatorGardenPage';
 import { NavigatorGardenSettings } from './NavigatorGardenSettings';
+import { ScreenAddGardenPost } from './ScreenAddGardenPost';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,8 @@ export const NavigatorGarden = ({ navigation }) => {
       }}
       />
       <Stack.Screen name="GardenSettings" component={NavigatorGardenSettings} />
+
+      <Stack.Screen name="AddGardenPost" component={ScreenAddGardenPost} />
     </Stack.Navigator>
   )
 }
