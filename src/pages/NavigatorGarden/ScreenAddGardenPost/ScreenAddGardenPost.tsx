@@ -4,7 +4,7 @@ import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { ButtonSimpleText } from '../../../atoms/Buttons/ButtonSimpleText'
 import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
 import { ButtonSingleImage } from '../../../atoms/Buttons/ButtonSingleImage'
-import { PostFilterContainer } from '../../organisms/Posts/PostFilterContainer'
+import { PostFilterContainer } from '../../organisms/Posts/PostsList/PostFilterContainer/PostFilterContainer'
 
 /* @ts-ignore */
 export const ScreenAddGardenPost = ({ navigation }) => {
@@ -41,8 +41,8 @@ export const ScreenAddGardenPost = ({ navigation }) => {
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           {/* <Button title="Clear" style={{ }} /> */}
           <ButtonSingleImage func={() => { }}>
-            <View style={{ paddingLeft: 3, top: -2 }}>
-              <Icon name='add-photo-alternate' size={32} color='#fff' />
+            <View style={{ paddingLeft: 2, top: -1 }}>
+              <Icon name='add-photo-alternate' size={26} color='#fff' />
             </View>
           </ButtonSingleImage>
 

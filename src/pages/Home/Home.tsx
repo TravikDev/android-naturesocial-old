@@ -10,11 +10,12 @@ import { NavigatorCalculator } from '../NavigatorCalculator';
 import { NavigatorMonitoring } from '../NavigatorMonitoring';
 import { ScreenCategories } from '../NavigatorCultures/ScreenCulturesCategories';
 import { NavigatorProfile } from '../NavigatorProfile';
-import { NavigatorPosts } from '../NavigatorPosts';
+import { NavigatorFeed } from '../NavigatorFeed';
 import { NavigatorCommunity } from '../NavigatorCommunity';
 // import { Spoiler } from '../../atoms/Spoiler/Spoiler';
 import { SpoilerMenu } from '../../atoms/Spoilers/SpoilerMenu';
 import { NavigatorGarden } from '../NavigatorGarden/NavigatorGarden';
+import { NavigatorMarketplace } from '../NavigatorMarketplace';
 // import { NavigatorGarden } from '../NavigatorGarden/NavigatorGarden';
 // import { ScreenPostsList } from '../NavigatorPosts/ScreenPostsList';
 // import { NavigationPosts } from '../NavigatorPosts';
@@ -342,20 +343,21 @@ const CustomDrawerContent = ({ navigation }) => {
 
         <View>
 
+
           <ListItem
-            onPress={() => navigation.navigate('Home')}
-            title="News"
+            onPress={() => navigation.navigate('Feed')}
+            title="Feed"
             leading={<Icon name="campaign" size={24} />}
-          />
-          <ListItem
-            onPress={() => navigation.navigate('Posts')}
-            title="Posts"
-            leading={<Icon name="history-edu" size={24} />}
           />
           <ListItem
             onPress={() => navigation.navigate('Community')}
             title="Community"
             leading={<Icon name="groups" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('Marketplace')}
+            title="Marketplace"
+            leading={<Icon name="storefront" size={24} />}
           />
           <ListItem
             onPress={() => navigation.navigate('Community')}
@@ -367,93 +369,98 @@ const CustomDrawerContent = ({ navigation }) => {
             <Text style={{ color: '#333', fontSize: 16 }}>Library</Text>
           </Pressable> */}
 
-        <View style={{marginTop: 20}}>
-          <SpoilerMenu title='Library'>
+          {/* <View style={{ marginTop: 20 }}> */}
+            <SpoilerMenu title='Library'>
+              <>
+                <ListItem
+                  onPress={() => navigation.navigate('Cultures')}
+                  title="Cultures"
+                  leading={<Icon name="local-florist" size={24} />}
+                />
+                <ListItem
+                  onPress={() => navigation.navigate('Community')}
+                  title="Learning"
+                  leading={<Icon name="school" size={24} />}
+                />
+                <ListItem
+                  onPress={() => navigation.navigate('Community')}
+                  title="Questions"
+                  leading={<Icon name="help-outline" size={24} />}
+                />
+                <ListItem
+                  onPress={() => navigation.navigate('Community')}
+                  title="Best practices"
+                  leading={<Icon name="star" size={24} />}
+                />
+              </>
+            </SpoilerMenu>
+
+          </View>
+
+          <SpoilerMenu title='User'>
+            <ListItem
+              onPress={() => navigation.navigate('Garden')}
+              title="Garden"
+              leading={<Icon name="nature-people" size={24} />}
+            />
+            <ListItem
+              onPress={() => navigation.navigate('Community')}
+              title="Posts"
+              leading={<Icon name="event" size={24} />}
+            />
+            <ListItem
+              onPress={() => navigation.navigate('Profiles')}
+              title="Profiles"
+              leading={<Icon name="book" size={24} />}
+            />
+            <ListItem
+              onPress={() => navigation.navigate('Monitoring')}
+              title="Subscriptions"
+              leading={<Icon name="star" size={24} />}
+            />
+
+          </SpoilerMenu>
+
+          <SpoilerMenu title='Tools'>
             <>
               <ListItem
-                onPress={() => navigation.navigate('Cultures')}
-                title="Cultures"
-                leading={<Icon name="local-florist" size={24} />}
+                onPress={() => navigation.navigate('Monitoring')}
+                title="Monitoring"
+                leading={<Icon name="speed" size={24} />}
               />
               <ListItem
-                onPress={() => navigation.navigate('Community')}
-                title="Learning"
-                leading={<Icon name="school" size={24} />}
+                onPress={() => navigation.navigate('Calculator')}
+                title="Calculator"
+                leading={<Icon name="calculate" size={24} />}
               />
               <ListItem
-                onPress={() => navigation.navigate('Community')}
-                title="Questions"
-                leading={<Icon name="help-outline" size={24} />}
-              />
-              <ListItem
-                onPress={() => navigation.navigate('Community')}
-                title="Best practices"
-                leading={<Icon name="star" size={24} />}
+                onPress={() => navigation.navigate('Calculator')}
+                title="Helper"
+                leading={<Icon name="support-agent" size={24} />}
               />
             </>
           </SpoilerMenu>
-
-        </View>
-
-        <SpoilerMenu title='User'>
-          <ListItem
-            onPress={() => navigation.navigate('Profile')}
-            title="Profile"
-            leading={<Icon name="account-circle" size={24} />}
-          />
-          <ListItem
-            onPress={() => navigation.navigate('Garden')}
-            title="Garden"
-            leading={<Icon name="nature-people" size={24} />}
-          />
-          <ListItem
-            onPress={() => navigation.navigate('Community')}
-            title="My posts"
-            leading={<Icon name="event" size={24} />}
-          />
-          <ListItem
-            onPress={() => navigation.navigate('Monitoring')}
-            title="Diary"
-            leading={<Icon name="book" size={24} />}
-          />
-
-        </SpoilerMenu>
-
-        <SpoilerMenu title='Tools'>
-          <>
-            <ListItem
-              onPress={() => navigation.navigate('Monitoring')}
-              title="Monitoring"
-              leading={<Icon name="speed" size={24} />}
-            />
-            <ListItem
-              onPress={() => navigation.navigate('Calculator')}
-              title="Calculator"
-              leading={<Icon name="calculate" size={24} />}
-            />
-            <ListItem
-              onPress={() => navigation.navigate('Calculator')}
-              title="Helper"
-              leading={<Icon name="support-agent" size={24} />}
-            />
-          </>
-        </SpoilerMenu>
         </View>
 
         <SpoilerMenu title='Settings'>
-        <ListItem
-          onPress={() => navigation.navigate('Monitoring')}
-          title="Language"
-          leading={<Icon name="language" size={24} />}
-        />
-        <ListItem
-          onPress={() => navigation.navigate('Calculator')}
-          title="Theme"
-          leading={<Icon name="calculate" size={24} />}
-        />
+          <ListItem
+            onPress={() => navigation.navigate('Monitoring')}
+            title="Language"
+            leading={<Icon name="language" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('Calculator')}
+            title="Theme"
+            leading={<Icon name="calculate" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('Home')}
+            title="News"
+            leading={<Icon name="campaign" size={24} />}
+          />
         </SpoilerMenu>
 
-      </View>
+      {/* </View> */}
     </DrawerContentScrollView >
   );
 };
@@ -465,7 +472,7 @@ export const Home = () => {
   return (
     /* @ts-ignore */
     <Drawer.Navigator
-      initialRouteName="Home"
+      initialRouteName="Feed"
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
       <Drawer.Screen name="Home" component={HomeScreen} options={{
@@ -476,24 +483,30 @@ export const Home = () => {
       }} />
 
       <Drawer.Screen
-        name="Posts"
-        component={NavigatorPosts}
+        name="Feed"
+        component={NavigatorFeed}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="Marketplace"
+        component={NavigatorMarketplace}
         options={{ headerShown: false }}
       />
       {/* <Drawer.Screen name="User" component={NavigatorUser} /> */}
       <Drawer.Screen name="Cultures" component={ScreenCategories} />
+      <Drawer.Screen name="Profiles" component={NavigatorProfile} />
       <Drawer.Screen name="Community" component={NavigatorCommunity}
         options={{ headerShown: false }} />
-      <Drawer.Screen name="Profile" component={NavigatorProfile} />
+      {/* <Drawer.Screen name="Profile" component={NavigatorProfile} /> */}
       <Drawer.Screen name="Garden" component={NavigatorGarden}
-      options={{
-        headerShown: false
-        // headerRight: () => (
-        //   <View style={{ marginRight: 10 }}>
-        //     <Icon name='info-outline' size={26} />
-        //   </View>
-        // )
-      }}
+        options={{
+          headerShown: false
+          // headerRight: () => (
+          //   <View style={{ marginRight: 10 }}>
+          //     <Icon name='info-outline' size={26} />
+          //   </View>
+          // )
+        }}
       />
       <Drawer.Screen name="Calculator" component={NavigatorCalculator} />
       <Drawer.Screen name="Monitoring" component={NavigatorMonitoring} />

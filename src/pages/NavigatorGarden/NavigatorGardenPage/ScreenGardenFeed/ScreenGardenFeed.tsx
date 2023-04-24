@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, View, TextInput } from 'react-native'
-import { PostCard } from '../../../organisms/Posts/PostCard'
+// import { PostCard } from '../../../organisms/Posts/PostsList/PostCard/PostsListCard'
 import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
 import { Icon, Pressable } from '@react-native-material/core'
 // import { PostFilterCategories } from '../../../organisms/Posts/PostFilterCategories'
 import { PostFilterSingleCategories } from '../../../organisms/Posts/PostFilterSingleCategories'
+import { GardenFeedPostCard } from '../../../organisms/GardenPage/GardenFeed'
+// import { PostGardenCard } from '../../../organisms/GardenPage/GardenFeed/GardenFeedPostCard'
 // import { Test } from '../../../organisms/Posts/Test'
 
 const scrHeight = Dimensions.get('screen').height
@@ -228,15 +230,13 @@ export const ScreenGardenFeed = ({ navigation }) => {
 
                     {/* <ButtonIconCircle iconTitle='settings-applications' color='#111' size={32} /> */}
 
-
-                    <PostCard title='Second title' categories='Category 2, Category 3'>
+                    <GardenFeedPostCard title='Second title' categories='Category 2, Category 3'>
                         Molestias, omnis aperiam est in blanditiis quo quod dolorum. Illo voluptate, voluptatem ducimus, alias iusto ipsam odit ad ratione tempore dicta.
-                    </PostCard>
+                    </GardenFeedPostCard>
 
-
-                    <PostCard title='Second title' categories='Category 2, Category 3'>
+                    <GardenFeedPostCard title='Second title' categories='Category 2, Category 3'>
                         Molestias, omnis aperiam est in blanditiis quo quod dolorum. Illo voluptate, voluptatem ducimus, alias iusto ipsam odit ad ratione tempore dicta.
-                    </PostCard>
+                    </GardenFeedPostCard>
 
                 </View>
 

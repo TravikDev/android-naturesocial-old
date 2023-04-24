@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
         // paddingHorizontal: 5
     },
     text: {
-        fontWeight: '300',
-        fontSize: 18,
+        fontWeight: '400',
+        fontSize: 16,
         color: '#111',
     }
 })

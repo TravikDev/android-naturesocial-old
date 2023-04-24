@@ -1,7 +1,8 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { ScreenDiaries } from "./ScreenDiaries";
-import { ScreenGardensList } from "./ScreenGardens";
+// import { ScreenGardensList } from "./ScreenGardensList";
 import { ScreenUsersList } from "./ScreenUsersList";
+import { ScreenGardensList } from "./ScreenGardensList";
 
 const Tab = createMaterialTopTabNavigator();
 

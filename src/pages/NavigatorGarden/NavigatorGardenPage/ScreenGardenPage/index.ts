@@ -1,1 +1,1 @@
-export * from "./ScreenGardenInfo"
+export * from "./ScreenGardenPage"
