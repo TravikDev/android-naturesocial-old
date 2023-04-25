@@ -1,19 +1,18 @@
-import React, { useRef, useState } from 'react'
-import { Animated, Dimensions, ScrollView, StyleSheet, Text, View, TextInput } from 'react-native'
-// import { PostCard } from '../../../organisms/Posts/PostsList/PostCard/PostsListCard'
-import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
-import { Icon, Pressable } from '@react-native-material/core'
-// import { PostFilterCategories } from '../../../organisms/Posts/PostFilterCategories'
-import { PostFilterSingleCategories } from '../../../../organisms/postsList/Posts/PostFilterSingleCategories'
-import { GardenFeedPostCard } from '../../../../organisms/garden/GardenFeed'
-// import { PostGardenCard } from '../../../organisms/GardenPage/GardenFeed/GardenFeedPostCard'
-// import { Test } from '../../../organisms/Posts/Test'
+import React, { useState } from 'react'
+import { Dimensions, ScrollView, StyleSheet, Text, View, TextInput } from 'react-native'
+// import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
+import { Pressable } from '@react-native-material/core'
+import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
+import { PostFilterSingleCategories } from '../../../organisms/postsList/Posts/PostFilterSingleCategories'
+import { GardenFeedPostCard } from '../../../organisms/garden/GardenFeed'
+// import { PostFilterSingleCategories } from '../../../../organisms/postsList/Posts/PostFilterSingleCategories'
+// import { GardenFeedPostCard } from '../../../../organisms/garden/GardenFeed'
 
 const scrHeight = Dimensions.get('screen').height
 const scrWidth = Dimensions.get('screen').width
 
 /* @ts-ignore */
-export const ScreenGardenFeed = ({ navigation }) => {
+export const ScreenPublicGardenFeed = ({ navigation }) => {
 
     const [optionsModal, toggleOptionsModal] = useState(false)
 

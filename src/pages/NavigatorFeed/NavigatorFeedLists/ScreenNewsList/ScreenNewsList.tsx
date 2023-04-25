@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Dimensions, ScrollView, View } from 'react-native'
-import { PostFilterContainer } from '../../../organisms/Posts/PostsList/PostFilterContainer/PostFilterContainer'
-import { PostsListCard } from '../../../organisms/Posts/PostsList/PostCard'
-import { FeedNewsCard } from '../../../organisms/Feed/FeedNewsCard/FeedNewsCard'
+import { PostFilterContainer } from '../../../../organisms/postsList/PostFilterContainer/PostFilterContainer'
+import { PostsListCard } from '../../../../organisms/postsList/PostCard'
+import { FeedNewsCard } from '../../../../organisms/feed/FeedNewsCard/FeedNewsCard'
 import { Pressable } from '@react-native-material/core'
 import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
-import { PostSortContainer } from '../../../organisms/Posts/PostsList/PostSortContainer'
+import { PostSortContainer } from '../../../../organisms/postsList/PostSortContainer'
 // import { FeedNewsCard } from '../../../organisms/Feed/FeedNewsCa'
 
 const scrHeight = Dimensions.get('screen').height
@@ -38,8 +38,6 @@ export const ScreenNewsList = ({ navigation }) => {
         <ScrollView contentContainerStyle={{ backgroundColor: '#fff' }}>
 
             <View style={{ marginHorizontal: 10 }}>
-
-                <ButtonIconCircle func={() => navigation.navigate('PostDetails', { postId: 1 })} color='#111' iconTitle='home' size={42} />
 
                 <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View style={{ left: -8 }}>

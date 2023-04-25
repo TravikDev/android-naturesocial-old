@@ -17,6 +17,7 @@ export const NavigatorFeed = ({ navigation }) => {
     <Stack.Navigator initialRouteName="FeedLists">
       <Stack.Screen name="FeedLists" component={NavigatorFeedLists}
       options={{
+        title: 'Feed',
         headerLeft: () => <View style={{ marginRight: 20}}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>
       }}
       />

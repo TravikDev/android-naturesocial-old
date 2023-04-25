@@ -4,7 +4,7 @@ import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { ButtonSimpleText } from '../../../atoms/Buttons/ButtonSimpleText'
 import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
 import { ButtonSingleImage } from '../../../atoms/Buttons/ButtonSingleImage'
-import { PostFilterContainer } from '../../organisms/Posts/PostsList/PostFilterContainer/PostFilterContainer'
+import { PostFilterContainer } from '../../../organisms/postsList/PostFilterContainer/PostFilterContainer'
 
 /* @ts-ignore */
 export const ScreenAddGardenPost = ({ navigation }) => {

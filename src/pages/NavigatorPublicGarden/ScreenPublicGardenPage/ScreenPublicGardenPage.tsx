@@ -1,19 +1,31 @@
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { View, Text, Image, Dimensions, StyleSheet } from "react-native"
-import { SpoilerGardenPage } from '../../../../atoms/Spoilers/SpoilerGardenPage'
-import { Avatar, Divider, Icon, Pressable } from '@react-native-material/core'
-import { CalendarTable } from '../../../../organisms/garden/GardenInfo/Calendar'
-import { GardenPageInfoAwards } from '../../../../organisms/garden/GardenInfo/Awards'
-import { GardenPageInfoDevice } from '../../../../organisms/garden/GardenInfo/Device/GardenPageInfoDevice'
-// import { CalendarTable } from '../../../organisms/GardenPage/GardenInfo/Calendar/CalendarTable'
-// import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
-// import { GardenStateIndicator } from '../../../../atoms/Indicators/GardenStateIndicator'
+import { SpoilerGardenPage } from '../../../atoms/Spoilers/SpoilerGardenPage'
+import { Avatar, Divider, Pressable } from '@react-native-material/core'
+import { CalendarTable } from '../../../organisms/garden/GardenInfo/Calendar'
+import { GardenPageInfoAwards } from '../../../organisms/garden/GardenInfo/Awards'
+import { GardenPageInfoDevice } from '../../../organisms/garden/GardenInfo/Device/GardenPageInfoDevice'
 
 const scrWidth = Dimensions.get('screen').width
 const scrHeight = Dimensions.get('screen').height
 
-export const ScreenGardenPage = () => {
+/* @ts-ignore */
+export const ScreenPublicGardenPage = ({ route, navigation }) => {
+
+  console.log(route)
+  const { gardenId } = route.params
+
+  const gardensList = [
+    { gardenId: 1, name: 'Mary Jane', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 41, position: 0, avatarSrc: 'https://mui.com/static/images/avatar/4.jpg' },
+    { gardenId: 2, name: 'John Smith', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 39, position: 1, avatarSrc: 'https://mui.com/static/images/avatar/5.jpg' },
+    { gardenId: 3, name: 'Mike Vazovsky', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 27, position: 2, avatarSrc: 'https://mui.com/static/images/avatar/6.jpg' },
+    { gardenId: 4, name: 'Hey Dude', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 19, position: 3, avatarSrc: 'https://mui.com/static/images/avatar/1.jpg' },
+    { gardenId: 5, name: 'Artem', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 14, position: 4, avatarSrc: 'https://mui.com/static/images/avatar/2.jpg' },
+  ]
+
+  const garden = gardensList[gardenId-1]
+
 
   const awards = [
     { id: 1, title: 'First award' },
@@ -48,10 +60,10 @@ export const ScreenGardenPage = () => {
           <View>
             <Image
               style={{ width: scrWidth, height: 200 }}
-              source={require('../../../../assets/images/gardenLayout.jpg')} />
+              source={require('../../../assets/images/gardenLayout.jpg')} />
           </View>
           <View style={{ position: 'absolute', top: 50 }}>
-            <Avatar style={{ borderRadius: 50, borderWidth: 2, borderColor: '#fff' }} label="Kent Dodds" autoColor size={100} />
+            <Avatar style={{ borderRadius: 50, borderWidth: 2, borderColor: '#fff' }} label="Kent Dodds" image={{ uri: garden.avatarSrc }} autoColor size={100} />
           </View>
         </View>
 
@@ -63,7 +75,7 @@ export const ScreenGardenPage = () => {
             <View style={{ marginVertical: 10, gap: 5 }}>
               <View style={styles.pressableContainer}>
                 <View>
-                  <Text style={styles.gardenTitle}>Artem's Garden</Text>
+                  <Text style={styles.gardenTitle}>{garden.name}'s Garden</Text>
                 </View>
 
                 <View style={styles.viewValue}>
@@ -76,7 +88,7 @@ export const ScreenGardenPage = () => {
               <View style={styles.pressableContainer}>
                 <View>
                   <Text style={{ color: "#111", fontSize: 16, fontWeight: '300' }}>
-                    23 Level
+                    {garden.level} Level
                   </Text>
                 </View>
                 <View style={styles.viewValue}>
@@ -98,8 +110,9 @@ export const ScreenGardenPage = () => {
               {/* <Divider style={{ marginVertical: 5 }} /> */}
 
               <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit sint expedita id. Iure illo ipsum quibusdam voluptates cumque! Sint enim suscipit omnis maxime consequuntur minima voluptatum nam natus magni quis?
-                Iusto nulla perspiciatis odio atque ab accusantium, eveniet maiores deserunt saepe aspernatur commodi voluptate ipsam in, aliquid fugiat temporibus perferendis illo alias debitis impedit exercitationem magni pariatur tempora? Iste, ipsam.
+                
+              {garden.about}
+
               </Text>
 
             </View>

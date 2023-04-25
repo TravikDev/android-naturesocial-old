@@ -30,10 +30,9 @@ export const NavigatorFeedLists = ({ navigation }) => {
         name="News"
         component={ScreenNewsList}
         options={{
-          title: 'News',
           // tabBarIcon: () => <Icon name='nature-people' size={26} color='#666' />,
           // headerLeft: () => <View style={{ marginRight: 20}}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>
-
+          
         }}
       />
       <Tab.Screen
