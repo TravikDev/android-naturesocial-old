@@ -1,1 +1,1 @@
-export * from "./NavGardenP"
+export * from "./NavGardenPage"

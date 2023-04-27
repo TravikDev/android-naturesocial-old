@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions } from "react-native"
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
-import { CheckBoxes } from "../../../atoms/Inputs/CheckBoxes"
+import { CheckBoxes } from "../../../atoms/inputs/CheckBoxes"
 import { Divider, Switch } from "@react-native-material/core"
 import { SpoilerSettings } from "../../../atoms/Spoilers/SpoilerSettings"
 import { ButtonIconCircle } from "../../../atoms/Buttons/ButtonIconCircle"

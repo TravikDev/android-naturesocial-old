@@ -194,7 +194,7 @@ export const ScrGardenInfo = () => {
           </SpoilerGardenPage>
 
           <Divider />
-
+{/* 
           <SpoilerGardenPage title='Profiles' leadingIcon='storage' >
             <ScrollView horizontal={true} contentContainerStyle={{ display: 'flex', flexDirection: 'row', gap: 10, marginVertical: 5, marginLeft: 5 }}>
 
@@ -228,7 +228,7 @@ export const ScrGardenInfo = () => {
             </ScrollView>
           </SpoilerGardenPage>
 
-          <Divider />
+          <Divider /> */}
 
 
         </View>

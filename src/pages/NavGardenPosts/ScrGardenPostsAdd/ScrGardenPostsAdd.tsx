@@ -7,7 +7,7 @@ import { ButtonSingleImage } from '../../../atoms/Buttons/ButtonSingleImage'
 import { PostFilterContainer } from '../../../organisms/postsList/PostFilterContainer/PostFilterContainer'
 
 /* @ts-ignore */
-export const ScrGardenPostAdd = ({ navigation }) => {
+export const ScrGardenPostsAdd = ({ navigation }) => {
   return (
     <ScrollView style={{ backgroundColor: "#fff" }}>
       <View style={{ paddingHorizontal: 10 }}>

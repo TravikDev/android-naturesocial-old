@@ -106,10 +106,10 @@ export const ScrPublicGardenFeed = ({ navigation }) => {
     // const [loading, setLoading] = useState(true);
 
     return (
-        <View style={{}}>
+        <View style={{ flex: 1, display: 'flex', backgroundColor: '#fff' }}>
 
 
-            <ScrollView contentContainerStyle={{ backgroundColor: '#fff' }} >
+            <ScrollView contentContainerStyle={{ }} >
 
 
                 <View style={{ display: 'flex', height: 46, flexDirection: 'row', backgroundColor: '#fff', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}>

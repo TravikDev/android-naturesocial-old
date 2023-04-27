@@ -2,8 +2,8 @@ import { useState } from "react"
 import { Divider, Icon, IconButton, ListItem } from "@react-native-material/core";
 import { Dimensions, StyleSheet, Text, View, TextInput } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { InputMinerals } from "../../../../atoms/Inputs/InputMinerals";
-import { ElementsRatiosTable } from "../../../../atoms/Inputs/ElementsRatios";
+import { InputElements } from "../../../../atoms/inputs/InputMinerals";
+import { ElementsRatiosTable } from "../../../../atoms/inputs/ElementsRatios";
 import { CustomSpoiler } from "../../../../atoms/Spoilers/CustomSpoiler";
 import { ButtonIconCircle } from "../../../../atoms/Buttons/ButtonIconCircle";
 
@@ -42,93 +42,20 @@ export const ScrTabMacro = () => {
       <Divider style={{ top: -10 }} />
 
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
-        <InputMinerals element="N" number={numberN} onChange={onChangeNumberN} />
-        <InputMinerals element="P" number={numberP} onChange={onChangeNumberP} />
-        <InputMinerals element="K" number={numberK} onChange={onChangeNumberK} />
+        <InputElements element="N" number={numberN} onChange={onChangeNumberN} />
+        <InputElements element="P" number={numberP} onChange={onChangeNumberP} />
+        <InputElements element="K" number={numberK} onChange={onChangeNumberK} />
       </View>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
-        <InputMinerals element="Ca" number={numberN} onChange={onChangeNumberN} />
-        <InputMinerals element="Mg" number={numberP} onChange={onChangeNumberP} />
-        <InputMinerals element="S" number={numberK} onChange={onChangeNumberK} />
+        <InputElements element="Ca" number={numberN} onChange={onChangeNumberN} />
+        <InputElements element="Mg" number={numberP} onChange={onChangeNumberP} />
+        <InputElements element="S" number={numberK} onChange={onChangeNumberK} />
       </View>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
-        <InputMinerals element="NO₃" number={numberN} onChange={onChangeNumberN} />
-        <InputMinerals element="NH₄" number={numberP} onChange={onChangeNumberP} />
-        <InputMinerals element="NH₄" divider="NO₃" number={numberK} onChange={onChangeNumberK} />
+        <InputElements element="NO₃" number={numberN} onChange={onChangeNumberN} />
+        <InputElements element="NH₄" number={numberP} onChange={onChangeNumberP} />
+        <InputElements element="NH₄" divider="NO₃" number={numberK} onChange={onChangeNumberK} />
       </View>
-
-      {/* <View style={{ display: 'flex', flexDirection: 'column', borderRadius: 5, borderWidth: 1, borderColor: '#ccc' }}>
-        <View style={{ display: 'flex', flexDirection: 'row', borderBottomColor: '#ccc', borderBottomWidth: 1 }}>
-          <View style={{ width: 20, backgroundColor: '#e7e7e7', borderRightColor: '#ccc', borderRightWidth: 1 }}><Text></Text></View>
-          <View style={styles.dividerElement}><Text style={styles.dividerElementText}>N</Text></View>
-          <View style={styles.dividerElement}><Text style={{ color: '#111', fontWeight: '300', height: 30 }}>P</Text></View>
-          <View style={styles.dividerElement}><Text style={{ color: '#111' }}>Ca</Text></View>
-          <View style={styles.dividerElement}><Text style={{ color: '#111' }}>Mg</Text></View>
-          <View style={styles.dividerElement}><Text style={{ color: '#111' }}>S</Text></View>
-          <View style={styles.dividerElement}><Text style={{ color: '#111' }}>S</Text></View>
-        </View>
-        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', }}>
-          <View style={{ backgroundColor: '#e7e7e7', height: 50, width: 20, justifyContent: 'center', alignItems: 'center', borderRightColor: '#ccc', borderRightWidth: 1 }}>
-            <Text style={{ color: '#111' }}>K</Text>
-          </View>
-          <View style={styles.dividerElementsNumber}>
-            <TextInput
-              style={styles.textRight}
-              onChangeText={onChangeNumberDivN}
-              value={numberDivN}
-              placeholder="mg/litre"
-              keyboardType="numeric"
-            />
-          </View>
-          <View style={styles.dividerElementsNumber}>
-            <TextInput
-              style={styles.textRight}
-              onChangeText={onChangeNumberDivN}
-              value={numberDivN}
-              placeholder="mg/litre"
-              keyboardType="numeric"
-            />
-          </View>
-          <View style={styles.dividerElementsNumber}>
-            <TextInput
-              style={styles.textRight}
-              onChangeText={onChangeNumberDivN}
-              value={numberDivN}
-              placeholder="mg/litre"
-              keyboardType="numeric"
-            />
-          </View>
-          <View style={styles.dividerElementsNumber}>
-            <TextInput
-              style={styles.textRight}
-              onChangeText={onChangeNumberDivN}
-              value={numberDivN}
-              placeholder="mg/litre"
-              keyboardType="numeric"
-            />
-          </View>
-          <View style={styles.dividerElementsNumber}>
-            <TextInput
-              style={styles.textRight}
-              onChangeText={onChangeNumberDivN}
-              value={numberDivN}
-              placeholder="mg/litre"
-              keyboardType="numeric"
-            />
-          </View>
-          <View style={styles.dividerElementsNumber}>
-            <TextInput
-              style={styles.textRight}
-              onChangeText={onChangeNumberDivN}
-              value={numberDivN}
-              placeholder="mg/litre"
-              keyboardType="numeric"
-            />
-          </View>
-        </View>
-      </View> */}
-
-      {/* <Divider style={{ marginTop: 10 }} /> */}
 
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
         <Text style={{ fontSize: 18, fontWeight: '300', color: '#111', top: 0 }}>

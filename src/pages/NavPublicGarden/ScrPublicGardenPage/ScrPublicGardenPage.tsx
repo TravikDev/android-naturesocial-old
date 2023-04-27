@@ -2,10 +2,11 @@ import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { View, Text, Image, Dimensions, StyleSheet } from "react-native"
 import { SpoilerGardenPage } from '../../../atoms/Spoilers/SpoilerGardenPage'
-import { Avatar, Divider, Pressable } from '@react-native-material/core'
+import { Avatar, Divider, Icon, Pressable } from '@react-native-material/core'
 import { CalendarTable } from '../../../organisms/garden/GardenInfo/Calendar'
 import { GardenPageInfoAwards } from '../../../organisms/garden/GardenInfo/Awards'
 import { GardenPageInfoDevice } from '../../../organisms/garden/GardenInfo/Device/GardenPageInfoDevice'
+import { GardenStatisticsIndicator } from '../../../atoms/Indicators/GardenStatisticsIndicator'
 
 const scrWidth = Dimensions.get('screen').width
 const scrHeight = Dimensions.get('screen').height
@@ -13,18 +14,29 @@ const scrHeight = Dimensions.get('screen').height
 /* @ts-ignore */
 export const ScrPublicGardenPage = ({ route, navigation }) => {
 
-  console.log(route)
+  // console.log(route)
   const { gardenId } = route.params
 
+  // 1. Followers
+  // 2. Subscriptions
+  // 3. Solution profiles
+  // 4. Level
+  // 5. Awards
+  // 6. Posts
+  // 7. Devices
+  // 8. Cultures
+  // 9. Verieties
+  // 10. Is registered since
+
   const gardensList = [
-    { gardenId: 1, name: 'Mary Jane', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 41, position: 0, avatarSrc: 'https://mui.com/static/images/avatar/4.jpg' },
-    { gardenId: 2, name: 'John Smith', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 39, position: 1, avatarSrc: 'https://mui.com/static/images/avatar/5.jpg' },
-    { gardenId: 3, name: 'Mike Vazovsky', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 27, position: 2, avatarSrc: 'https://mui.com/static/images/avatar/6.jpg' },
-    { gardenId: 4, name: 'Hey Dude', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 19, position: 3, avatarSrc: 'https://mui.com/static/images/avatar/1.jpg' },
-    { gardenId: 5, name: 'Artem', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 14, position: 4, avatarSrc: 'https://mui.com/static/images/avatar/2.jpg' },
+    { gardenId: 1, name: 'Mary Jane', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 41, position: 0, avatarSrc: 'https://mui.com/static/images/avatar/4.jpg', countFollowers: 1239, countNutrition: 12, countAwards: 7, countPosts: 29, countSystems: 3, countCultures: 5, countVerieties: 12 },
+    { gardenId: 2, name: 'John Smith', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 39, position: 1, avatarSrc: 'https://mui.com/static/images/avatar/5.jpg', countFollowers: 1239, countNutrition: 12, countAwards: 7, countPosts: 29, countSystems: 3, countCultures: 5, countVerieties: 12 },
+    { gardenId: 3, name: 'Mike Vazovsky', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 27, position: 2, avatarSrc: 'https://mui.com/static/images/avatar/6.jpg', countFollowers: 1239, countNutrition: 12, countAwards: 7, countPosts: 29, countSystems: 3, countCultures: 5, countVerieties: 12 },
+    { gardenId: 4, name: 'Hey Dude', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 19, position: 3, avatarSrc: 'https://mui.com/static/images/avatar/1.jpg', countFollowers: 1239, countNutrition: 12, countAwards: 7, countPosts: 29, countSystems: 3, countCultures: 5, countVerieties: 12 },
+    { gardenId: 5, name: 'Artem', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 14, position: 4, avatarSrc: 'https://mui.com/static/images/avatar/2.jpg', countFollowers: 1239, countNutrition: 12, countAwards: 7, countPosts: 29, countSystems: 3, countCultures: 5, countVerieties: 12 },
   ]
 
-  const garden = gardensList[gardenId-1]
+  const garden = gardensList[gardenId - 1]
 
 
   const awards = [
@@ -52,9 +64,9 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
   ]
 
   return (
-    <ScrollView style={{}}>
+    <ScrollView style={{ backgroundColor: '#fff', flex: 1 }}>
 
-      <View style={{ backgroundColor: '#fff' }}>
+      <View style={{}}>
 
         <View style={{ backgroundColor: "#fff", display: 'flex', alignItems: 'center' }}>
           <View>
@@ -80,7 +92,7 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
 
                 <View style={styles.viewValue}>
                   <Pressable onPress={() => { console.log("clicked") }} style={{ backgroundColor: '#0d800d', padding: 6, paddingHorizontal: 10, borderRadius: 5 }}>
-                    <Text style={{ color: '#fff', fontWeight: 'bold' }}>SUBSCRIBE</Text>
+                    <Text style={{ color: '#fff', fontWeight: 'bold', textTransform: 'uppercase' }}>Subscribe</Text>
                   </Pressable>
                 </View>
               </View>
@@ -93,7 +105,7 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
                 </View>
                 <View style={styles.viewValue}>
                   <Text style={{ color: "#111", fontSize: 16, fontWeight: '300' }}>
-                    1239 Followers</Text>
+                    {garden.countFollowers} Followers</Text>
                 </View>
               </View>
 
@@ -102,96 +114,75 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
             <Divider />
 
             <View style={{ paddingVertical: 10, paddingHorizontal: 15, gap: 5 }}>
-
-              <Text style={{ fontSize: 17, fontWeight: '400', color: '#111' }}>
-                Description:
+              {/* <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                <Icon name='visibility' size={26} /> */}
+              <Text style={{ fontSize: 18, fontWeight: '400', color: '#111' }}>
+                Description
               </Text>
-
-              {/* <Divider style={{ marginVertical: 5 }} /> */}
-
+              {/* </View> */}
               <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>
-                
-              {garden.about}
-
+                {garden.about}
               </Text>
+            </View>
+            {/* <Divider /> */}
+          </View>
 
+          <Divider />
+
+          {/* <SpoilerGardenPage title='Statistics' leadingIcon='insert-chart-outlined' > */}
+          <View style={{ paddingVertical: 10, paddingHorizontal: 15, gap: 5 }}>
+            {/* <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+              <Icon name='insert-chart-outlined' size={26} /> */}
+            <Text style={{ fontSize: 18, fontWeight: '400', color: '#111' }}>
+              Statistics
+            </Text>
+            {/* </View> */}
+            {/* <Divider style={{ marginVertical: 5 }} /> */}
+            <View style={{ width: '100%' }}>
+              <View style={{ display: 'flex', flexDirection: "row", flexWrap: 'wrap', gap: 10, paddingBottom: 5, justifyContent: 'center' }}>
+                <View style={{ width: '48.5%' }}>
+                  <GardenStatisticsIndicator leadingIcon='book' title='Posts' value={`${garden.countPosts}`} />
+                </View>
+
+                <View style={{ width: '48.5%' }}>
+                  <GardenStatisticsIndicator leadingIcon='military-tech' title='Awards' value={`${garden.countAwards}`} />
+                </View>
+
+                <View style={{ width: '48.5%' }}>
+                  <GardenStatisticsIndicator leadingIcon='local-drink' title='Nutrition' value={`${garden.countNutrition}`} />
+                </View>
+
+                <View style={{ width: '48.5%' }}>
+                  <GardenStatisticsIndicator leadingIcon='power' title='Systems' value={`${garden.countSystems}`} />
+                </View>
+
+                <View style={{ width: '48.5%' }}>
+                  <GardenStatisticsIndicator leadingIcon='local-florist' title='Cultures' value={`${garden.countCultures}`} />
+                </View>
+
+                <View style={{ width: '48.5%' }}>
+                  <GardenStatisticsIndicator leadingIcon='filter-vintage' title='Verieties' value={`${garden.countVerieties}`} />
+                </View>
+
+              </View>
             </View>
 
-            <Divider />
 
           </View>
 
-          {/* 
-          <SpoilerGardenPage title='System State' leadingIcon='speed' >
+          <Divider />
 
-            <View style={{ gap: 5 }}>
-
-              <GardenStateIndicator title='Light' subTitle='Macro Lighter - Quantum Board 400Wt' leadingIcon='emoji-objects' value='30.1k Lux' />
-
-              <GardenStateIndicator title='Solution EC' leadingIcon='opacity' value='1989 mS' />
-
-              <GardenStateIndicator title='Solution PH' leadingIcon='terrain' value='6.2' />
-
-              
-
-              
-            </View>
-
-          </SpoilerGardenPage> */}
-
-          {/* <SpoilerGardenPage title='Nutrition Solution' leadingIcon='science' >
-            <Text>Text</Text>
-          </SpoilerGardenPage> */}
-
-
-          <SpoilerGardenPage title='Statistics' leadingIcon='insert-chart-outlined' >
-            <View style={{ margin: 5 }}>
-              <Text style={{ color: '#111' }}>
-                1. Followers
-                2. Subscriptions
-                3. Solution profiles
-                4. Level
-                5. Awards
-                6. Posts
-                7. Devices
-                8. Cultures
-                9. Verieties
-                10. Is registered since
+          <View style={{ paddingVertical: 10, paddingBottom: 15, gap: 5 }}>
+            {/* <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+              <Icon name='military-tech' size={26} /> */}
+            <View style={{ display: 'flex', marginLeft: 15 }}>
+              <Text style={{ fontSize: 18, fontWeight: '400', color: '#111' }}>
+                Awards
               </Text>
             </View>
-          </SpoilerGardenPage>
-
-          <Divider />
-
-          <SpoilerGardenPage title='Calendar' leadingIcon='event' >
-            <View style={{ margin: 5 }}>
-              <CalendarTable />
-            </View>
-          </SpoilerGardenPage>
-
-          <Divider />
-
-
-
-          <SpoilerGardenPage title="Subscriptions" leadingIcon='star-outline'>
-            <ScrollView horizontal={true} contentContainerStyle={{ display: 'flex', flexDirection: 'row', gap: 10, marginVertical: 5, marginLeft: 5 }}>
-
-              {
-                subscriptions.map(subscription => (
-                  <GardenPageInfoDevice key={subscription.id}>
-                    <Text style={{ color: '#111' }}>
-                      {subscription.title}
-                    </Text>
-                  </GardenPageInfoDevice>))
-              }
-
-            </ScrollView>
-          </SpoilerGardenPage>
-
-          <Divider />
-
-          <SpoilerGardenPage title='Awards' leadingIcon='military-tech' >
-            <ScrollView horizontal={true} contentContainerStyle={{ display: 'flex', flexDirection: 'row', gap: 10, marginVertical: 5, marginLeft: 5 }}>
+            {/* </View> */}
+            {/* <Divider /> */}
+            <ScrollView horizontal={true} contentContainerStyle={{ display: 'flex', flexDirection: 'row', gap: 15, left: 15, paddingRight: 30 }}>
 
               {
                 awards.map(award => (
@@ -204,25 +195,9 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
               }
 
             </ScrollView>
-          </SpoilerGardenPage>
 
-          <Divider />
 
-          <SpoilerGardenPage title="Devices" leadingIcon='settings-input-hdmi'>
-            <ScrollView horizontal={true} contentContainerStyle={{ display: 'flex', flexDirection: 'row', gap: 10, marginVertical: 5, marginLeft: 5 }}>
-
-              {
-                devices.map(device => (
-                  <GardenPageInfoDevice key={device.id}>
-                    <Text style={{ color: '#111' }}>
-                      {device.title}
-                    </Text>
-                  </GardenPageInfoDevice>))
-              }
-
-            </ScrollView>
-          </SpoilerGardenPage>
-
+          </View>
           <Divider />
 
 
@@ -306,7 +281,7 @@ const styles = StyleSheet.create({
   },
   gardenTitle: {
     fontWeight: '400',
-    fontSize: 20,
+    fontSize: 18,
     color: '#111',
   }
 })

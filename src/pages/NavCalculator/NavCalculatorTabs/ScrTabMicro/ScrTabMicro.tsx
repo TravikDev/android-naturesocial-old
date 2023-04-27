@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { ListItem } from "@react-native-material/core";
 import { ScrollView, View } from "react-native";
-import { InputMinerals } from "../../../../atoms/Inputs/InputMinerals";
+// import { InputElements } from "../../../../atoms/inputs/InputElements";
+import { InputElements } from "../../../../atoms/inputs/InputMinerals";
 
 
 export const ScrTabMicro = () => {
@@ -16,14 +17,14 @@ export const ScrTabMicro = () => {
   return (
     <ScrollView contentContainerStyle={{ backgroundColor: '#fff', padding: 10, gap: 10 }}>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
-        <InputMinerals element="Fe" number={numberFe} onChange={onChangeNumberFe} />
-        <InputMinerals element="Mn" number={numberMn} onChange={onChangeNumberMn} />
-        <InputMinerals element="B" number={numberB} onChange={onChangeNumberB} />
+        <InputElements element="Fe" number={numberFe} onChange={onChangeNumberFe} />
+        <InputElements element="Mn" number={numberMn} onChange={onChangeNumberMn} />
+        <InputElements element="B" number={numberB} onChange={onChangeNumberB} />
       </View>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
-        <InputMinerals element="Zn" number={numberZn} onChange={onChangeNumberZn} />
-        <InputMinerals element="Cu" number={numberCu} onChange={onChangeNumberCu} />
-        <InputMinerals element="Mo" number={numberMo} onChange={onChangeNumberMo} />
+        <InputElements element="Zn" number={numberZn} onChange={onChangeNumberZn} />
+        <InputElements element="Cu" number={numberCu} onChange={onChangeNumberCu} />
+        <InputElements element="Mo" number={numberMo} onChange={onChangeNumberMo} />
       </View>
       <ListItem title="List Item" />
       <ListItem title="List Item" />

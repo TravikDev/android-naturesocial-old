@@ -17,8 +17,9 @@ export const ScreenGardensList = ({ navigation }) => {
     ]
 
     return (
+        <View style={{ flex: 1, backgroundColor: '#fff'}}>
         <ScrollView>
-            <View style={{ backgroundColor: '#fff' }}>
+            <View>
 
                 {
                     gardensList.map((garden, idx) => (
@@ -39,5 +40,6 @@ export const ScreenGardensList = ({ navigation }) => {
 
             </View>
         </ScrollView>
+        </View>
     )
 }

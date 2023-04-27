@@ -1,22 +1,39 @@
 import React, { useRef, useState } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, View, TextInput } from 'react-native'
-// import { PostCard } from '../../../organisms/Posts/PostsList/PostCard/PostsListCard'
-// import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
 import { Icon, Pressable } from '@react-native-material/core'
 import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
 import { PostFilterSingleCategories } from '../../../../organisms/postsList/Posts/PostFilterSingleCategories'
 import { GardenFeedPostCard } from '../../../../organisms/garden/GardenFeed'
-// import { PostFilterCategories } from '../../../organisms/Posts/PostFilterCategories'
-// import { PostFilterSingleCategories } from '../../../organisms/postsList/Posts/PostFilterSingleCategories'
-// import { GardenFeedPostCard } from '../../../organisms/garden/GardenFeed'
-// import { PostGardenCard } from '../../../organisms/GardenPage/GardenFeed/GardenFeedPostCard'
-// import { Test } from '../../../organisms/Posts/Test'
+import { ProfilesElementsPost } from '../../../../organisms/profiles/ProfilesElementsPost'
+import { ProfilesElements } from '../../../../organisms/profiles/ProfilesElementsMacro'
+import { InputElements } from '../../../../atoms/inputs/InputMinerals'
 
 const scrHeight = Dimensions.get('screen').height
 const scrWidth = Dimensions.get('screen').width
 
 /* @ts-ignore */
-export const ScrGardenPostsListPage = ({ navigation }) => {
+export const ScrGardenProfilesListPage = ({ navigation }) => {
+
+  const macroElementsList = [
+    { id: 1, element: 'N', number: '100' },
+    { id: 2, element: 'P', number: '100' },
+    { id: 3, element: 'K', number: '100' },
+    { id: 4, element: 'Ca', number: '100' },
+    { id: 5, element: 'Mg', number: '100' },
+    { id: 6, element: 'S', number: '100' },
+    { id: 7, element: 'NO₃', number: '100' },
+    { id: 8, element: 'NH₄', number: '100' },
+    { id: 9, element: 'NH₄', divider: 'NO₃', number: '100' },
+  ]
+
+  const microElementsList = [
+    { id: 1, element: 'Fe', number: '100' },
+    { id: 2, element: 'B', number: '100' },
+    { id: 3, element: 'Zn', number: '100' },
+    { id: 4, element: 'Mn', number: '100' },
+    { id: 5, element: 'Cu', number: '100' },
+    { id: 6, element: 'Mo', number: '100' },
+  ]
 
   const [optionsModal, toggleOptionsModal] = useState(false)
 
@@ -96,25 +113,11 @@ export const ScrGardenPostsListPage = ({ navigation }) => {
   }
 
 
-  // const fadeAnim = useRef(new Animated.Value(0)).current;
-
-  // const fadeIn = () => {
-  //     // Will change fadeAnim value to 1 in 5 seconds
-  //     Animated.timing(fadeAnim, {
-  //         toValue: 1,
-  //         duration: 5000,
-  //         useNativeDriver: true,
-  //     }).start();
-  // };
-
-  // const [loading, setLoading] = useState(true);
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#fff'}}>
-
+    <View style={{ flex: 1, backgroundColor: '#fff' }}>
 
       <ScrollView>
-
 
         <View style={{ display: 'flex', height: 46, flexDirection: 'row', backgroundColor: '#fff', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}>
           <View style={{}}>
@@ -127,32 +130,6 @@ export const ScrGardenPostsListPage = ({ navigation }) => {
 
         {optionsModal && (
           <View style={{ backgroundColor: '#fbfbfb', borderColor: '#ccc', borderWidth: 1, borderRadius: 5, marginBottom: 10, marginHorizontal: 10, gap: 10, zIndex: 10 }}>
-
-            {/* <View style={{ }}>
-                            <Text style={{ color: '#111', fontWeight: '300', fontSize: 18 }}>Filter</Text>
-                        </View> */}
-            {/* <View style={{}}><Text>Filter</Text></View> */}
-            {/* <View style={{
-                            width: '100%',
-                            display: 'flex', flexDirection: 'row', alignItems: 'center',
-                            gap: 2, 
-                        }}>
-                            <View style={{
-                                
-                                flexWrap: 'wrap',
-                                height: 44,
-                                marginVertical: 10,
-                                // marginLeft: 15,
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'stretch',
-                                justifyContent: 'space-between',
-                                // borderRadius: 5,
-                                // borderColor: '#ccc',
-                                // borderWidth: 1,
-                                padding: 2, gap: 4
-                            }}> */}
-
 
             <View style={{ display: 'flex', flexDirection: 'column', paddingHorizontal: 15, paddingVertical: 10, flexWrap: 'wrap', gap: 5 }}>
 
@@ -233,20 +210,51 @@ export const ScrGardenPostsListPage = ({ navigation }) => {
 
           {/* <ButtonIconCircle iconTitle='settings-applications' color='#111' size={32} /> */}
 
-          <GardenFeedPostCard title='Second title' categories='Category 2, Category 3'>
-            Molestias, omnis aperiam est in blanditiis quo quod dolorum. Illo voluptate, voluptatem ducimus, alias iusto ipsam odit ad ratione tempore dicta.
-          </GardenFeedPostCard>
+          <ProfilesElementsPost title='Balcony' category='Cucumber' subCategory='Kafkas'>
+            <Text style={{ fontSize: 16, fontWeight: '300', color: "#111" }}>Macro</Text>
+            <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 10 }}>
+              {
+                macroElementsList.map(element => (
+                  <InputElements key={element.id} element={element.element} divider={element.divider} number={element.number} />
+                ))
+              }
+            </View>
+            <Text style={{ fontSize: 16, fontWeight: '300', color: "#111" }}>Micro</Text>
+            <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 10 }}>
+              {
+                microElementsList.map(element => (
+                  <InputElements key={element.id} element={element.element} number={element.number} />
+                ))
+              }
+            </View>
+          </ProfilesElementsPost>
+          
 
-          <GardenFeedPostCard title='Second title' categories='Category 2, Category 3'>
-            Molestias, omnis aperiam est in blanditiis quo quod dolorum. Illo voluptate, voluptatem ducimus, alias iusto ipsam odit ad ratione tempore dicta.
-          </GardenFeedPostCard>
+          <ProfilesElementsPost title='Kitchen' category='Tomato' subCategory='Big Mama'>
+            <Text style={{ fontSize: 16, fontWeight: '300', color: "#111" }}>Macro</Text>
+            <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 10 }}>
+              {
+                macroElementsList.map(element => (
+                  <InputElements key={element.id} element={element.element} divider={element.divider} number={element.number} />
+                ))
+              }
+            </View>
+            <Text style={{ fontSize: 16, fontWeight: '300', color: "#111" }}>Micro</Text>
+            <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 10 }}>
+              {
+                microElementsList.map(element => (
+                  <InputElements key={element.id} element={element.element} number={element.number} />
+                ))
+              }
+            </View>
+          </ProfilesElementsPost>
 
         </View>
 
       </ScrollView >
 
       <View style={{ opacity: 0.9, backgroundColor: '#090', borderRadius: 25, justifyContent: 'center', alignItems: "center", borderWidth: 1, borderColor: '#fff', bottom: scrHeight / 50, right: scrWidth / 25, position: 'absolute' }}>
-        <ButtonIconCircle iconTitle='add' color='#fff' size={48} func={() => navigation.navigate('GardenPostsAdd')} />
+        <ButtonIconCircle iconTitle='add' color='#fff' size={48} func={() => navigation.navigate('GardenProfilesAdd')} />
       </View>
     </View>
   )

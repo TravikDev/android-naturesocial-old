@@ -10,6 +10,8 @@ import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { ScrPublicGardenPage } from './ScrPublicGardenPage'
 import { ScrPublicGardenFeed } from './ScrPublicGardenFeed'
+import { ScrPublicGardenNutrition } from './ScrPublicGardenNutrition'
+import { ScrPublicGardenSystems } from './ScrPublicGardenSystems'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -29,7 +31,7 @@ export const NavPublicGarden = ({ route, navigation }) => {
         initialParams={route.params}
         component={ScrPublicGardenPage}
         options={{
-          title: 'Description',
+          title: 'Info',
           // tabBarIcon: () => <Icon name='nature-people' size={26} color='#666' />,
           // headerLeft: () => <View style={{ marginRight: 20}}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>
 
@@ -41,6 +43,24 @@ export const NavPublicGarden = ({ route, navigation }) => {
         component={ScrPublicGardenFeed}
         options={{
           title: 'Feed'
+          // headerShown: false,
+          // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
+        }} />
+      <Tab.Screen
+        name="PublicGardenNutrition"
+        initialParams={route.params}
+        component={ScrPublicGardenNutrition}
+        options={{
+          title: 'Nutrition'
+          // headerShown: false,
+          // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
+        }} />
+      <Tab.Screen
+        name="PublicGardenSystems"
+        initialParams={route.params}
+        component={ScrPublicGardenSystems}
+        options={{
+          title: 'Systems'
           // headerShown: false,
           // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
         }} />

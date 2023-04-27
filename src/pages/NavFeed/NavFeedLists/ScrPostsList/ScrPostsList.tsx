@@ -34,9 +34,10 @@ export const ScrPostsList = ({ navigation }) => {
     ]
 
     return (
-        <ScrollView contentContainerStyle={{ backgroundColor: '#fff' }}>
+        <View style={{ flex: 1, backgroundColor: '#fff'}}>
+        <ScrollView>
 
-            <View style={{ marginHorizontal: 10 }}>
+            <View style={{ marginHorizontal: 10, marginBottom: 10 }}>
 
                 <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View style={{ left: -8 }}>
@@ -70,5 +71,6 @@ export const ScrPostsList = ({ navigation }) => {
 
             </View>
         </ScrollView>
+        </View>
     )
 }

@@ -16,7 +16,7 @@ const scrHeight = Dimensions.get('screen').height
 const scrWidth = Dimensions.get('screen').width
 
 /* @ts-ignore */
-export const ScrGardenPostsListPage = ({ navigation }) => {
+export const ScrGardenDevicesListPage = ({ navigation }) => {
 
   const [optionsModal, toggleOptionsModal] = useState(false)
 
@@ -246,7 +246,7 @@ export const ScrGardenPostsListPage = ({ navigation }) => {
       </ScrollView >
 
       <View style={{ opacity: 0.9, backgroundColor: '#090', borderRadius: 25, justifyContent: 'center', alignItems: "center", borderWidth: 1, borderColor: '#fff', bottom: scrHeight / 50, right: scrWidth / 25, position: 'absolute' }}>
-        <ButtonIconCircle iconTitle='add' color='#fff' size={48} func={() => navigation.navigate('GardenPostsAdd')} />
+        <ButtonIconCircle iconTitle='add' color='#fff' size={48} func={() => navigation.navigate('GardenDevicesAdd')} />
       </View>
     </View>
   )

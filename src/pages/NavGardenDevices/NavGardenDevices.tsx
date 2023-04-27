@@ -4,9 +4,10 @@ import { View } from 'react-native';
 // import { NavigatorCommunityLists } from './NavigatorCommunityLists';
 // import { NavPublicGarden } from '../NavPublicGarden';
 // import { NavigatorGardenPage } from './NavGardenPage';
-import { NavPublicGarden } from '../NavPublicGarden';
-import { NavGardenPostsList } from './NavGardenPostsList';
-import { ScrGardenPostsAdd } from './ScrGardenPostsAdd';
+// import { NavPublicGarden } from '../NavPublicGarden';
+// import { NavGardenPostsList } from './NavGardenDevicesList';
+import { ScrGardenDevicesAdd } from './ScrGardenDevicesAdd';
+import { NavGardenDevicesList } from './NavGardenDevicesList';
 // import { ScrGardenPostAdd } from './ScrGardenPostAdd';
 // import { NavGardenPage } from './NavGardenPostsList';
 // import { ScreenPublicGardenTest } from './ScreenPublicGardenTest/ScreenPublicGardenTest';
@@ -15,16 +16,16 @@ const Stack = createNativeStackNavigator();
 
 
 /* @ts-ignore */
-export const NavGardenPosts = ({ navigation }) => {
+export const NavGardenDevices = ({ navigation }) => {
 
   return (
-    <Stack.Navigator initialRouteName="GardenPostsList">
-      <Stack.Screen name="GardenPostsList" component={NavGardenPostsList}
+    <Stack.Navigator initialRouteName="GardenDevicesList">
+      <Stack.Screen name="GardenDevicesList" component={NavGardenDevicesList}
         options={{
-          title: "Posts",
+          title: "Devices",
           headerLeft: () => <View style={{ marginRight: 20 }}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>
         }} />
-      <Stack.Screen name="GardenPostsAdd" component={ScrGardenPostsAdd} />
+      <Stack.Screen name="GardenDevicesAdd" component={ScrGardenDevicesAdd} />
       {/* <Stack.Screen name="PublicGardenTest" component={ScreenPublicGardenTest} /> */}
     </Stack.Navigator>
   )

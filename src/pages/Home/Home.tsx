@@ -14,6 +14,8 @@ import { NavMonitoring } from '../NavMonitoring';
 import { NavCalculator } from '../NavCalculator';
 import { NavGardenPosts } from '../NavGardenPosts';
 import { NavCultures } from '../NavCultures';
+import { NavGardenProfiles } from '../NavGardenProfiles';
+import { NavGardenDevices } from '../NavGardenDevices';
 
 function HomeScreen() {
   return (
@@ -100,14 +102,14 @@ function HomeScreen() {
           title="Drafts"
           leading={<Icon name="tune" size={24} />}
         />
-        <ListItem
+        {/* <ListItem
           title="Drafts"
           leading={<Icon name="military-tech" size={24} />}
         />
         <ListItem
           title="Drafts"
           leading={<Icon name="military-tech" size={24} />}
-        />
+        /> */}
         <ListItem
           title="Drafts"
           leading={<Icon name="miscellaneous-services" size={24} />}
@@ -352,18 +354,23 @@ const CustomDrawerContent = ({ navigation }) => {
           <ListItem
             onPress={() => navigation.navigate('GardenPosts')}
             title="Posts"
-            leading={<Icon name="event" size={24} />}
-          />
-          <ListItem
-            onPress={() => navigation.navigate('Profiles')}
-            title="Profiles"
             leading={<Icon name="book" size={24} />}
           />
           <ListItem
+            onPress={() => navigation.navigate('GardenProfiles')}
+            title="Profiles"
+            leading={<Icon name="storage" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('GardenDevices')}
+            title="Devices"
+            leading={<Icon name="settings-input-hdmi" size={24} />}
+          />
+          {/* <ListItem
             onPress={() => navigation.navigate('Monitoring')}
             title="Subscriptions"
             leading={<Icon name="star" size={24} />}
-          />
+          /> */}
 
         </SpoilerMenu>
 
@@ -449,12 +456,27 @@ export const Home = () => {
       <Drawer.Screen name="Learning" component={NavLearning} />
       <Drawer.Screen name="Cultures" component={NavCultures}
         options={{ headerShown: false }} />
-      <Drawer.Screen name="GardenPosts" component={NavGardenPosts} options={{ headerShown: false }} />
+      {/* <Drawer.Screen name="GardenPosts" component={NavGardenPosts} options={{ headerShown: false }} /> */}
       {/* <Drawer.Screen name="Profiles" component={NavigatorProfile} /> */}
       <Drawer.Screen name="Community" component={NavCommunity}
         options={{ headerShown: false }} />
       {/* <Drawer.Screen name="Profile" component={NavigatorProfile} /> */}
       <Drawer.Screen name="Garden" component={NavGarden}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Drawer.Screen name="GardenPosts" component={NavGardenPosts}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Drawer.Screen name="GardenProfiles" component={NavGardenProfiles}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Drawer.Screen name="GardenDevices" component={NavGardenDevices}
         options={{
           headerShown: false
         }}

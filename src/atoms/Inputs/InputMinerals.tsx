@@ -3,7 +3,12 @@ import { View, Text, StyleSheet, TextInput, Dimensions } from "react-native"
 
 const srcWidth = Dimensions.get('window').width
 /* @ts-ignore */
-export const InputMinerals = ({element = 'N', divider = '' , number = '', onChange = f => f}) => {
+export const InputElements = ({
+  element = 'N', 
+  divider = '' , 
+  number = '',
+  /* @ts-ignore */ 
+  onChange = f => f}) => {
   return (
     <View style={styles.secondContainer}>
           <View style={{ backgroundColor: '#e7e7e7', height: 48, width: 36, display: 'flex', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 1 }}>
@@ -47,8 +52,8 @@ const styles = StyleSheet.create({
       borderWidth: 1
     },
     secondContainer: {
-      height: 48,
-      width: srcWidth * 0.3,
+      height: 40,
+      width: '31%',
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
@@ -74,6 +79,7 @@ const styles = StyleSheet.create({
       fontWeight: '300'
     },
     textRight: {
+      paddingVertical: 0,
       fontSize: 18,
       color: "#666",
       fontWeight: '300',
