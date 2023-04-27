@@ -35,7 +35,7 @@ export const FeedNewsCard = ({
 
 
                 <View style={{ flex: 1 }}>
-                    <Text style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>{title}</Text>
+                    <Text style={{ fontWeight: "400", fontSize: 18, color: "#111" }}>{title}</Text>
                     <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{categories}</Text>
                         <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{newsDate}</Text>

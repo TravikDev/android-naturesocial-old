@@ -13,6 +13,7 @@ export const FeedPostCard = ({
     children = 'Unknown',
     categories = 'Unknown',
     createdDate = new Date().toLocaleDateString(),
+    authorId = 0,
     /* @ts-ignore */
     navigation
 }) => {
@@ -24,11 +25,11 @@ export const FeedPostCard = ({
         >
             <View style={{ paddingHorizontal: 15, paddingBottom: 5, paddingTop: 15, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <View style={{ display: 'flex', flexDirection: 'row', gap: 15 }}>
-                    <Pressable onPress={() => { navigation.navigate('PublicGarden', { gardenId: 1 }) }}>
+                    <Pressable onPress={() => { navigation.navigate('PublicGarden', { gardenId: authorId }) }}>
                         <Avatar label="Kent Dodds" autoColor size={48} />
                     </Pressable>
                     <View style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Text style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>OverGrower</Text>
+                        <Text onPress={() => { navigation.navigate('PublicGarden', { gardenId: authorId }) }} style={{ fontWeight: "400", fontSize: 18, color: "#111" }}>OverGrower</Text>
                         <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>30 level</Text>
                     </View>
                 </View>
@@ -48,7 +49,7 @@ export const FeedPostCard = ({
                 </View>
 
                 <View>
-                    <Text style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>{title}</Text>
+                    <Text style={{ fontWeight: "400", fontSize: 18, color: "#111" }}>{title}</Text>
                     <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{categories}</Text>
                         <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{createdDate}</Text>

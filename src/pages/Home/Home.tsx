@@ -1,32 +1,24 @@
 import React, { useContext, useState, createContext } from 'react'
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Image, Text, View, StyleSheet, Animated, TouchableOpacity } from "react-native"
 import { Button, Icon, Surface, ListItem, Chip, Avatar, Pressable } from "@react-native-material/core";
 import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer';
 import { ScrollView } from 'react-native-gesture-handler';
-// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { NavigatorCalculator } from '../NavigatorCalculator';
-// import { NavigatorCommunityLists } from '../NavigatorCommunity/NavigatorCommunityLists';
-import { NavigatorMonitoring } from '../NavigatorMonitoring';
-import { ScreenCategories } from '../NavigatorCultures/ScreenCulturesCategories';
-import { NavigatorProfile } from '../NavigatorProfile';
-import { NavigatorFeed } from '../NavigatorFeed';
-import { NavigatorCommunity } from '../NavigatorCommunity';
-// import { Spoiler } from '../../atoms/Spoiler/Spoiler';
+import { NavCommunity } from '../NavCommunity';
 import { SpoilerMenu } from '../../atoms/Spoilers/SpoilerMenu';
-import { NavigatorGarden } from '../NavigatorGarden/NavigatorGarden';
-import { NavigatorMarketplace } from '../NavigatorMarketplace';
-import { NavigatorPublicGarden } from '../NavigatorPublicGarden';
-import { NavigatorLearning } from '../NavigatorLearning';
-// import { NavigatorGarden } from '../NavigatorGarden/NavigatorGarden';
-// import { ScreenPostsList } from '../NavigatorPosts/ScreenPostsList';
-// import { NavigationPosts } from '../NavigatorPosts';
+import { NavPublicGarden } from '../NavPublicGarden';
+import { NavFeed } from '../NavFeed';
+import { NavMarketplace } from '../NavMarketplace';
+import { NavLearning } from '../NavLearning';
+import { NavGarden } from '../NavGarden';
+import { NavMonitoring } from '../NavMonitoring';
+import { NavCalculator } from '../NavCalculator';
+import { NavGardenPosts } from '../NavGardenPosts';
+import { NavCultures } from '../NavCultures';
 
 function HomeScreen() {
   return (
     <ScrollView style={{ flex: 1 }} >
-      <View style={{ borderBottomWidth: 1, borderColor: "#3e9b46" }}>
-      </View>
+
       <View>
         <ListItem
           title="Inbox"
@@ -248,54 +240,6 @@ function HomeScreen() {
           title="Environment"
           leading={<Icon name="device-thermostat" size={24} />}
         />
-        <View style={{ margin: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Button
-            title="Click Me"
-            variant='outlined'
-            tintColor='#fff'
-            color='#3FB049'
-            onPress={() => { }}
-            trailing={
-              /* @ts-ignore */
-              props => <Icon name="send" size={30} color="#3e9b46" {...props} />
-            }
-          />
-          <Button
-            title="Delete"
-            tintColor='#fff'
-            color='#3FB049'
-            onPress={() => { }}
-            leading={props => <Icon name="delete" {...props} />}
-          />
-        </View>
-      </View>
-      <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
-
-        <Text>Home!</Text>
-        <View style={{ width: 380, flex: 4 }}>
-          <Surface
-            elevation={2}
-            category="medium"
-            style={{ height: 360, padding: 8, gap: 10 }}
-          >
-            <Surface
-              elevation={2}
-              category="medium"
-              style={{ height: 10, flex: 3 }}
-            />
-            <Surface
-              elevation={2}
-              category="medium"
-              style={{ height: 10, flex: 1 }}
-            />
-          </Surface>
-
-        </View>
-        <Text>Home!</Text>
-
-        <Text>Home!</Text>
-        <Text>Home!</Text>
-
       </View>
     </ScrollView>
   );
@@ -389,11 +333,11 @@ const CustomDrawerContent = ({ navigation }) => {
                 title="Questions"
                 leading={<Icon name="help-outline" size={24} />}
               />
-              <ListItem
+              {/* <ListItem
                 onPress={() => navigation.navigate('Community')}
                 title="Best practices"
                 leading={<Icon name="star" size={24} />}
-              />
+              /> */}
             </>
           </SpoilerMenu>
 
@@ -406,7 +350,7 @@ const CustomDrawerContent = ({ navigation }) => {
             leading={<Icon name="nature-people" size={24} />}
           />
           <ListItem
-            onPress={() => navigation.navigate('Community')}
+            onPress={() => navigation.navigate('GardenPosts')}
             title="Posts"
             leading={<Icon name="event" size={24} />}
           />
@@ -442,25 +386,26 @@ const CustomDrawerContent = ({ navigation }) => {
             />
           </>
         </SpoilerMenu>
+
+        <SpoilerMenu title='Settings'>
+          <ListItem
+            onPress={() => navigation.navigate('Monitoring')}
+            title="Language"
+            leading={<Icon name="language" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('Calculator')}
+            title="Theme"
+            leading={<Icon name="calculate" size={24} />}
+          />
+          <ListItem
+            onPress={() => navigation.navigate('Home')}
+            title="News"
+            leading={<Icon name="campaign" size={24} />}
+          />
+        </SpoilerMenu>
       </View>
 
-      <SpoilerMenu title='Settings'>
-        <ListItem
-          onPress={() => navigation.navigate('Monitoring')}
-          title="Language"
-          leading={<Icon name="language" size={24} />}
-        />
-        <ListItem
-          onPress={() => navigation.navigate('Calculator')}
-          title="Theme"
-          leading={<Icon name="calculate" size={24} />}
-        />
-        <ListItem
-          onPress={() => navigation.navigate('Home')}
-          title="News"
-          leading={<Icon name="campaign" size={24} />}
-        />
-      </SpoilerMenu>
 
       {/* </View> */}
     </DrawerContentScrollView >
@@ -486,37 +431,36 @@ export const Home = () => {
 
       <Drawer.Screen
         name="Feed"
-        component={NavigatorFeed}
+        component={NavFeed}
         options={{ headerShown: false }}
       />
       <Drawer.Screen
         name="Marketplace"
-        component={NavigatorMarketplace}
+        component={NavMarketplace}
         options={{ headerShown: false }}
       />
       {/* <Drawer.Screen name="User" component={NavigatorUser} /> */}
-      <Drawer.Screen 
-      name="PublicGarden" 
-      component={NavigatorPublicGarden} 
-      options={{ headerShown: false }} />
-      <Drawer.Screen name="Cultures" component={ScreenCategories} />
-      <Drawer.Screen name="Learning" component={NavigatorLearning} />
-      <Drawer.Screen name="Profiles" component={NavigatorProfile} />
-      <Drawer.Screen name="Community" component={NavigatorCommunity}
+      <Drawer.Screen
+        name="PublicGarden"
+        component={NavPublicGarden}
+      // options={{ headerShown: false }} 
+      />
+      {/* <Drawer.Screen name="Cultures" component={ScreenCategories} /> */}
+      <Drawer.Screen name="Learning" component={NavLearning} />
+      <Drawer.Screen name="Cultures" component={NavCultures}
+        options={{ headerShown: false }} />
+      <Drawer.Screen name="GardenPosts" component={NavGardenPosts} options={{ headerShown: false }} />
+      {/* <Drawer.Screen name="Profiles" component={NavigatorProfile} /> */}
+      <Drawer.Screen name="Community" component={NavCommunity}
         options={{ headerShown: false }} />
       {/* <Drawer.Screen name="Profile" component={NavigatorProfile} /> */}
-      <Drawer.Screen name="Garden" component={NavigatorGarden}
+      <Drawer.Screen name="Garden" component={NavGarden}
         options={{
           headerShown: false
-          // headerRight: () => (
-          //   <View style={{ marginRight: 10 }}>
-          //     <Icon name='info-outline' size={26} />
-          //   </View>
-          // )
         }}
       />
-      <Drawer.Screen name="Calculator" component={NavigatorCalculator} />
-      <Drawer.Screen name="Monitoring" component={NavigatorMonitoring} />
+      <Drawer.Screen name="Calculator" component={NavCalculator} />
+      <Drawer.Screen name="Monitoring" component={NavMonitoring} />
     </Drawer.Navigator>
 
   );
