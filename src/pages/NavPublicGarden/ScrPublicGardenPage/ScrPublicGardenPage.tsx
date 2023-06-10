@@ -1,11 +1,7 @@
-import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import { View, Text, Image, Dimensions, StyleSheet } from "react-native"
-import { SpoilerGardenPage } from '../../../atoms/Spoilers/SpoilerGardenPage'
 import { Avatar, Divider, Icon, Pressable } from '@react-native-material/core'
-import { CalendarTable } from '../../../organisms/garden/GardenInfo/Calendar'
 import { GardenPageInfoAwards } from '../../../organisms/garden/GardenInfo/Awards'
-import { GardenPageInfoDevice } from '../../../organisms/garden/GardenInfo/Device/GardenPageInfoDevice'
 import { GardenStatisticsIndicator } from '../../../atoms/Indicators/GardenStatisticsIndicator'
 
 const scrWidth = Dimensions.get('screen').width
@@ -16,17 +12,6 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
 
   // console.log(route)
   const { gardenId } = route.params
-
-  // 1. Followers
-  // 2. Subscriptions
-  // 3. Solution profiles
-  // 4. Level
-  // 5. Awards
-  // 6. Posts
-  // 7. Devices
-  // 8. Cultures
-  // 9. Verieties
-  // 10. Is registered since
 
   const gardensList = [
     { gardenId: 1, name: 'Mary Jane', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 41, position: 0, avatarSrc: 'https://mui.com/static/images/avatar/4.jpg', countFollowers: 1239, countNutrition: 12, countAwards: 7, countPosts: 29, countSystems: 3, countCultures: 5, countVerieties: 12 },
@@ -114,30 +99,26 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
             <Divider />
 
             <View style={{ paddingVertical: 10, paddingHorizontal: 15, gap: 5 }}>
-              {/* <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                <Icon name='visibility' size={26} /> */}
+
               <Text style={{ fontSize: 18, fontWeight: '400', color: '#111' }}>
                 Description
               </Text>
-              {/* </View> */}
+
               <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>
                 {garden.about}
               </Text>
             </View>
-            {/* <Divider /> */}
+
           </View>
 
           <Divider />
 
-          {/* <SpoilerGardenPage title='Statistics' leadingIcon='insert-chart-outlined' > */}
           <View style={{ paddingVertical: 10, paddingHorizontal: 15, gap: 5 }}>
-            {/* <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-              <Icon name='insert-chart-outlined' size={26} /> */}
+
             <Text style={{ fontSize: 18, fontWeight: '400', color: '#111' }}>
               Statistics
             </Text>
-            {/* </View> */}
-            {/* <Divider style={{ marginVertical: 5 }} /> */}
+
             <View style={{ width: '100%' }}>
               <View style={{ display: 'flex', flexDirection: "row", flexWrap: 'wrap', gap: 10, paddingBottom: 5, justifyContent: 'center' }}>
                 <View style={{ width: '48.5%' }}>
@@ -173,15 +154,13 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
           <Divider />
 
           <View style={{ paddingVertical: 10, paddingBottom: 15, gap: 5 }}>
-            {/* <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-              <Icon name='military-tech' size={26} /> */}
+
             <View style={{ display: 'flex', marginLeft: 15 }}>
               <Text style={{ fontSize: 18, fontWeight: '400', color: '#111' }}>
                 Awards
               </Text>
             </View>
-            {/* </View> */}
-            {/* <Divider /> */}
+
             <ScrollView horizontal={true} contentContainerStyle={{ display: 'flex', flexDirection: 'row', gap: 15, left: 15, paddingRight: 30 }}>
 
               {

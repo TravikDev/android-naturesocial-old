@@ -25,6 +25,9 @@ export const NavPublicGarden = ({ route, navigation }) => {
         tabBarActiveTintColor: '#1A6111',
         tabBarInactiveTintColor: "#000",
         tabBarIndicatorStyle: { backgroundColor: '#1B8113' },
+        tabBarScrollEnabled: true,
+        tabBarItemStyle: { width: 120 }
+      
       }}>
       <Tab.Screen
         name="PublicGardenPage"
