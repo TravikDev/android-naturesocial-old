@@ -7,6 +7,7 @@ import { NavFeedLists } from './NavFeedLists';
 import { ScrPostDetails } from './ScrPostDetails';
 import { ScrNewsDetails } from './ScrNewsDetails';
 import { NavPublicGarden } from '../NavPublicGarden';
+import { ScrPostsList } from './NavFeedLists/ScrPostsList';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,10 +17,12 @@ export const NavFeed = ({ navigation }) => {
 
   return (
     <Stack.Navigator initialRouteName="FeedLists">
-      <Stack.Screen name="FeedLists" component={NavFeedLists}
+      {/* component can be changed to NavFeedLists */}
+      <Stack.Screen name="FeedLists" component={ScrPostsList}
       options={{
         title: 'Feed',
-        headerLeft: () => <View style={{ marginRight: 20}}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>
+        headerLeft: () => <View style={{ marginRight: 10}}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>,
+        headerRight: () => <View style={{ marginRight: 0}}><ButtonIconCircle func={() => {} } iconTitle='tune' size={36} color="#333" /></View>
       }}
       />
       <Stack.Screen name="PostDetails" component={ScrPostDetails}  />

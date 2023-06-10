@@ -26,7 +26,7 @@ export const NavFeedLists = ({ navigation }) => {
       tabBarInactiveTintColor: "#000",
       tabBarIndicatorStyle: { backgroundColor: '#1B8113' },
     })}>
-      <Tab.Screen
+      {/* <Tab.Screen
         name="News"
         component={ScrNewsList}
         options={{
@@ -34,7 +34,7 @@ export const NavFeedLists = ({ navigation }) => {
           // headerLeft: () => <View style={{ marginRight: 20}}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>
           
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Posts"
         component={ScrPostsList}
