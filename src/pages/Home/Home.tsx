@@ -16,6 +16,11 @@ import { NavGardenPosts } from '../NavGardenPosts';
 import { NavCultures } from '../NavCultures';
 import { NavGardenProfiles } from '../NavGardenProfiles';
 import { NavGardenDevices } from '../NavGardenDevices';
+import { NavAuth } from '../NavAuth';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import { SrcSignin } from '../NavAuth/ScrSignin';
+// import { SrcSignup } from '../NavAuth/ScrSignup';
+import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle';
 
 function HomeScreen() {
   return (
@@ -347,6 +352,16 @@ const CustomDrawerContent = ({ navigation }) => {
 
         <SpoilerMenu title='User'>
           <ListItem
+            onPress={() => navigation.navigate('Auth')}
+            title="Login"
+            leading={<Icon name="language" size={24} />}
+          />
+          {/* <ListItem
+            onPress={() => navigation.navigate('Signup')}
+            title="Register"
+            leading={<Icon name="language" size={24} />}
+          /> */}
+          <ListItem
             onPress={() => navigation.navigate('Garden')}
             title="Garden"
             leading={<Icon name="nature-people" size={24} />}
@@ -411,6 +426,7 @@ const CustomDrawerContent = ({ navigation }) => {
             leading={<Icon name="campaign" size={24} />}
           />
         </SpoilerMenu>
+
       </View>
 
 
@@ -420,6 +436,7 @@ const CustomDrawerContent = ({ navigation }) => {
 };
 
 const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator()
 
 export const Home = () => {
 
@@ -483,6 +500,15 @@ export const Home = () => {
       />
       <Drawer.Screen name="Calculator" component={NavCalculator} />
       <Drawer.Screen name="Monitoring" component={NavMonitoring} />
+
+      <Drawer.Screen name="Auth" component={NavAuth}
+        options={{
+          headerShown: false
+        }}
+      />
+      {/* <Stack.Screen name='Auth' component={NavAuth} /> */}
+      {/* <Stack.Screen name='Signup' component={SrcSignup} /> */}
+      {/* <Drawer.Screen name="Monitoring" component={NavMonitoring} /> */}
     </Drawer.Navigator>
 
   );
