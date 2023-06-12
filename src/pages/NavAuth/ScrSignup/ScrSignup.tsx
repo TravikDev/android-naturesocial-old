@@ -63,7 +63,7 @@ export const ScrSignup = ({ navigation }) => {
     }
 
     return (
-        <View style={{ display: 'flex', alignItems: 'center', height: '100%', top: '2%' }}>
+        <View style={{ display: 'flex', flex: 1, alignItems: 'center', top: '2%' }}>
             <View style={{ width: '90%', gap: 10 }}>
                 <View style={errMsg ? style.shownErrMsg : style.offscreen}>
                     <Text>{errMsg}</Text>
