@@ -30,6 +30,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import { Home } from './src/pages/Home/Home';
+import { Provider } from 'react-redux';
+import { store } from './src/states/store/store';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -69,13 +71,14 @@ function App(): JSX.Element {
   };
 
   return (
-    // Navigation
+    <Provider store={store}>
     <NavigationContainer>
         {/* @ts-ignore */}
         <IconComponentProvider IconComponent={MaterialIcons}>
       <Home />
       </IconComponentProvider>
     </NavigationContainer>
+    </Provider>
   );
 }
 

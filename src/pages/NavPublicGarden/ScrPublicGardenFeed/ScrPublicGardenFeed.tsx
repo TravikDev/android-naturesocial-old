@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Dimensions, ScrollView, StyleSheet, Text, View, TextInput } from 'react-native'
+import { Dimensions, ScrollView, StyleSheet, Text, View, TextInput, StatusBar } from 'react-native'
 // import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
 import { Pressable } from '@react-native-material/core'
 import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
 import { PostFilterSingleCategories } from '../../../organisms/postsList/Posts/PostFilterSingleCategories'
 import { GardenFeedPostCard } from '../../../organisms/garden/GardenFeed'
+import { SafeAreaView } from 'react-native-safe-area-context'
 // import { PostFilterSingleCategories } from '../../../../organisms/postsList/Posts/PostFilterSingleCategories'
 // import { GardenFeedPostCard } from '../../../../organisms/garden/GardenFeed'
 
@@ -108,8 +109,7 @@ export const ScrPublicGardenFeed = ({ navigation }) => {
     return (
         <View style={{ flex: 1, display: 'flex', backgroundColor: '#fff' }}>
 
-
-            <ScrollView contentContainerStyle={{ }} >
+            <ScrollView contentContainerStyle={{}} >
 
 
                 <View style={{ display: 'flex', height: 46, flexDirection: 'row', backgroundColor: '#fff', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}>

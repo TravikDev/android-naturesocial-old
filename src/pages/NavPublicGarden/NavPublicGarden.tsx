@@ -5,18 +5,37 @@ import React from 'react'
 import { Icon } from '@react-native-material/core'
 // import { ScreenGardenPage } from './ScreenGardenPage'
 // import { NavigatorGardenSettings } from '../NavigatorGardenSettings'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { ScrPublicGardenPage } from './ScrPublicGardenPage'
 import { ScrPublicGardenFeed } from './ScrPublicGardenFeed'
 import { ScrPublicGardenNutrition } from './ScrPublicGardenNutrition'
 import { ScrPublicGardenSystems } from './ScrPublicGardenSystems'
+import { NavigationContainer } from '@react-navigation/native'
 
 const Tab = createMaterialTopTabNavigator()
 
 /* @ts-ignore */
-export const NavPublicGarden = ({ route, navigation }) => {
+export const NavPublicGarden = ({ route, navigation}) => {
+  return (
+    <View style={{ flex: 1 }}>
+      {/* Кастомный View-элемент, отображаемый сверху */}
+      <View style={{ backgroundColor: 'lightblue', padding: 20 }}>
+        <Text>Custom Header</Text>
+      </View>
+
+      {/* Ваш Tab Navigator */}
+      <NavigationContainer>
+        <NavPublicGardenSlides route navigation />
+      </NavigationContainer>
+    </View>
+  );
+};
+
+
+/* @ts-ignore */
+export const NavPublicGardenSlides = ({ route, navigation }) => {
 
   return (
     <Tab.Navigator

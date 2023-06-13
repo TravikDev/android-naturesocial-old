@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
-import { View, Text, Image, Dimensions, StyleSheet } from "react-native"
+import { View, Text, Image, Dimensions, StyleSheet, SafeAreaView, StatusBar } from "react-native"
 import { SpoilerGardenPage } from '../../../../atoms/Spoilers/SpoilerGardenPage'
 import { Avatar, Divider, Icon, Pressable } from '@react-native-material/core'
 import { CalendarTable } from '../../../../organisms/garden/GardenInfo/Calendar'
@@ -40,6 +40,12 @@ export const ScrGardenInfo = () => {
   ]
 
   return (
+    // <SafeAreaView style={{
+    //   flex: 1, 
+    //   paddingTop: 0
+    //   }}>
+    //   <StatusBar backgroundColor="transparent" translucent />
+
     <ScrollView style={{}}>
 
       <View style={{ backgroundColor: '#fff' }}>
@@ -236,6 +242,8 @@ export const ScrGardenInfo = () => {
 
       </View>
     </ScrollView>
+
+    // </SafeAreaView>
   )
 }
 

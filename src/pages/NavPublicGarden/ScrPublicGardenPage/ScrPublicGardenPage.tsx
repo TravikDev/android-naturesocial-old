@@ -1,8 +1,11 @@
 import { ScrollView } from 'react-native-gesture-handler'
-import { View, Text, Image, Dimensions, StyleSheet } from "react-native"
+import { View, Text, Image, Dimensions, StyleSheet, StatusBar } from "react-native"
 import { Avatar, Divider, Icon, Pressable } from '@react-native-material/core'
 import { GardenPageInfoAwards } from '../../../organisms/garden/GardenInfo/Awards'
 import { GardenStatisticsIndicator } from '../../../atoms/Indicators/GardenStatisticsIndicator'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { useFocusEffect } from '@react-navigation/native'
+import { useCallback } from 'react'
 
 const scrWidth = Dimensions.get('screen').width
 const scrHeight = Dimensions.get('screen').height
@@ -48,7 +51,17 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
     { id: 5, title: 'Fifth device' },
   ]
 
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     StatusBar.setBarStyle('light-content'); // Настройте желаемый стиль статус-бара
+  //     StatusBar.setBackgroundColor('#000000'); // Настройте желаемый цвет фона статус-бара
+  //   }, [])
+  // );
+
   return (
+
+    // <SafeAreaView style={{}}>
+    //   <StatusBar backgroundColor="transparent" translucent />
     <ScrollView style={{ backgroundColor: '#fff', flex: 1 }}>
 
       <View style={{}}>
@@ -185,6 +198,7 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
 
       </View>
     </ScrollView>
+    // </SafeAreaView>
   )
 }
 
