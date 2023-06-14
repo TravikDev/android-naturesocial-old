@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react'
-import { Animated, Dimensions, ScrollView, StyleSheet, Text, View, TextInput } from 'react-native'
-import { Icon, Pressable } from '@react-native-material/core'
+import { Animated, Dimensions, ScrollView, StyleSheet, Text, View, TextInput, RefreshControl, FlatList } from 'react-native'
+import { Divider, Icon, Pressable } from '@react-native-material/core'
 import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
 import { PostFilterSingleCategories } from '../../../organisms/postsList/Posts/PostFilterSingleCategories'
 import { ProfilesElementsPost } from '../../../organisms/profiles/ProfilesElementsPost'
 import { InputElements } from '../../../atoms/inputs/InputMinerals'
 import { NutritionMultiChart } from '../../../organisms/nutrition/charts/NutritionMultiChart'
+import { NutritionLineChart } from '../../../organisms/nutrition/charts/LineChart/LineChart'
 // import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
 // import { PostFilterSingleCategories } from '../../../../organisms/postsList/Posts/PostFilterSingleCategories'
 // import { GardenFeedPostCard } from '../../../../organisms/garden/GardenFeed'
@@ -151,12 +152,63 @@ export const ScrPublicGardenNutritions = ({ navigation }) => {
     toggleExpandedVerieties(state => !state)
   }
 
+  const [refreshing, setRefreshing] = useState(false);
 
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 500);
+  }, []);
+
+  type ItemData = {
+    id: string;
+    title: string;
+  };
+
+  const DATA: ItemData[] = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'First Item',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Second Item',
+    },
+    {
+      id: '58694q0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+    {
+      id: '5869412f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+    {
+      id: '51694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+    {
+      id: '58394a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+  ];
+
+  const renderItem = () => (
+    <ProfilesElementsPost title='Солнечные помидорки' category='Томат' subCategory='Большая мамочка' substrate='Кермзит' system='DNFT'>
+
+      <Divider />
+      <NutritionLineChart />
+      <Divider />
+
+    </ProfilesElementsPost>
+  )
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
 
-      <ScrollView>
+      {/* <ScrollView
+
+      > */}
 
         <View style={{ display: 'flex', height: 46, flexDirection: 'row', backgroundColor: '#fff', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}>
           <View style={{}}>
@@ -173,6 +225,7 @@ export const ScrPublicGardenNutritions = ({ navigation }) => {
             <View style={{ display: 'flex', flexDirection: 'column', paddingHorizontal: 15, paddingVertical: 10, flexWrap: 'wrap', gap: 5 }}>
 
               <View style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', gap: 5, zIndex: 20, flexWrap: 'wrap' }}>
+
 
                 <View style={{ width: '49%', zIndex: 24 }}>
                   <PostFilterSingleCategories expanded={expandedTypes} setExpanded={handleToggleExpandedTypes} arrCategories={arrCatsTypes} />
@@ -249,47 +302,28 @@ export const ScrPublicGardenNutritions = ({ navigation }) => {
 
           {/* <ButtonIconCircle iconTitle='settings-applications' color='#111' size={32} /> */}
 
-          <ProfilesElementsPost title='Балкон' category='Огурец' subCategory='Герман' substrate='Кермзит' system='DWC'>
-            {/* <Text style={{ fontSize: 16, fontWeight: '300', color: "#111" }}>Macro</Text> */}
+          {/* Second start */}
 
-            <View style={{
-              backgroundColor: '#11661106',
-              width: '100%',
-              borderColor: '#11661155',
-              borderWidth: 1,
-              borderRadius: 25
-            }}>
-              <View style={{ left: '-5%' }}>
-                <NutritionMultiChart howMuch={10} step={2} />
-              </View>
-            </View>
+          <FlatList
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            initialNumToRender={2}
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+              />
+            }
+            ItemSeparatorComponent={() => <View style={{ height: 20 }}></View>}
+            // initialScrollIndex={2}
+          // extraData={selectedId}
+          />
 
-            {/* <Text style={{ fontSize: 16, fontWeight: '300', color: "#111" }}>Micro</Text> */}
-
-          </ProfilesElementsPost>
-
-          <ProfilesElementsPost title='Кухня' category='Томат' subCategory='Большая мамочка' substrate='Кермзит' system='DNFT'>
-            {/* <Text style={{ fontSize: 16, fontWeight: '300', color: "#111" }}>Macro</Text> */}
-
-            <View style={{
-              backgroundColor: '#11661106',
-              width: '100%',
-              borderColor: '#11661155',
-              borderWidth: 1,
-              borderRadius: 25
-            }}>
-              <View style={{ left: '-5%' }}>
-                <NutritionMultiChart howMuch={10} step={2} />
-              </View>
-            </View>
-
-            {/* <Text style={{ fontSize: 16, fontWeight: '300', color: "#111" }}>Micro</Text> */}
-
-          </ProfilesElementsPost>
-
+          {/* Second end */}
         </View>
 
-      </ScrollView >
+      {/* </ScrollView > */}
 
       <View style={{ opacity: 0.9, backgroundColor: '#090', borderRadius: 25, justifyContent: 'center', alignItems: "center", borderWidth: 1, borderColor: '#fff', bottom: scrHeight / 50, right: scrWidth / 25, position: 'absolute' }}>
         <ButtonIconCircle iconTitle='add' color='#fff' size={48} func={() => navigation.navigate('GardenProfilesAdd')} />

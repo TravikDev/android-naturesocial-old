@@ -50,6 +50,13 @@ export const NavPublicGarden = ({ route, navigation }) => {
 
           }}
         />
+        {/* <Tab.Screen
+          name="PublicGardenTest"
+          initialParams={route.params}
+          component={ScrPublicGardenNutrition}
+          options={{
+            title: 'Тест'
+          }} /> */}
         <Tab.Screen
           name="PublicGardenFeed"
           initialParams={route.params}

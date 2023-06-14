@@ -527,6 +527,7 @@ const styles = StyleSheet.create({
     paddingRight: 18,
     paddingBottom: 8,
     borderBottomWidth: 1,
+    borderBottomColor: '#00000055'
   },
   insideDrawerHeader: {
     flex: 1,
@@ -539,7 +540,7 @@ const styles = StyleSheet.create({
     height: 64,
     borderRadius: 50,
     marginRight: 10,
-    borderColor: "#ffffffbb",
+    borderColor: "#004D00",
     borderWidth: 1
   },
   username: {
