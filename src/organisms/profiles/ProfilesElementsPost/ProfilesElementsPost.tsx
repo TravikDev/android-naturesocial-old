@@ -12,7 +12,9 @@ export const ProfilesElementsPost = ({
     /* @ts-ignore */
     children,
     category = '',
-    subCategory = ''
+    subCategory = '',
+    system = '',
+    substrate = '',
 }) => {
 
 
@@ -27,14 +29,20 @@ export const ProfilesElementsPost = ({
                 <View style={{ paddingHorizontal: 15, paddingVertical: 10, gap: 10 }}>
                     <View>
                         <Text style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>{title}</Text>
-                        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <Text style={{ fontWeight: "300", fontSize: 16, color: "#111" }}>{category}</Text>
-                            <Text style={{ fontWeight: "300", fontSize: 16, color: "#111" }}>{subCategory}</Text>
+                        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                            <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                                <Text style={{ fontWeight: "300", fontSize: 16, color: "#111" }}>{system}</Text>
+                                <Text style={{ fontWeight: "300", fontSize: 16, color: "#111" }}>{substrate}</Text>
+                            </View>
+                            <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+                                <Text style={{ fontWeight: "300", fontSize: 16, color: "#111" }}>{category}</Text>
+                                <Text style={{ fontWeight: "300", fontSize: 16, color: "#111" }}>{subCategory}</Text>
+                            </View>
                         </View>
                     </View>
 
 
-                    <Divider />
+                    {/* <Divider /> */}
                     {/* 
                     <View style={{ overflow: 'hidden', borderRadius: 5 }}>
                         <Image style={{ height: 150, width: "100%" }} source={require('../../../../assets/images/posts/post1.jpeg')} />
@@ -48,20 +56,28 @@ export const ProfilesElementsPost = ({
 
                 </View>
 
-                <Divider style={{ marginBottom: 10 }} />
+                {/* <Divider style={{ marginBottom: 10 }} /> */}
 
                 <View style={{ marginHorizontal: 10, marginBottom: 5, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View>
                         <Button
-                            title="Copy"
+                            title="Сохранить"
                             tintColor='#fff'
                             color='#3FB049'
                             variant='outlined'
                         />
                     </View>
+                    {/* <View>
+                        <Button
+                            title=""
+                            tintColor='#fff'
+                            color='#3FB049'
+                            variant='outlined'
+                        />
+                    </View> */}
                     <View style={{ marginBottom: 5 }}>
                         <Button
-                            title="Full"
+                            title="Открыть"
                             tintColor='#fff'
                             color='#3FB049'
                             variant='outlined'

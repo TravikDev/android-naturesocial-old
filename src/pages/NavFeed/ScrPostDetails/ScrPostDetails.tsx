@@ -1,11 +1,12 @@
-import React from 'react'
-import { View, Text, ScrollView, Dimensions, Image, Pressable } from "react-native"
+import React, { useState } from 'react'
+import { View, Text, ScrollView, Dimensions, Image, Pressable, SafeAreaView, StatusBar } from "react-native"
 import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
-import { Avatar, Divider } from '@react-native-material/core'
+import { AppBar, Avatar, Backdrop, BackdropSubheader, Divider, Icon, IconButton } from '@react-native-material/core'
 import { SpoilerComments } from '../../../atoms/Spoilers/SpoilerComments'
 import { PostDetailsIndicator } from '../../../atoms/Indicators/PostDetailsIndicator'
 
 const scrHeight = Dimensions.get('screen').height
+const scrWidth = Dimensions.get('screen').width
 
 /* @ts-ignore */
 export const ScrPostDetails = ({ route, navigation }) => {
@@ -22,120 +23,155 @@ export const ScrPostDetails = ({ route, navigation }) => {
 
   // console.log(postId)
   // console.log(navigation)
-
+  const [revealed, setRevealed] = useState(false);
 
   return (
-    <ScrollView>
-      <View style={{ backgroundColor: '#fff' }}>
-        <View
-          style={{ width: "100%", display: 'flex', overflow: 'hidden' }}
-        >
-          <View>
-            <Image style={{ height: 180, width: "100%" }} source={{ uri: (posts[postId - 1].imageUrl) }} />
+    <SafeAreaView>
+      <StatusBar backgroundColor="transparent" translucent />
+
+      <View style={{ position: 'absolute', top: '4%', left: '4%', zIndex: 50 }}>
+        <ButtonIconCircle size={42} iconTitle='keyboard-backspace' color='#fff' />
+      </View>
+
+      <ScrollView style={{}}>
+        <View style={{ backgroundColor: '#fff' }}>
+          <View
+            style={{ width: "100%", display: 'flex', overflow: 'hidden' }}
+          >
+            <View>
+              <Image style={{ height: 300, width: "100%" }} source={{ uri: (posts[postId - 1].imageUrl) }} />
+            </View>
+
+            <View style={{ margin: 15, gap: 15 }}>
+              <View>
+                <Text style={{ fontWeight: "400", fontSize: 22, color: "#111" }}>{posts[postId - 1].title}</Text>
+                <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{posts[postId - 1].categories}</Text>
+                  <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{posts[postId - 1].postDate}</Text>
+                </View>
+              </View>
+
+              <Divider />
+              <View style={{ gap: 10, display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+
+                <View style={{ width: '48.5%' }}>
+                  <PostDetailsIndicator title='Minifermer' subTitle='Quantum Board 400Wt'
+                    leadingIcon='emoji-objects' />
+                </View>
+
+                <View style={{ width: '48.5%' }}>
+                  <PostDetailsIndicator title='Daylight' value='16h'
+                    leadingIcon='model-training' />
+                </View>
+
+                <View style={{ width: '48.5%' }}>
+                  <PostDetailsIndicator title='EC' value={`700 mS`} leadingIcon='opacity' />
+                </View>
+
+                <View style={{ width: '48.5%' }}>
+                  <PostDetailsIndicator title='pH' value={`6.2`}
+                    leadingIcon='science' />
+                </View>
+
+              </View>
+
+              <Divider />
+
+              <Text style={{ fontWeight: "300", fontSize: 16, color: "#111" }}>
+                {posts[postId - 1].content}
+              </Text>
+            </View>
+
+            <Divider />
+
           </View>
 
-          <View style={{ margin: 15, gap: 15 }}>
-            <View>
-              <Text style={{ fontWeight: "400", fontSize: 22, color: "#111" }}>{posts[postId - 1].title}</Text>
-              <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{posts[postId - 1].categories}</Text>
-                <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{posts[postId - 1].postDate}</Text>
+          <View style={{ padding: 15, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <View style={{ display: 'flex', flexDirection: 'row', gap: 15 }}>
+              <Pressable onPress={() => navigation.navigate('PublicGarden', { gardenId: posts[postId - 1].authorId })}><Avatar label="Kent Dodds" autoColor size={48} /></Pressable>
+              <View style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Text onPress={() => navigation.navigate('PublicGarden', { gardenId: posts[postId - 1].authorId })} style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>OverGrower</Text>
+                <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>30 level</Text>
               </View>
             </View>
 
-            <Divider />
-            <View style={{ gap: 10, display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-
-              <View style={{ width: '48.5%' }}>
-                <PostDetailsIndicator title='Minifermer' subTitle='Quantum Board 400Wt'
-                  leadingIcon='emoji-objects' />
-              </View>
-
-              <View style={{ width: '48.5%' }}>
-                <PostDetailsIndicator title='Daylight' value='16h'
-                  leadingIcon='model-training' />
-              </View>
-
-              <View style={{ width: '48.5%' }}>
-                <PostDetailsIndicator title='EC' value={`700 mS`} leadingIcon='opacity' />
-              </View>
-
-              <View style={{ width: '48.5%' }}>
-                <PostDetailsIndicator title='pH' value={`6.2`}
-                  leadingIcon='science' />
-              </View>
-
-            </View>
-
-            <Divider />
-
-            <Text style={{ fontWeight: "300", fontSize: 16, color: "#111" }}>
-              {posts[postId - 1].content}
-            </Text>
+            <ButtonIconCircle iconTitle='favorite-outline' size={36} color='#666' />
           </View>
 
           <Divider />
 
-        </View>
+          {/* @ts-ignore */}
+          <Backdrop
+            revealed={revealed}
+            style={{ position: 'absolute', bottom: 0, zIndex: 50, width: '95%' }}
+            header={
+              <AppBar
+                title="Screen title"
+                transparent
+                leading={props => (
+                  <IconButton
+                    icon={props => (
+                      <Icon name={revealed ? "close" : "menu"} {...props} />
+                    )}
+                    onPress={() => setRevealed(prevState => !prevState)}
+                    {...props}
+                  />
+                )}
+              />
+            }
+            backLayer={<View style={{ height: 200 }} />}
+          >
 
-        <View style={{ padding: 15, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <View style={{ display: 'flex', flexDirection: 'row', gap: 15 }}>
-            <Pressable onPress={() => navigation.navigate('PublicGarden', { gardenId: posts[postId - 1].authorId })}><Avatar label="Kent Dodds" autoColor size={48} /></Pressable>
-            <View style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Text onPress={() => navigation.navigate('PublicGarden', { gardenId: posts[postId - 1].authorId })} style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>OverGrower</Text>
-              <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>30 level</Text>
-            </View>
+            <BackdropSubheader title="Subheader" />
+            <View><Text>wat</Text></View>
+          </Backdrop>
+
+          <View style={{ margin: 10 }}>
+            <SpoilerComments title={`42 Comments`} leadingIcon='messenger-outline'>
+
+              <View style={{ marginHorizontal: 20 }}>
+                <View style={{ paddingVertical: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 15 }}>
+                    <Avatar label="Kent Dodds" autoColor size={32} />
+                    <View style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <Text style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>Artem</Text>
+                    </View>
+                  </View>
+
+                  <Text style={{ fontSize: 16, color: '#111' }}>#1</Text>
+                </View>
+                <View>
+                  <Text style={{ fontSize: 16, color: '#111', fontWeight: '300' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat ab, deleniti molestiae quia odio quis repellat sequi voluptas, eius explicabo, voluptatem culpa accusamus optio quisquam sapiente suscipit ducimus natus fugit.
+                    Dolore omnis optio error! Accusantium rem dolore soluta temporibus illum tenetur voluptates reprehenderit iusto nisi nobis amet, corrupti asperiores inventore magni ipsam nesciunt unde facilis commodi! Fugit similique non rerum.</Text>
+                </View>
+              </View>
+
+              <Divider style={{ marginTop: 10 }} />
+
+              <View style={{ margin: 5, marginHorizontal: 20 }}>
+                <View style={{ paddingVertical: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 15 }}>
+                    <Avatar label="Kent Dodds" autoColor size={32} />
+                    <View style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <Text style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>Artem</Text>
+                    </View>
+                  </View>
+
+                  <Text style={{ fontSize: 16, color: '#111' }}>#2</Text>
+                </View>
+                <View>
+                  <Text style={{ fontSize: 16, color: '#111', fontWeight: '300' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat ab, deleniti molestiae quia odio quis repellat sequi voluptas, eius explicabo, voluptatem culpa accusamus optio quisquam sapiente suscipit ducimus natus fugit.
+                    Dolore omnis optio error! Accusantium rem dolore soluta temporibus illum tenetur voluptates reprehenderit iusto nisi nobis amet, corrupti asperiores inventore magni ipsam nesciunt unde facilis commodi! Fugit similique non rerum.</Text>
+                </View>
+              </View>
+
+            </SpoilerComments>
           </View>
 
-          <ButtonIconCircle iconTitle='favorite-outline' size={36} color='#666' />
         </View>
-
-        <Divider />
-        <View style={{ margin: 10 }}>
-          <SpoilerComments title={`42 Comments`} leadingIcon='messenger-outline'>
-
-            <View style={{ marginHorizontal: 20 }}>
-              <View style={{ paddingVertical: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 15 }}>
-                  <Avatar label="Kent Dodds" autoColor size={32} />
-                  <View style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Text style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>Artem</Text>
-                  </View>
-                </View>
-
-                <Text style={{ fontSize: 16, color: '#111' }}>#1</Text>
-              </View>
-              <View>
-                <Text style={{ fontSize: 16, color: '#111', fontWeight: '300' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat ab, deleniti molestiae quia odio quis repellat sequi voluptas, eius explicabo, voluptatem culpa accusamus optio quisquam sapiente suscipit ducimus natus fugit.
-                  Dolore omnis optio error! Accusantium rem dolore soluta temporibus illum tenetur voluptates reprehenderit iusto nisi nobis amet, corrupti asperiores inventore magni ipsam nesciunt unde facilis commodi! Fugit similique non rerum.</Text>
-              </View>
-            </View>
-
-            <Divider style={{ marginTop: 10 }} />
-
-            <View style={{ margin: 5, marginHorizontal: 20 }}>
-              <View style={{ paddingVertical: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 15 }}>
-                  <Avatar label="Kent Dodds" autoColor size={32} />
-                  <View style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Text style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>Artem</Text>
-                  </View>
-                </View>
-
-                <Text style={{ fontSize: 16, color: '#111' }}>#2</Text>
-              </View>
-              <View>
-                <Text style={{ fontSize: 16, color: '#111', fontWeight: '300' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat ab, deleniti molestiae quia odio quis repellat sequi voluptas, eius explicabo, voluptatem culpa accusamus optio quisquam sapiente suscipit ducimus natus fugit.
-                  Dolore omnis optio error! Accusantium rem dolore soluta temporibus illum tenetur voluptates reprehenderit iusto nisi nobis amet, corrupti asperiores inventore magni ipsam nesciunt unde facilis commodi! Fugit similique non rerum.</Text>
-              </View>
-            </View>
-
-          </SpoilerComments>
-        </View>
-
-      </View>
-      {/* <Button title="What" onPress={() => navigation.pop()} /> */}
-      {/* </View> */}
-    </ScrollView>
+        {/* <Button title="What" onPress={() => navigation.pop()} /> */}
+        {/* </View> */}
+      </ScrollView>
+    </SafeAreaView>
   )
 }

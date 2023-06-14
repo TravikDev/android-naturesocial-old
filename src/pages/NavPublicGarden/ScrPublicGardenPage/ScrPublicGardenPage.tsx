@@ -66,18 +66,6 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
 
       <View style={{}}>
 
-        <View style={{ backgroundColor: "#fff", display: 'flex', alignItems: 'center' }}>
-          <View>
-            <Image
-              style={{ width: scrWidth, height: 200 }}
-              source={require('../../../assets/images/gardenLayout.jpg')} />
-          </View>
-          <View style={{ position: 'absolute', top: 50 }}>
-            <Avatar style={{ borderRadius: 50, borderWidth: 2, borderColor: '#fff' }} label="Kent Dodds" image={{ uri: garden.avatarSrc }} autoColor size={100} />
-          </View>
-        </View>
-
-
         <View style={{ backgroundColor: "#fff" }}>
 
           <View style={styles.fullContainer}>
