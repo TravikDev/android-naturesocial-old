@@ -16,8 +16,10 @@ import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ScrPublicGardenNutritions } from './ScrPublicGardenNutritions'
 import { ScrPublicGardenCultures } from './ScrPublicGardenCultures'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 const Tab = createMaterialTopTabNavigator()
+const Stack = createNativeStackNavigator()
 
 /* @ts-ignore */
 export const NavPublicGarden = ({ route, navigation }) => {
@@ -25,75 +27,76 @@ export const NavPublicGarden = ({ route, navigation }) => {
   return (
     // <ScrollView>
     // <NavigationContainer independent={true}>
-      <Tab.Navigator
-        initialRouteName='PublicGardenPage'
-        screenOptions={{
-          // tabBarBadge: () => ,
-          tabBarActiveTintColor: '#1A6111',
-          tabBarInactiveTintColor: "#000",
-          tabBarIndicatorStyle: { backgroundColor: '#1B8113' },
-          tabBarScrollEnabled: true,
-          tabBarItemStyle: { width: 120 },
-          tabBarStyle: {
+    <Tab.Navigator
+      initialRouteName='PublicGardenPage'
+      screenOptions={{
+        // tabBarBadge: () => ,
+        tabBarActiveTintColor: '#1A6111',
+        tabBarInactiveTintColor: "#000",
+        tabBarIndicatorStyle: { backgroundColor: '#1B8113' },
+        tabBarScrollEnabled: true,
+        tabBarItemStyle: { width: 120 },
+        tabBarStyle: {
 
-          },
+        },
 
-        }}>
-        <Tab.Screen
-          name="PublicGardenPage"
-          initialParams={route.params}
-          component={ScrPublicGardenPage}
-          options={{
-            title: 'Описание',
-            // tabBarIcon: () => <Icon name='nature-people' size={26} color='#666' />,
-            // headerLeft: () => <View style={{ marginRight: 20}}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>
+      }}>
+      <Tab.Screen
+        name="PublicGardenPage"
+        initialParams={route.params}
+        component={ScrPublicGardenPage}
+        options={{
+          title: 'Описание',
+          // tabBarIcon: () => <Icon name='nature-people' size={26} color='#666' />,
+          // headerLeft: () => <View style={{ marginRight: 20}}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>
 
-          }}
-        />
-        {/* <Tab.Screen
+        }}
+      />
+      {/* <Tab.Screen
           name="PublicGardenTest"
           initialParams={route.params}
           component={ScrPublicGardenNutrition}
           options={{
             title: 'Тест'
           }} /> */}
-        <Tab.Screen
-          name="PublicGardenFeed"
-          initialParams={route.params}
-          component={ScrPublicGardenFeed}
-          options={{
-            title: 'Посты'
-            // headerShown: false,
-            // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
-          }} />
-        <Tab.Screen
-          name="PublicGardenNutrition"
-          initialParams={route.params}
-          component={ScrPublicGardenNutritions}
-          options={{
-            title: 'Питание'
-            // headerShown: false,
-            // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
-          }} />
-        <Tab.Screen
-          name="Cultures"
-          initialParams={route.params}
-          component={ScrPublicGardenCultures}
-          options={{
-            title: 'Культуры'
-            // headerShown: false,
-            // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
-          }} />
-        <Tab.Screen
-          name="PublicGardenSystems"
-          initialParams={route.params}
-          component={ScrPublicGardenSystems}
-          options={{
-            title: 'Системы'
-            // headerShown: false,
-            // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
-          }} />
-      </Tab.Navigator>
+      <Tab.Screen
+        name="PublicGardenFeed"
+        initialParams={route.params}
+        component={ScrPublicGardenFeed}
+        options={{
+          title: 'Посты'
+          // headerShown: false,
+          // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
+        }} />
+      <Tab.Screen
+        name="PublicGardenSystems"
+        initialParams={route.params}
+        component={ScrPublicGardenSystems}
+        options={{
+          title: 'Системы'
+          // headerShown: false,
+          // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
+        }} />
+      <Tab.Screen
+        name="PublicGardenNutrition"
+        initialParams={route.params}
+        component={ScrPublicGardenNutritions}
+        options={{
+          title: 'Питание'
+          // headerShown: false,
+          // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
+        }} />
+      <Tab.Screen
+        name="Cultures"
+        initialParams={route.params}
+        component={ScrPublicGardenCultures}
+        options={{
+          title: 'Культуры'
+          // headerShown: false,
+          // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
+        }} />
+
+    </Tab.Navigator>
     // </NavigationContainer>
     // </ScrollView>
   )

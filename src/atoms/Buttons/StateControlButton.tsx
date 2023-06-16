@@ -14,13 +14,13 @@ export const StateControlButton = ({ title, value, leadingIcon = '', onClick = f
                 onPress={onClick}
             >
                 <View style={{ display: 'flex', flexDirection: 'row', gap: 5, alignItems: "center" }}>
-                    {leadingIcon && <View style={{ borderRightColor: '#ccc', borderRightWidth: 1, paddingRight: 4 }}><Icon name={leadingIcon} size={26} /></View>}
+                    {leadingIcon && <View style={{ borderRightColor: '#ccc', borderRightWidth: 1, paddingRight: 2 }}><Icon name={leadingIcon} size={26} /></View>}
                     <Text style={styles.text}>{title}</Text>
                 </View>
                 <View style={styles.viewValue}>
-                    {value === 'On'
-                        ? <Text style={styles.textOn}>{value}</Text>
-                        : <Text style={styles.textOff}>{value}</Text>
+                    {value === 'Off'
+                        ? <Text style={styles.textOff}>{value}</Text>
+                        : <Text style={styles.textOn}>{value}</Text>
                     }
                 </View>
             </Pressable>
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     pressableContainer: {
-        height: 48,
-        padding: 8,
+        height: 36,
+        padding: 4,
         display: 'flex',
         flexDirection: "row",
         justifyContent: 'space-between',

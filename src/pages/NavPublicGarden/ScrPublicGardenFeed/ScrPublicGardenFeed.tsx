@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Dimensions, ScrollView, StyleSheet, Text, View, TextInput, StatusBar } from 'react-native'
 // import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
-import { Pressable } from '@react-native-material/core'
+import { Icon, Pressable } from '@react-native-material/core'
 import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
 import { PostFilterSingleCategories } from '../../../organisms/postsList/Posts/PostFilterSingleCategories'
 import { GardenFeedPostCard } from '../../../organisms/garden/GardenFeed'
@@ -112,13 +112,27 @@ export const ScrPublicGardenFeed = ({ navigation }) => {
             <ScrollView contentContainerStyle={{}} >
 
 
-                <View style={{ display: 'flex', height: 46, flexDirection: 'row', backgroundColor: '#fff', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}>
-                    <View style={{}}>
-                        <Text style={{ color: '#111', fontSize: 18, fontWeight: '400' }}>All categories</Text>
+                <View style={{ display: 'flex', height: 46, flexDirection: 'row', backgroundColor: '#fff', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 8 }}>
+                    <View style={{
+                        // borderWidth: 1, borderColor: '#ccc', 
+                        borderRadius: 5,
+                        overflow: 'hidden'
+                    }}>
+                        <Pressable>
+                            <Icon name='today' size={28} color='#555' />
+                        </Pressable>
                     </View>
-                    <Pressable>
-                        <ButtonIconCircle iconTitle='tune' size={36} func={toggleOptionsMenu} color='#666' />
-                    </Pressable>
+                    <View style={{
+                        // borderWidth: 1, borderColor: '#ccc', 
+                        borderRadius: 5,
+                        overflow: 'hidden'
+                    }}>
+                        <Pressable
+                            // style={{ borderWidth: 1, borderColor: '#ccc', borderRadius: 5, overflow: 'hidden' }} 
+                            onPress={toggleOptionsMenu}>
+                            <Icon name='tune' size={28} color='#555' />
+                        </Pressable>
+                    </View>
                 </View>
 
                 {optionsModal && (
