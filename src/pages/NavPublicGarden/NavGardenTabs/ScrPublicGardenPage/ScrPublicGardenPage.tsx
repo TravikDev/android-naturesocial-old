@@ -1,11 +1,14 @@
 import { ScrollView } from 'react-native-gesture-handler'
 import { View, Text, Image, Dimensions, StyleSheet, StatusBar } from "react-native"
 import { Avatar, Divider, Icon, Pressable } from '@react-native-material/core'
-import { GardenPageInfoAwards } from '../../../organisms/garden/GardenInfo/Awards'
-import { GardenStatisticsIndicator } from '../../../atoms/Indicators/GardenStatisticsIndicator'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { useFocusEffect } from '@react-navigation/native'
-import { useCallback } from 'react'
+import { GardenStatisticsIndicator } from '../../../../atoms/Indicators/GardenStatisticsIndicator'
+import { GardenPageInfoAwards } from '../../../../organisms/garden/GardenInfo/Awards'
+// import { GardenPageInfoAwards } from '../../../../organisms/garden/GardenInfo/Awards'
+// import { GardenStatisticsIndicator } from '../../../../atoms/Indicators/GardenStatisticsIndicator'
+// import { SafeAreaView } from 'react-native-safe-area-context'
+// import { useFocusEffect } from '@react-navigation/native'
+// import { useCallback } from 'react'
+// import { GardenStatisticsIndicator } from '../../../../atoms/Indicators/GardenStatisticsIndicator'
 
 const scrWidth = Dimensions.get('screen').width
 const scrHeight = Dimensions.get('screen').height
@@ -14,7 +17,7 @@ const scrHeight = Dimensions.get('screen').height
 export const ScrPublicGardenPage = ({ route, navigation }) => {
 
   // console.log(route)
-  const { gardenId } = route.params
+  const gardenId = route.params?.gardenId
 
   const gardensList = [
     { gardenId: 1, name: 'Mary Jane', about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora.', level: 41, position: 0, avatarSrc: 'https://mui.com/static/images/avatar/4.jpg', countFollowers: 1239, countNutrition: 12, countAwards: 7, countPosts: 29, countSystems: 3, countCultures: 5, countVerieties: 12 },
@@ -73,7 +76,7 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
             <View style={{ marginVertical: 10, gap: 5 }}>
               <View style={styles.pressableContainer}>
                 <View>
-                  <Text style={styles.gardenTitle}>{garden.name}'s Garden</Text>
+                  <Text style={styles.gardenTitle}>{garden?.name}'s Garden</Text>
                 </View>
 
                 <View style={styles.viewValue}>
@@ -86,12 +89,12 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
               <View style={styles.pressableContainer}>
                 <View>
                   <Text style={{ color: "#111", fontSize: 16, fontWeight: '300' }}>
-                    {garden.level} Level
+                    {garden?.level} Level
                   </Text>
                 </View>
                 <View style={styles.viewValue}>
                   <Text style={{ color: "#111", fontSize: 16, fontWeight: '300' }}>
-                    {garden.countFollowers} Followers</Text>
+                    {garden?.countFollowers} Followers</Text>
                 </View>
               </View>
 
@@ -106,7 +109,7 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
               </Text>
 
               <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>
-                {garden.about}
+                {garden?.about}
               </Text>
             </View>
 
@@ -123,27 +126,27 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
             <View style={{ width: '100%' }}>
               <View style={{ display: 'flex', flexDirection: "row", flexWrap: 'wrap', gap: 10, paddingBottom: 5, justifyContent: 'center' }}>
                 <View style={{ width: '48.5%' }}>
-                  <GardenStatisticsIndicator leadingIcon='book' title='Posts' value={`${garden.countPosts}`} />
+                  <GardenStatisticsIndicator leadingIcon='book' title='Posts' value={`${garden?.countPosts}`} />
                 </View>
 
                 <View style={{ width: '48.5%' }}>
-                  <GardenStatisticsIndicator leadingIcon='military-tech' title='Awards' value={`${garden.countAwards}`} />
+                  <GardenStatisticsIndicator leadingIcon='military-tech' title='Awards' value={`${garden?.countAwards}`} />
                 </View>
 
                 <View style={{ width: '48.5%' }}>
-                  <GardenStatisticsIndicator leadingIcon='local-drink' title='Nutrition' value={`${garden.countNutrition}`} />
+                  <GardenStatisticsIndicator leadingIcon='local-drink' title='Nutrition' value={`${garden?.countNutrition}`} />
                 </View>
 
                 <View style={{ width: '48.5%' }}>
-                  <GardenStatisticsIndicator leadingIcon='power' title='Systems' value={`${garden.countSystems}`} />
+                  <GardenStatisticsIndicator leadingIcon='power' title='Systems' value={`${garden?.countSystems}`} />
                 </View>
 
                 <View style={{ width: '48.5%' }}>
-                  <GardenStatisticsIndicator leadingIcon='local-florist' title='Cultures' value={`${garden.countCultures}`} />
+                  <GardenStatisticsIndicator leadingIcon='local-florist' title='Cultures' value={`${garden?.countCultures}`} />
                 </View>
 
                 <View style={{ width: '48.5%' }}>
-                  <GardenStatisticsIndicator leadingIcon='filter-vintage' title='Verieties' value={`${garden.countVerieties}`} />
+                  <GardenStatisticsIndicator leadingIcon='filter-vintage' title='Verieties' value={`${garden?.countVerieties}`} />
                 </View>
 
               </View>

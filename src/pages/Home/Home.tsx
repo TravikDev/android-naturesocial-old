@@ -5,11 +5,11 @@ import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigatio
 import { ScrollView } from 'react-native-gesture-handler';
 import { NavCommunity } from '../NavCommunity';
 import { SpoilerMenu } from '../../atoms/Spoilers/SpoilerMenu';
-import { NavPublicGarden } from '../NavPublicGarden';
+// import { NavPublicGarden } from '../NavPublicGarden/NavGardenTabs';
 import { NavFeed } from '../NavFeed';
 import { NavMarketplace } from '../NavMarketplace';
 import { NavLearning } from '../NavLearning';
-import { NavGarden } from '../NavGarden';
+// import { NavGarden } from '../NavGarden';
 import { NavMonitoring } from '../NavMonitoring';
 import { NavCalculator } from '../NavCalculator';
 import { NavGardenPosts } from '../NavGardenPosts';
@@ -21,6 +21,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import { SrcSignin } from '../NavAuth/ScrSignin';
 // import { SrcSignup } from '../NavAuth/ScrSignup';
 import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle';
+import { NavGarden } from '../NavGarden';
+import { NavSinglePages } from '../NavSinglePages';
 
 function HomeScreen() {
   return (
@@ -446,12 +448,12 @@ export const Home = () => {
       initialRouteName="Feed"
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
-      <Drawer.Screen name="Home" component={HomeScreen} options={{
+      {/* <Drawer.Screen name="Home" component={HomeScreen} options={{
         headerRight: () => (
           <View style={{ marginRight: 10 }}>
             <Icon name="person-outline" size={28} onPress={() => { }} />
           </View>),
-      }} />
+      }} /> */}
 
       <Drawer.Screen
         name="Feed"
@@ -464,11 +466,11 @@ export const Home = () => {
         options={{ headerShown: false }}
       />
       {/* <Drawer.Screen name="User" component={NavigatorUser} /> */}
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="PublicGarden"
         component={NavPublicGarden}
       // options={{ headerShown: false }} 
-      />
+      /> */}
       {/* <Drawer.Screen name="Cultures" component={ScreenCategories} /> */}
       <Drawer.Screen name="Learning" component={NavLearning} />
       <Drawer.Screen name="Cultures" component={NavCultures}
@@ -502,6 +504,11 @@ export const Home = () => {
       <Drawer.Screen name="Monitoring" component={NavMonitoring} />
 
       <Drawer.Screen name="Auth" component={NavAuth}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Drawer.Screen name="SinglePages" component={NavSinglePages}
         options={{
           headerShown: false
         }}

@@ -14,7 +14,7 @@ export const GardenListCard = ({
   navigation
 }) => {
   return (
-    <Pressable onPress={() => { navigation.navigate('PublicGarden', { gardenId }) }}>
+    <Pressable onPress={() => { navigation.push('PublicGarden', { gardenId }) }}>
       <View style={{ display: 'flex', flexDirection: 'row', gap: 15, paddingLeft: 15, paddingRight: 10, paddingVertical: 10, alignItems: 'center', justifyContent: 'space-between' }}>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 15, maxWidth: '80%' }}>
           <View style={{ display: 'flex', flexDirection: "column", justifyContent: 'center', gap: 5 }}>

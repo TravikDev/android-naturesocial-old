@@ -1,18 +1,10 @@
 import React, { useRef, useState } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, View, TextInput, RefreshControl, FlatList } from 'react-native'
 import { Divider, Icon, Pressable } from '@react-native-material/core'
-import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
-import { PostFilterSingleCategories } from '../../../organisms/postsList/Posts/PostFilterSingleCategories'
-import { ProfilesElementsPost } from '../../../organisms/profiles/ProfilesElementsPost'
-import { InputElements } from '../../../atoms/inputs/InputMinerals'
-import { NutritionMultiChart } from '../../../organisms/nutrition/charts/NutritionMultiChart'
-import { NutritionLineChart } from '../../../organisms/nutrition/charts/LineChart/LineChart'
-// import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
-// import { PostFilterSingleCategories } from '../../../../organisms/postsList/Posts/PostFilterSingleCategories'
-// import { GardenFeedPostCard } from '../../../../organisms/garden/GardenFeed'
-// import { ProfilesElementsPost } from '../../../../organisms/profiles/ProfilesElementsPost'
-// import { ProfilesElements } from '../../../../organisms/profiles/ProfilesElementsMacro'
-// import { InputElements } from '../../../../atoms/inputs/InputMinerals'
+import { ProfilesElementsPost } from '../../../../organisms/profiles/ProfilesElementsPost'
+import { NutritionLineChart } from '../../../../organisms/nutrition/charts/LineChart/LineChart'
+import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
+import { PostFilterSingleCategories } from '../../../../organisms/postsList/Posts/PostFilterSingleCategories'
 
 const scrHeight = Dimensions.get('screen').height
 const scrWidth = Dimensions.get('screen').width

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 /* @ts-ignore */
-export const StateControlButton = ({ title, value, leadingIcon = '', onClick = f => f }) => {
+export const StateControlButton = ({ title, value, leadingIcon = '', designation = '', onClick = f => f }) => {
 
     return (
         <View style={styles.fullContainer}>
@@ -19,8 +19,18 @@ export const StateControlButton = ({ title, value, leadingIcon = '', onClick = f
                 </View>
                 <View style={styles.viewValue}>
                     {value === 'Off'
-                        ? <Text style={styles.textOff}>{value}</Text>
-                        : <Text style={styles.textOn}>{value}</Text>
+                        ? (
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={styles.textOff}>{value}</Text>
+                                {designation && <Text style={styles.textDesignation}>{designation}</Text>}
+                            </View>
+                        )
+                        : (
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={styles.textOn}>{value}</Text>
+                                {designation && <Text style={styles.textDesignation}>{designation}</Text>}
+                            </View>
+                        )
                     }
                 </View>
             </Pressable>
@@ -74,5 +84,11 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         fontSize: 18,
         color: '#bb0000',
-    }
+    },
+    textDesignation: {
+        paddingLeft: 4,
+        fontWeight: '300',
+        fontSize: 18,
+        color: '#111',
+    },
 })

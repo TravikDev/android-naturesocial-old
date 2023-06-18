@@ -1,5 +1,5 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { ScreenDiaries } from "./ScrDiaries";
+// import { ScreenDiaries } from "./ScrDiaries";
 import { ScreenGardensList } from "./ScrGardensList";
 import { ScreenGroupsList } from "./ScrGroupsList";
 // import { ScreenGardensList } from "./ScreenGardensList";

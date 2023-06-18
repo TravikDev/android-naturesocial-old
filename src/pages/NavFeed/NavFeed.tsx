@@ -4,11 +4,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle';
 import { Dimensions, Image, SafeAreaView, StatusBar, Text, View } from 'react-native';
 import { NavFeedLists } from './NavFeedLists';
-import { ScrPostDetails } from './ScrPostDetails';
+import { ScrPostDetails } from '../NavSinglePages/ScrPostDetails';
 import { ScrNewsDetails } from './ScrNewsDetails';
-import { NavPublicGarden } from '../NavPublicGarden';
+// import { NavPublicGarden } from '../NavPublicGarden/NavGardenTabs';
 import { ScrPostsList } from './NavFeedLists/ScrPostsList';
 import { Avatar } from '@react-native-material/core';
+import { NavPublicGarden } from '../NavPublicGarden';
 // import profileBG from '../../assets/images/profileLayout.jpg'
 
 const Stack = createNativeStackNavigator();
@@ -38,26 +39,14 @@ export const NavFeed = ({ navigation }) => {
       <Stack.Screen
         name="NewsDetails"
         component={ScrNewsDetails} />
+        
       <Stack.Screen
         name="PublicGarden"
-        component={NavPublicGarden}
+        component={NavPublicGarden} 
         options={{
-          header: () => <SafeAreaView>
-            <StatusBar backgroundColor="transparent" translucent />
-
-            <View style={{ backgroundColor: "#fff", display: 'flex', alignItems: 'center' }}>
-              <View>
-                <Image
-                  style={{ width: scrWidth, height: 200 }}
-                  source={{ uri: 'https://telegra.ph/file/a4c4adc5ec111c1c4a08b.jpg' }}
-                />
-              </View>
-              <View style={{ position: 'absolute', top: 50 }}>
-                <Avatar style={{ borderRadius: 50, borderWidth: 2, borderColor: '#fff', overflow: 'hidden' }} label="Kent Dodds" image={{ uri: 'https://mui.com/static/images/avatar/2.jpg' }} autoColor size={100} />
-              </View>
-            </View>
-          </SafeAreaView>
-        }} />
+          headerShown: false
+        }}
+        />
     </Stack.Navigator>
   )
 }

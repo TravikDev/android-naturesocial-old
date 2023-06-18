@@ -1,115 +1,73 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import React from 'react'
-// import { ScreenUserProfile } from './ScreenUserProfile'
-// import { ScreenUserSettings } from './ScreenUserSettings'
-import { Icon } from '@react-native-material/core'
-// import { ScreenGardenPage } from './ScreenGardenPage'
-// import { NavigatorGardenSettings } from '../NavigatorGardenSettings'
-import { Image, ScrollView, StatusBar, StyleSheet, View } from 'react-native'
-import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle'
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { ScrPublicGardenPage } from './ScrPublicGardenPage'
-import { ScrPublicGardenFeed } from './ScrPublicGardenFeed'
-import { ScrPublicGardenNutrition } from './ScrPublicGardenNutrition'
-import { ScrPublicGardenSystems } from './ScrPublicGardenSystems'
-import { NavigationContainer } from '@react-navigation/native'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { ScrPublicGardenNutritions } from './ScrPublicGardenNutritions'
-import { ScrPublicGardenCultures } from './ScrPublicGardenCultures'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import React from 'react'
+import { ScrSystemDetails } from '../NavSinglePages/ScrSystemDetails'
+import { NavPublicGardenTabs } from './NavGardenTabs'
+import { Dimensions, Image, SafeAreaView, StatusBar, View } from 'react-native'
+import { Avatar } from '@react-native-material/core'
+import { ScrNutritionDetails } from '../NavSinglePages/ScrNutritionDetails'
+import { ScrPostDetails } from '../NavSinglePages/ScrPostDetails'
+import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle'
+import { useNavigation } from '@react-navigation/native'
 
-const Tab = createMaterialTopTabNavigator()
 const Stack = createNativeStackNavigator()
 
-/* @ts-ignore */
-export const NavPublicGarden = ({ route, navigation }) => {
+const scrWidth = Dimensions.get('screen').width
+
+export const NavPublicGarden = () => {
+
+  const navigation = useNavigation()
 
   return (
-    // <ScrollView>
-    // <NavigationContainer independent={true}>
-    <Tab.Navigator
-      initialRouteName='PublicGardenPage'
-      screenOptions={{
-        // tabBarBadge: () => ,
-        tabBarActiveTintColor: '#1A6111',
-        tabBarInactiveTintColor: "#000",
-        tabBarIndicatorStyle: { backgroundColor: '#1B8113' },
-        tabBarScrollEnabled: true,
-        tabBarItemStyle: { width: 120 },
-        tabBarStyle: {
-
-        },
-
-      }}>
-      <Tab.Screen
-        name="PublicGardenPage"
-        initialParams={route.params}
-        component={ScrPublicGardenPage}
+    <Stack.Navigator initialRouteName='GardenTabs'>
+      <Stack.Screen
+        name='GardenTabs'
+        component={NavPublicGardenTabs}
         options={{
-          title: 'Описание',
-          // tabBarIcon: () => <Icon name='nature-people' size={26} color='#666' />,
-          // headerLeft: () => <View style={{ marginRight: 20}}><ButtonIconCircle func={() => navigation.openDrawer()} iconTitle='menu' size={36} color="#333" /></View>
+          header: () => <SafeAreaView>
+            <StatusBar backgroundColor="#ffffff66" translucent />
 
+            <View style={{ position: 'absolute', top: '12%', left: '4%', zIndex: 50 }}>
+              { /* @ts-ignore */ }
+              <ButtonIconCircle size={42} iconTitle='keyboard-backspace' color='#fff' func={() => navigation.pop()} />
+            </View>
+            <View style={{ backgroundColor: "#fff", display: 'flex', alignItems: 'center' }}>
+              <View>
+                <Image
+                  style={{ width: scrWidth, height: 200 }}
+                  source={{ uri: 'https://telegra.ph/file/a4c4adc5ec111c1c4a08b.jpg' }}
+                />
+              </View>
+              <View style={{ position: 'absolute', top: 50 }}>
+                <Avatar style={{ borderRadius: 50, borderWidth: 2, borderColor: '#fff', overflow: 'hidden' }} label="Kent Dodds" image={{ uri: 'https://mui.com/static/images/avatar/2.jpg' }} autoColor size={100} />
+              </View>
+            </View>
+          </SafeAreaView>
         }}
       />
-      {/* <Tab.Screen
-          name="PublicGardenTest"
-          initialParams={route.params}
-          component={ScrPublicGardenNutrition}
-          options={{
-            title: 'Тест'
-          }} /> */}
-      <Tab.Screen
-        name="PublicGardenFeed"
-        initialParams={route.params}
-        component={ScrPublicGardenFeed}
-        options={{
-          title: 'Посты'
-          // headerShown: false,
-          // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
-        }} />
-      <Tab.Screen
-        name="PublicGardenSystems"
-        initialParams={route.params}
-        component={ScrPublicGardenSystems}
-        options={{
-          title: 'Системы'
-          // headerShown: false,
-          // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
-        }} />
-      <Tab.Screen
-        name="PublicGardenNutrition"
-        initialParams={route.params}
-        component={ScrPublicGardenNutritions}
-        options={{
-          title: 'Питание'
-          // headerShown: false,
-          // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
-        }} />
-      <Tab.Screen
-        name="Cultures"
-        initialParams={route.params}
-        component={ScrPublicGardenCultures}
-        options={{
-          title: 'Культуры'
-          // headerShown: false,
-          // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
-        }} />
 
-    </Tab.Navigator>
-    // </NavigationContainer>
-    // </ScrollView>
+      <Stack.Screen
+        name='PostDetails'
+        component={ScrPostDetails}
+        options={{
+          headerShown: false
+        }}
+      />
+
+      <Stack.Screen
+        name='SystemDetails'
+        component={ScrSystemDetails}
+        options={{
+          headerShown: false
+        }}
+      />
+
+      <Stack.Screen
+        name='NutritionDetails'
+        component={ScrNutritionDetails}
+        options={{
+          // headerShown: false
+        }}
+      />
+    </Stack.Navigator>
   )
 }
-
-
-const style = StyleSheet.create({
-  tabBar: {
-    opacity: 1
-  }
-})
-
-{/* <View><Image
-          style={{ width: '100%', height: 200 }}
-          source={require('../../assets/images/gardenLayout.jpg')}
-        /></View> */}

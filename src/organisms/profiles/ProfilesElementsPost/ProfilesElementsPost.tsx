@@ -1,6 +1,7 @@
 import { Avatar, Button, Divider, Icon } from '@react-native-material/core'
 import { ScrollView, Text, View, Image, Dimensions } from 'react-native'
 import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
+import { useNavigation } from '@react-navigation/native'
 // import { Children } from 'react'
 
 const scrHeight = Dimensions.get('screen').height
@@ -15,9 +16,10 @@ export const ProfilesElementsPost = ({
     subCategory = '',
     system = '',
     substrate = '',
+    nutritionId = 0,
 }) => {
 
-
+    const navigation = useNavigation()
 
     return (
         <ScrollView contentContainerStyle={{}}>
@@ -81,6 +83,8 @@ export const ProfilesElementsPost = ({
                             tintColor='#fff'
                             color='#3FB049'
                             variant='outlined'
+                            /* @ts-ignore */
+                            onPress={() => navigation.push('NutritionDetails')}
                         />
                     </View>
                 </View>

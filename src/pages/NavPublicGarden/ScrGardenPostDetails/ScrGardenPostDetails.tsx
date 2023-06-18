@@ -1,10 +1,12 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-export const ScrSystemDetails = () => {
+export const ScrGardenPostDetails = () => {
   return (
     <View>
-      <Text>System Details</Text>
+      <Text>
+        Текст
+      </Text>
     </View>
   )
 }

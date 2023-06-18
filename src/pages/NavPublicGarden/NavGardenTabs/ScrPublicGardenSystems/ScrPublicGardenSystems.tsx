@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
-import { Dimensions, ScrollView, StyleSheet, Text, View, TextInput, StatusBar } from 'react-native'
+import React, { useCallback, useState } from 'react'
+import { Dimensions, ScrollView, StyleSheet, Text, View, TextInput, StatusBar, RefreshControl } from 'react-native'
+import { GardenSystemCard } from '../../../../organisms/cards/GardenSystemCard'
+import { StateControlButton } from '../../../../atoms/Buttons/StateControlButton'
+import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
 // import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
-import { Pressable } from '@react-native-material/core'
-import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
-import { PostFilterSingleCategories } from '../../../organisms/postsList/Posts/PostFilterSingleCategories'
-import { GardenFeedPostCard } from '../../../organisms/garden/GardenFeed'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { GardenSystemCard } from '../../../organisms/cards/GardenSystemCard'
-import { StateControlButton } from '../../../atoms/Buttons/StateControlButton'
+// import { Pressable } from '@react-native-material/core'
+// import { ButtonIconCircle } from '../../../../atoms/Buttons/ButtonIconCircle'
+// import { PostFilterSingleCategories } from '../../../../organisms/postsList/Posts/PostFilterSingleCategories'
+// import { GardenFeedPostCard } from '../../../../organisms/garden/GardenFeed'
+// import { SafeAreaView } from 'react-native-safe-area-context'
+// import { GardenSystemCard } from '../../../../organisms/cards/GardenSystemCard'
+// import { StateControlButton } from '../../../../atoms/Buttons/StateControlButton'
+// import { GardenSystemCard } from '../../../../organisms/cards/GardenSystemCard'
 // import { PostFilterSingleCategories } from '../../../../organisms/postsList/Posts/PostFilterSingleCategories'
 // import { GardenFeedPostCard } from '../../../../organisms/garden/GardenFeed'
 
@@ -138,10 +142,21 @@ export const ScrPublicGardenSystems = ({ navigation }) => {
 
   // const [loading, setLoading] = useState(true);
 
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 300);
+  }, []);
+
   return (
     <View style={{ flex: 1, display: 'flex', backgroundColor: '#fff' }}>
 
-      <ScrollView contentContainerStyle={{ paddingTop: 15 }} >
+      <ScrollView
+        contentContainerStyle={{ paddingTop: 15 }}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
 
         <View style={{ display: 'flex', backgroundColor: '#fff', paddingHorizontal: 10, paddingBottom: 10, gap: 10, zIndex: 0 }}>
 
@@ -151,25 +166,25 @@ export const ScrPublicGardenSystems = ({ navigation }) => {
             <View style={{ gap: 10, display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
               {/* <Text style={{ color: '#111', fontWeight: '300', fontSize: 16 }}>Текущее состояние системы</Text> */}
               <View style={{ width: '100%' }}>
-                <StateControlButton title='Режим дня' value={`16/8`} leadingIcon='model-training' />
+                <StateControlButton title='Режим дня' value={`16`} designation={'ч'} leadingIcon='model-training' />
               </View>
-
-              <View style={{ width: '100%'}}>
-                <StateControlButton title='Интенсивность' value={`120.4 kLux`} leadingIcon='wb-incandescent' />
+{/* 
+              <View style={{ width: '100%' }}>
+                <StateControlButton title='Интенсивность' value={`120.4`} designation={'kLux'} leadingIcon='wb-incandescent' />
               </View>
 
               <View style={{ width: '100%' }}>
-                <StateControlButton title='Энергозатраты' value={`120 кВт/ч`}
+                <StateControlButton title='Энергозатраты' value={`120`} designation={'кВт/ч'}
                   leadingIcon='emoji-objects' />
-              </View>
+              </View> */}
 
               <View style={{ width: '100%' }}>
-                <StateControlButton title='Влажность' value={`62 %`}
+                <StateControlButton title='Влажность' value={`62`} designation={'%'}
                   leadingIcon='wash' />
               </View>
 
               <View style={{ width: '100%' }}>
-                <StateControlButton title='Температура' value={`+32 | +28 °C`}
+                <StateControlButton title='Температура' value={`+32 | +28`} designation={'°C'}
                   leadingIcon='device-thermostat' />
               </View>
 

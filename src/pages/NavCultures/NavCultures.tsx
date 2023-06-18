@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle';
 import { View } from 'react-native';
 // import { NavigatorCommunityLists } from './NavigatorCommunityLists';
-import { NavPublicGarden } from '../NavPublicGarden';
+import { NavPublicGarden } from '../NavPublicGarden/NavGardenTabs';
 import { NavCulturesLists } from './NavCulturesLists';
 // import { ScreenPublicGardenTest } from './ScreenPublicGardenTest/ScreenPublicGardenTest';
 

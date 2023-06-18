@@ -9,7 +9,7 @@ const scrHeight = Dimensions.get('screen').height
 const scrWidth = Dimensions.get('screen').width
 
 /* @ts-ignore */
-export const ScrPostDetails = ({ route, navigation }) => {
+export const ScrSystemDetails = ({ route, navigation }) => {
 
   const posts = [
     { id: 1, authorId: 1, title: 'First title', categories: 'App updates', content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, veniam iste hic accusamus, suscipit similique provident et voluptates quaerat, magnam non! Odit, dolorem. Officia provident qui hic dolorum natus ipsum. Iure, quis sint! Beatae ratione voluptates, quia neque asperiores voluptas, fugit nam a perferendis debitis magni quidem reiciendis suscipit. Rerum esse, hic alias tempore quae asperiores libero unde distinctio perferendis. Nam praesentium rem, et quas optio iure non enim quo amet repellat totam tempora nesciunt earum temporibus consectetur natus. Quae beatae quas ipsa illo debitis nisi, consectetur nesciunt est aut. Error repellat amet quis fugit modi quam blanditiis ex facilis labore? Fugit eos odit necessitatibus, quas quaerat debitis porro ratione quasi ut enim impedit adipisci, quidem officia aliquid iure delectus. Corrupti tempore veniam perspiciatis, fugiat quaerat cumque illo inventore officia repudiandae natus modi perferendis corporis numquam neque voluptate consectetur praesentium laborum incidunt dicta earum accusamus nobis aliquid magni. Corporis, atque? Labore vitae totam ea minima corporis, doloremque sequi ut quo illo neque, dolorum nam dolore commodi perferendis culpa qui sed consequuntur nesciunt dicta fugiat accusantium deleniti rem! Aut, suscipit expedita.', imageUrl: 'https://telegra.ph/file/72e0bab08f0f093d54952.png', postDate: new Date().toLocaleDateString() },
@@ -27,10 +27,10 @@ export const ScrPostDetails = ({ route, navigation }) => {
 
   return (
     <SafeAreaView>
-      <StatusBar backgroundColor="transparent" translucent />
+      <StatusBar backgroundColor="#ffffff44" translucent />
 
       <View style={{ position: 'absolute', top: '4%', left: '4%', zIndex: 50 }}>
-        <ButtonIconCircle size={42} iconTitle='keyboard-backspace' color='#fff' />
+        <ButtonIconCircle size={42} iconTitle='keyboard-backspace' color='#fff' func={() => navigation.pop()} />
       </View>
 
       <ScrollView style={{}}>
@@ -39,20 +39,21 @@ export const ScrPostDetails = ({ route, navigation }) => {
             style={{ width: "100%", display: 'flex', overflow: 'hidden' }}
           >
             <View>
-              <Image style={{ height: 300, width: "100%" }} source={{ uri: (posts[postId - 1].imageUrl) }} />
+              <Image style={{ height: 300, width: "100%" }} source={{ uri: 'https://telegra.ph/file/cba4855a063f0937ac02a.png' }} />
             </View>
 
             <View style={{ margin: 15, gap: 15 }}>
               <View>
-                <Text style={{ fontWeight: "400", fontSize: 22, color: "#111" }}>{posts[postId - 1].title}</Text>
+                <Text style={{ fontWeight: "400", fontSize: 22, color: "#111" }}>{posts[postId - 1]?.title}</Text>
                 <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{posts[postId - 1].categories}</Text>
-                  <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{posts[postId - 1].postDate}</Text>
+                  <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{posts[postId - 1]?.categories}</Text>
+                  <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>{posts[postId - 1]?.postDate}</Text>
                 </View>
               </View>
 
               <Divider />
               <View style={{ gap: 10, display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+
 
                 <View style={{ width: '48.5%' }}>
                   <PostDetailsIndicator title='Minifermer' subTitle='Quantum Board 400Wt'
@@ -78,7 +79,7 @@ export const ScrPostDetails = ({ route, navigation }) => {
               <Divider />
 
               <Text style={{ fontWeight: "300", fontSize: 16, color: "#111" }}>
-                {posts[postId - 1].content}
+                {posts[postId - 1]?.content}
               </Text>
             </View>
 
@@ -88,9 +89,9 @@ export const ScrPostDetails = ({ route, navigation }) => {
 
           <View style={{ padding: 15, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View style={{ display: 'flex', flexDirection: 'row', gap: 15 }}>
-              <Pressable onPress={() => navigation.navigate('PublicGarden', { gardenId: posts[postId - 1].authorId })}><Avatar label="Kent Dodds" autoColor size={48} /></Pressable>
+              <Pressable onPress={() => navigation.navigate('PublicGarden', { gardenId: posts[postId - 1]?.authorId })}><Avatar label="Kent Dodds" autoColor size={48} /></Pressable>
               <View style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Text onPress={() => navigation.navigate('PublicGarden', { gardenId: posts[postId - 1].authorId })} style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>OverGrower</Text>
+                <Text onPress={() => navigation.navigate('PublicGarden', { gardenId: posts[postId - 1]?.authorId })} style={{ fontWeight: "400", fontSize: 20, color: "#111" }}>OverGrower</Text>
                 <Text style={{ fontWeight: "300", fontSize: 16, color: "#666" }}>30 level</Text>
               </View>
             </View>
@@ -101,31 +102,7 @@ export const ScrPostDetails = ({ route, navigation }) => {
           <Divider />
 
           {/* @ts-ignore */}
-          <Backdrop
-            revealed={revealed}
-            style={{ position: 'absolute', bottom: 0, zIndex: 50, width: '95%' }}
-            header={
-              <AppBar
-                title="Screen title"
-                transparent
-                leading={props => (
-                  <IconButton
-                    icon={props => (
-                      <Icon name={revealed ? "close" : "menu"} {...props} />
-                    )}
-                    onPress={() => setRevealed(prevState => !prevState)}
-                    {...props}
-                  />
-                )}
-              />
-            }
-            backLayer={<View style={{ height: 200 }} />}
-          >
-
-            <BackdropSubheader title="Subheader" />
-            <View><Text>wat</Text></View>
-          </Backdrop>
-
+          
           <View style={{ margin: 10 }}>
             <SpoilerComments title={`42 Comments`} leadingIcon='messenger-outline'>
 

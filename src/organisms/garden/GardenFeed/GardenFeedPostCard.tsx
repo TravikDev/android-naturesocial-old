@@ -2,13 +2,14 @@ import { Avatar, Button, Divider, Icon } from '@react-native-material/core'
 import { ScrollView, Text, View, Image, Dimensions } from 'react-native'
 import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
 import { Children } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 const scrHeight = Dimensions.get('screen').height
 
 /* @ts-ignore */
-export const GardenFeedPostCard = ({ title, image = '', children, categories }) => {
+export const GardenFeedPostCard = ({ title, image = '', children, categories, postId = 1 }) => {
 
-
+    const navigation = useNavigation()
 
     return (
         <ScrollView contentContainerStyle={{}}>
@@ -27,7 +28,7 @@ export const GardenFeedPostCard = ({ title, image = '', children, categories }) 
                     {/* <Divider /> */}
 
                     <View style={{ overflow: 'hidden', borderRadius: 5 }}>
-                        {/* <Image style={{ height: 150, width: "100%" }} source={require('../../../../assets/images/posts/post1.jpeg')} /> */}
+                        <Image style={{ height: 150, width: "100%" }} source={{ uri: 'https://telegra.ph/file/cba4855a063f0937ac02a.png' }} />
                     </View>
 
                     {/* <Divider /> */}
@@ -45,10 +46,12 @@ export const GardenFeedPostCard = ({ title, image = '', children, categories }) 
                     </View>
                     <View style={{ marginBottom: 5 }}>
                         <Button
-                            title="Read"
+                            title="Читать"
                             tintColor='#fff'
                             color='#3FB049'
                             variant='outlined'
+                            /* @ts-ignore */
+                            onPress={() => navigation.push('PostDetails', { postId, })}
                         />
                     </View>
                 </View>

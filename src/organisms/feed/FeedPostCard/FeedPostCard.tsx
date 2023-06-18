@@ -1,6 +1,7 @@
 import { Avatar, Button, Divider } from '@react-native-material/core'
 import { Text, View, Image, Dimensions, Pressable } from 'react-native'
 import { ButtonIconCircle } from '../../../atoms/Buttons/ButtonIconCircle'
+import { useRef } from 'react'
 
 
 const scrHeight = Dimensions.get('screen').height
@@ -17,6 +18,18 @@ export const FeedPostCard = ({
     /* @ts-ignore */
     navigation
 }) => {
+
+    const imgRef = useRef(null)
+
+    /* @ts-ignore */
+    // console.log(imgRef.current?.index)
+
+    const handleMeasure = () => {
+        /* @ts-ignore */
+        imgRef.current.measure((x, y, width, height, pageX, pageY) => {
+            console.log('Ширина элемента:', width);
+        });
+    };
 
     return (
 

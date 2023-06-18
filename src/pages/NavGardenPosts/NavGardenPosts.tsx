@@ -4,7 +4,7 @@ import { View } from 'react-native';
 // import { NavigatorCommunityLists } from './NavigatorCommunityLists';
 // import { NavPublicGarden } from '../NavPublicGarden';
 // import { NavigatorGardenPage } from './NavGardenPage';
-import { NavPublicGarden } from '../NavPublicGarden';
+// import { NavPublicGarden } from '../NavPublicGarden/NavGardenTabs';
 import { NavGardenPostsList } from './NavGardenPostsList';
 import { ScrGardenPostsAdd } from './ScrGardenPostsAdd';
 // import { ScrGardenPostAdd } from './ScrGardenPostAdd';

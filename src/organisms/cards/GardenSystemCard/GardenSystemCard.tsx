@@ -9,6 +9,12 @@ const scrHeight = Dimensions.get('screen').height
 /* @ts-ignore */
 export const GardenSystemCard = ({ title, image = '', children, type = '', substrate = '', culturesCount = 0, verietiesCount = 0, isActive = false, imageSystemUrl = '', systemId = 0 }) => {
 
+    const data = {
+        id: 1,
+        title: 'Title',
+        content: 'Content',
+    }
+
     const navigation = useNavigation()
 
     return (
@@ -78,7 +84,7 @@ export const GardenSystemCard = ({ title, image = '', children, type = '', subst
                             color='#3FB049'
                             variant='outlined'
                             /* @ts-ignore */
-                            onPress={() => navigation.navigate('SystemDetails', { systemId })}
+                            onPress={() => navigation.push('SystemDetails', { systemId })}
                         />
                     </View>
                 </View>
