@@ -24,22 +24,22 @@ export const ScrTabMacro = () => {
   const [numberDivS, onChangeNumberDivS] = useState('0.50');
 
   return (
-    <ScrollView contentContainerStyle={{ backgroundColor: '#fff', padding: 10, paddingBottom: 25, gap: 10 }}>
-      
+    <ScrollView contentContainerStyle={{ backgroundColor: '#fff', padding: 10, paddingBottom: 25, gap: 4 }}>
+
       {/* <Divider style={{ marginTop: 10 }} /> */}
 
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Text style={{ fontSize: 18, fontWeight: '300', color: '#111', paddingVertical: 3 }}>
-          Profile
+        <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>
+          Макропрофиль
         </Text>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>
-            mg / litre
+            мг / литр
           </Text>
         </View>
       </View>
 
-      <Divider style={{ top: -10 }} />
+      <Divider style={{ marginBottom: 4 }} />
 
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
         <InputElements element="N" number={numberN} onChange={onChangeNumberN} />
@@ -57,69 +57,69 @@ export const ScrTabMacro = () => {
         <InputElements element="NH₄" divider="NO₃" number={numberK} onChange={onChangeNumberK} />
       </View>
 
-      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
-        <Text style={{ fontSize: 18, fontWeight: '300', color: '#111', top: 0 }}>
-          Ratios
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 8 }}>
+        <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>
+          Матрица соотношений
         </Text>
         <View>
-          <ButtonIconCircle iconTitle='error-outline' color='#666' size={32} />
+          <Icon name='error-outline' color='#666' size={22} />
         </View>
       </View>
 
-      <Divider style={{ top: -10 }} />
+      <Divider style={{ marginBottom: 4 }}/>
 
       <ElementsRatiosTable />
 
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
-        <Text style={{ fontSize: 18, fontWeight: '300', color: '#111', top: 0 }}>
-          Salt composition
+        <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>
+          Составы солей
         </Text>
         <View>
-          <Text style={{ fontSize: 16, fontWeight: '300', color: '#111', top: 0 }}>grams</Text>
+          <Text style={{ fontSize: 16, fontWeight: '300', color: '#111', top: 0 }}>граммы</Text>
         </View>
       </View>
 
-      <Divider style={{ top: -5, marginBottom: 5 }} />
+      <Divider style={{ marginBottom: 4 }} />
 
 
-      <CustomSpoiler title='Calcium Nitrate' value={30}>
+      <CustomSpoiler title='Нитрат кальция' value={30}>
         <View style={{ paddingHorizontal: 5 }}>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>Ca(NO3)2 · 4H2O</Text>
         </View>
       </CustomSpoiler>
 
-      <CustomSpoiler title='Potassium Nitrate' value={234}>
+      <CustomSpoiler title='Нитрат калия' value={234}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KNO3</Text>
         </View>
       </CustomSpoiler>
 
-      <CustomSpoiler title='Ammonium Nitrate' value={1234}>
+      <CustomSpoiler title='Нитрат аммония' value={1234}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>NH4NO3</Text>
         </View>
       </CustomSpoiler>
 
-      <CustomSpoiler title='Magnesium sulfate' value={1234}>
+      <CustomSpoiler title='Сульфат магния' value={1234}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>MgSO4 · 7H2O</Text>
         </View>
       </CustomSpoiler>
 
 
-      <CustomSpoiler title='Potassium phosphate' value={13}>
+      <CustomSpoiler title='Монофосфат калия' value={13}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KH2PO4</Text>
         </View>
       </CustomSpoiler>
 
-      <CustomSpoiler title='Potassium Sulfate' value={9}>
+      <CustomSpoiler title='Сульфат калия' value={9}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>K2SO4</Text>
         </View>
       </CustomSpoiler>
 
-      <CustomSpoiler title='Magnesium Nitrate' value={44}>
+      <CustomSpoiler title='Нитрат магния' value={44}>
         <View>
           <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>Mg(NO3)2 · 6H2O</Text>
         </View>

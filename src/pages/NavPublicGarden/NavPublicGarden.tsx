@@ -8,6 +8,7 @@ import { ScrNutritionDetails } from '../NavSinglePages/ScrNutritionDetails'
 import { ScrPostDetails } from '../NavSinglePages/ScrPostDetails'
 import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle'
 import { useNavigation } from '@react-navigation/native'
+import { NavCalculator } from '../NavCalculator'
 
 const Stack = createNativeStackNavigator()
 
@@ -62,8 +63,8 @@ export const NavPublicGarden = () => {
       />
 
       <Stack.Screen
-        name='NutritionDetails'
-        component={ScrNutritionDetails}
+        name='NavCalculator'
+        component={NavCalculator}
         options={{
           // headerShown: false
         }}

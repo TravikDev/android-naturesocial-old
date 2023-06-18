@@ -84,7 +84,7 @@ export const ProfilesElementsPost = ({
                             color='#3FB049'
                             variant='outlined'
                             /* @ts-ignore */
-                            onPress={() => navigation.push('NutritionDetails')}
+                            onPress={() => navigation.push('NavCalculator', { nutritionId })}
                         />
                     </View>
                 </View>

@@ -42,8 +42,9 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     pressableContainer: {
-        height: 48,
-        padding: 8,
+        height: 36,
+        paddingVertical: 4,
+        paddingHorizontal: 8,
         display: 'flex',
         flexDirection: "row",
         justifyContent: 'space-between',
