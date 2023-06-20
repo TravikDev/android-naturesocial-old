@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native'
 const scrHeight = Dimensions.get('screen').height
 
 /* @ts-ignore */
-export const ProfilesElementsPost = ({
+export const ProfilesElementsStages = ({
     title = '',
     image = '',
     /* @ts-ignore */

@@ -31,7 +31,6 @@ export const NavPublicGardenTabs = ({ route, navigation }) => {
         tabBarStyle: {
 
         },
-
       }}>
       <Tab.Screen
         name="PublicGardenPage"

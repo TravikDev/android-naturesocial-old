@@ -1,9 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import React from 'react'
+import React, { useState } from 'react'
 import { ScrSystemDetails } from '../NavSinglePages/ScrSystemDetails'
 import { NavPublicGardenTabs } from './NavGardenTabs'
-import { Dimensions, Image, SafeAreaView, StatusBar, View } from 'react-native'
-import { Avatar } from '@react-native-material/core'
+import { Dimensions, Image, SafeAreaView, StatusBar, Text, View } from 'react-native'
+import { Avatar, Pressable } from '@react-native-material/core'
 import { ScrNutritionDetails } from '../NavSinglePages/ScrNutritionDetails'
 import { ScrPostDetails } from '../NavSinglePages/ScrPostDetails'
 import { ButtonIconCircle } from '../../atoms/Buttons/ButtonIconCircle'
@@ -15,6 +15,13 @@ const Stack = createNativeStackNavigator()
 const scrWidth = Dimensions.get('screen').width
 
 export const NavPublicGarden = () => {
+
+  const [calcType, setCalcType] = useState('HPG')
+
+  const handleChangeCalcType = () => {
+    calcType === 'FREE' && setCalcType('HPG')
+    calcType === 'HPG' && setCalcType('FREE')
+  }
 
   const navigation = useNavigation()
 
@@ -66,6 +73,16 @@ export const NavPublicGarden = () => {
         name='NavCalculator'
         component={NavCalculator}
         options={{
+          title: 'Профиль питания',
+          headerRight: () => (
+            <View style={{ overflow: 'hidden', borderRadius: 5, marginTop: 4 }}>
+            <Pressable style={{ alignItems: 'center', backgroundColor: '#eee', padding: 4, paddingHorizontal: 8 }} onPress={handleChangeCalcType}>
+              <Text style={{ color: '#666', fontSize: 16 }}>
+                {calcType}
+              </Text>
+            </Pressable>
+            </View>
+          ),
           // headerShown: false
         }}
       />

@@ -12,61 +12,6 @@ const scrWidth = Dimensions.get('screen').width
 /* @ts-ignore */
 export const ScrPublicGardenNutritions = ({ navigation }) => {
 
-  const macroElementsList = [
-    { id: 1, element: 'N', number: '100' },
-    { id: 2, element: 'P', number: '100' },
-    { id: 3, element: 'K', number: '100' },
-    { id: 4, element: 'Ca', number: '100' },
-    { id: 5, element: 'Mg', number: '100' },
-    { id: 6, element: 'S', number: '100' },
-    // { id: 7, element: 'NO₃', number: '100' },
-    // { id: 8, element: 'NH₄', number: '100' },
-    // { id: 9, element: 'NH₄', divider: 'NO₃', number: '100' },
-  ]
-
-  const microElementsList = [
-    { id: 1, element: 'Fe', number: '100' },
-    { id: 2, element: 'B', number: '100' },
-    { id: 3, element: 'Zn', number: '100' },
-    { id: 4, element: 'Mn', number: '100' },
-    { id: 5, element: 'Cu', number: '100' },
-    { id: 6, element: 'Mo', number: '100' },
-  ]
-
-  const data1 = [
-    [
-      { x: "start", y: 220 },
-      { x: "vega", y: 240 },
-      { x: "bloom", y: 280 },
-      { x: "fruit", y: 300 },
-      { x: "end", y: 260 },
-    ],
-    [
-      { x: "start", y: 180 },
-      { x: "vega", y: 200 },
-      { x: "bloom", y: 220 },
-      { x: "fruit", y: 240 },
-      { x: "end", y: 180 },
-    ], [
-      { x: "start", y: 120 },
-      { x: "vega", y: 140 },
-      { x: "bloom", y: 180 },
-      { x: "fruit", y: 160 },
-      { x: "end", y: 140 },
-    ], [
-      { x: "start", y: 40 },
-      { x: "vega", y: 40 },
-      { x: "bloom", y: 50 },
-      { x: "fruit", y: 50 },
-      { x: "end", y: 40 },
-    ], [
-      { x: "start", y: 30 },
-      { x: "vega", y: 35 },
-      { x: "bloom", y: 40 },
-      { x: "fruit", y: 45 },
-      { x: "end", y: 35 },
-    ]]
-
   const [optionsModal, toggleOptionsModal] = useState(false)
 
   const toggleOptionsMenu = () => {
@@ -189,7 +134,7 @@ export const ScrPublicGardenNutritions = ({ navigation }) => {
     <ProfilesElementsPost title='Солнечные помидорки' category='Томат' subCategory='Большая мамочка' substrate='Кермзит' system='DNFT'>
 
       <Divider />
-      <NutritionLineChart />
+      {/* <NutritionLineChart data={data1} /> */}
       <Divider />
 
     </ProfilesElementsPost>
