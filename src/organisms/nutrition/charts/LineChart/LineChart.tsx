@@ -5,13 +5,36 @@ import { LineChart } from "react-native-chart-kit";
 
 
 /* @ts-ignore */
-export const NutritionLineChart = ({ data }) => {
+export const NutritionLineChart = ({ data, stagesIncluded }) => {
 
-  // const filteredData = data.datasets.map((state: any) => state.include === true)
+  const filteredLabels = data.labels.filter((state: any, idx: number) => stagesIncluded[idx] === true)
 
-  // data.datasets = filteredData
+  const filteredData = data.datasets.map((state: any, idx: number) => {
+    const data = state.data.filter((val: any, idx: any) => stagesIncluded[idx] === true)
+    return { ...state, data }
+    // console.log('LOL: ', state.data)
+  })
 
-  // console.log(data)
+  // const newDatasets = data.datasets.filter((state: any) => state.include === true)
+
+  console.log('filtered labels', filteredLabels)
+  console.log('filtered data', filteredData)
+
+  // const datasets = filteredData.map((val: any, idx: number) => {
+  //   console.log('val:', {...val, data: filteredData[idx]})
+  //   val.data = filteredData[idx]
+  // }
+  // )
+
+  
+
+  // console.log('datasets: ', datasets)
+
+  // data.labels = filteredLabels
+
+  // console.log('chart: ', stagesIncluded)
+
+  // const newData = 
 
   // console.log('line: ', data.datasets)
 
@@ -38,11 +61,12 @@ export const NutritionLineChart = ({ data }) => {
           </View>))} */}
       </View>
       {/* <Text style={{ color: '#000' }}>Bezier Line Chart</Text> */}
-      <View style={{ left: -30 }}>
+      <View style={{ left: -30, width: '100%' }}>
         <LineChart
-          data={{ ...data, datasets: data.datasets.filter((state: any) => state.include === true) }}
+          data={{ labels: filteredLabels, datasets: filteredData.filter((val: any, idx: number) => val.include === true) }}
           width={Dimensions.get("window").width * 0.99} // from react-native
           height={200}
+          
           withDots={false}
           transparent={false}
           yAxisInterval={1} // optional, defaults to 1
@@ -91,7 +115,7 @@ export const NutritionLineChart = ({ data }) => {
         />
         <View style={{ display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-around', left: '10%' }}>
           {/* @ts-ignore */}
-          {data.datasets?.map((val, idx) => (
+          {filteredData.filter((val: any, idx: number) => val.include === true).map((val, idx) => (
             <View key={idx} style={legendStyle.legendContainer}>
               <View style={[legendStyle.legendDot, { backgroundColor: `${val.legendColor}$` }]} />
               <Text style={legendStyle.legendLabel}>{val.name}</Text>

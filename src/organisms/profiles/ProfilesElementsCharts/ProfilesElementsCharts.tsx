@@ -33,10 +33,22 @@ export const ProfilesElementsCharts = ({
 
   const [selectedStage, setSelectedStage] = useState('')
 
-  const [stagesArr, setStagesArr] = useState(data?.labels)
+  const [stagesArr, setStagesArr] = useState([...data?.labels])
+  const [stagesIncludedArr, setStagesIncludedArr] = useState([...data.labelsIncluded])
 
-  const handleIncludedStages = (stage: any) => {
-    // console.log(stage)
+
+  console.log(stagesArr)
+  console.log('stages included: ', stagesIncludedArr)
+
+  const handleIncludedStages = (stage: any, bool: boolean) => {
+
+    
+    console.log('wat', stagesIncludedArr[0])
+    setStagesIncludedArr((state: any) => state.map((val: any, idx: number) => {
+      if (idx === stage) val = !val
+      return val
+    }))
+    console.log(stage, bool)
   }
 
   const [elementsArr, setElementsArr] = useState(data.datasets)
@@ -95,19 +107,23 @@ export const ProfilesElementsCharts = ({
               <View style={{ gap: 10, maxHeight: 500 }}>
 
                 <FlatList
-                  data={stagesArr}
+                  data={data.labels}
                   ItemSeparatorComponent={() => <View style={{ height: 10 }}></View>}
                   // ListFooterComponent={() => <View></View>}
-                  renderItem={(stage) => (
-                    <View style={{ borderRadius: 10, overflow: 'hidden' }}>
-                      <Pressable style={{ padding: 10, backgroundColor: '#eee', borderRadius: 10, flexDirection: 'row', justifyContent: 'space-between' }} onPress={(e) => { setSelectedStage(stage.item); setModalVisible(false) }}>
-                        <Text style={styles.modalText}>{stage.item}</Text>
-                        <Switch
-                          value={option1}
-                          onValueChange={() => handleIncludedStages(stage.index)} />
-                      </Pressable>
-                    </View>
-                  )}
+                  renderItem={(stage) => {
+                    console.log('stage: ', stage)
+                    return (
+                      <View style={{ borderRadius: 10, overflow: 'hidden' }}>
+                        <View style={{ padding: 10, backgroundColor: '#eee', borderRadius: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
+                          <Text style={styles.modalText}>{stage.item}</Text>
+                          {/* {console.log('stage idx: ', stage.index)} */}
+                          <Switch
+                            value={stagesIncludedArr[stage.index]}
+                            onValueChange={(bool) => handleIncludedStages(stage.index, bool)} />
+                        </View>
+                      </View>
+                    )
+                  }}
                 // keyExtractor={item => item.}
                 />
                 {/* {stagesArr.map((val, i) => (
@@ -123,21 +139,21 @@ export const ProfilesElementsCharts = ({
 
             </View>
 
-            <Divider />
+            {/* <Divider /> */}
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 10 }}>
+            {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 10 }}> */}
 
-              <Button
+            {/* <Button
                 title={forDelete ? 'Готово' : 'Удаление'}
-                tintColor='116611' color='#116611' variant='outlined' style={{ flex: 1 }} onPress={() => setForDelete(state => !state)} />
+                tintColor='116611' color='#116611' variant='outlined' style={{ flex: 1 }} onPress={() => setForDelete(state => !state)} /> */}
 
-              <Button disabled={forDelete ? true : false} title='Сохранить' color='#116611' style={{ flex: 1 }} />
-              {/* <Pressable
+            {/* <Button disabled={forDelete ? true : false} title='Сохранить' color='#116611' style={{ flex: 1 }} /> */}
+            {/* <Pressable
                   style={[styles.button, styles.buttonClose, { flex: 1 }]}
                   onPress={() => setModalVisible(!modalVisible)}>
                   <Text style={styles.textStyle}>Hide Modal</Text>
                 </Pressable> */}
-            </View>
+            {/* </View> */}
           </View>
         </View>
       </Modal>
@@ -183,14 +199,13 @@ export const ProfilesElementsCharts = ({
                     // console.log('stage:', stage)
                     return (
                       <View style={{ borderRadius: 10, overflow: 'hidden' }}>
-                        <Pressable
-                          style={{ padding: 10, backgroundColor: '#eee', borderRadius: 10, flexDirection: 'row', justifyContent: 'space-between' }}
-                          onPress={(e) => { setSelectedStage(stage.item); setElementsModalVisible(false) }}>
+                        <View
+                          style={{ padding: 10, backgroundColor: '#eee', borderRadius: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                           <Text style={styles.modalText}>{stage.item}</Text>
                           <Switch
                             value={elementsArr[stage.index].include}
                             onValueChange={(bool) => { handleIncludedElements(stage.item, bool) }} />
-                        </Pressable>
+                        </View>
                       </View>
                     )
                   }
@@ -210,21 +225,21 @@ export const ProfilesElementsCharts = ({
 
             </View>
 
-            <Divider />
+            {/* <Divider /> */}
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 10 }}>
+            {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 10 }}> */}
 
-              <Button
+            {/* <Button
                 title={forDelete ? 'Готово' : 'Удаление'}
-                tintColor='116611' color='#116611' variant='outlined' style={{ flex: 1 }} onPress={() => setForDelete(state => !state)} />
+                tintColor='116611' color='#116611' variant='outlined' style={{ flex: 1 }} onPress={() => setForDelete(state => !state)} /> */}
 
-              <Button disabled={forDelete ? true : false} title='Сохранить' color='#116611' style={{ flex: 1 }} />
-              {/* <Pressable
+            {/* <Button disabled={forDelete ? true : false} title='Сохранить' color='#116611' style={{ flex: 1 }} /> */}
+            {/* <Pressable
                   style={[styles.button, styles.buttonClose, { flex: 1 }]}
                   onPress={() => setModalVisible(!modalVisible)}>
                   <Text style={styles.textStyle}>Hide Modal</Text>
                 </Pressable> */}
-            </View>
+            {/* </View> */}
           </View>
         </View>
       </Modal>
@@ -267,7 +282,7 @@ export const ProfilesElementsCharts = ({
 
           <Divider />
 
-          <NutritionLineChart data={data} />
+          <NutritionLineChart data={data} stagesIncluded={stagesIncludedArr} />
           {/* </View> */}
 
         </View>
