@@ -17,8 +17,8 @@ export const NutritionLineChart = ({ data, stagesIncluded }) => {
 
   // const newDatasets = data.datasets.filter((state: any) => state.include === true)
 
-  console.log('filtered labels', filteredLabels)
-  console.log('filtered data', filteredData)
+  // console.log('filtered labels', filteredLabels)
+  // console.log('filtered data', filteredData)
 
   // const datasets = filteredData.map((val: any, idx: number) => {
   //   console.log('val:', {...val, data: filteredData[idx]})

@@ -37,31 +37,54 @@ export const ProfilesElementsCharts = ({
   const [stagesIncludedArr, setStagesIncludedArr] = useState([...data.labelsIncluded])
 
 
-  console.log(stagesArr)
-  console.log('stages included: ', stagesIncludedArr)
+  // console.log(stagesArr)
+  // console.log('stages included: ', stagesIncludedArr)
 
   const handleIncludedStages = (stage: any, bool: boolean) => {
 
-    
-    console.log('wat', stagesIncludedArr[0])
+
+    // console.log('wat', stagesIncludedArr[0])
     setStagesIncludedArr((state: any) => state.map((val: any, idx: number) => {
-      if (idx === stage) val = !val
+
+
+      const includedCount = state.reduce((acc: number, val: boolean, idx: number) => acc += +(val === true), 0)
+
+      if (idx === stage && includedCount > 2) val = !val
+      if (idx === stage && includedCount === 2) {
+        val = true
+
+      }
+
+      console.log('includedCount: ', includedCount)
+
+      // if(includedCount < 3 && idx === stage) val = !val
       return val
     }))
-    console.log(stage, bool)
+    // console.log(stage, bool)
   }
 
   const [elementsArr, setElementsArr] = useState(data.datasets)
 
   const handleIncludedElements = (value: string, bool: boolean) => {
 
-    setElementsArr((state: any) => (
-      state.map((val: any, idx: any) => {
-        if (val.name === value) { val.include = !val.include }
-        console.log('log: ', val)
-        return val
-      })
-    ))
+    setElementsArr((state: any) => {
+
+      const elementsIncluded = state.reduce((acc: number, val: any, idx: number) => acc += +(val.include === true), 0)
+
+
+      return (
+        state.map((val: any, idx: any) => {
+          if (val.name === value && elementsIncluded !== 1) {
+            val.include = !val.include
+          }
+          if (val.name === value && elementsIncluded === 1) {
+            val.include = true
+          }
+          // console.log('log: ', val)
+          return val
+        })
+      )
+    })
 
   }
 
@@ -111,7 +134,7 @@ export const ProfilesElementsCharts = ({
                   ItemSeparatorComponent={() => <View style={{ height: 10 }}></View>}
                   // ListFooterComponent={() => <View></View>}
                   renderItem={(stage) => {
-                    console.log('stage: ', stage)
+                    // console.log('stage: ', stage)
                     return (
                       <View style={{ borderRadius: 10, overflow: 'hidden' }}>
                         <View style={{ padding: 10, backgroundColor: '#eee', borderRadius: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
