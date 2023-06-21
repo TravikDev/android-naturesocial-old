@@ -16,7 +16,7 @@ export const ScrTabStages = () => {
 
   const data = {
     labels: ['1', '2', '3', '4', '5', '6', '7', '8'],
-    labelsIncluded: [false, true, true, false, true, true, false, false],
+    labelsIncluded: [true, true, true, true, true, true, true, true],
     datasets: [
       {
         data: [75, 105, 115, 140, 140, 100, 80, 60],

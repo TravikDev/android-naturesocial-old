@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Divider, Icon, IconButton, ListItem } from "@react-native-material/core";
 import { Dimensions, StyleSheet, Text, View, TextInput } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -12,9 +12,20 @@ const srcWidth = Dimensions.get('window').width
 export const ScrTabMacro = () => {
 
   const [text, onChangeText] = useState('Useless Text');
-  const [numberN, onChangeNumberN] = useState('150.0');
-  const [numberP, onChangeNumberP] = useState('50.0');
-  const [numberK, onChangeNumberK] = useState('200.0');
+
+
+  const [elementNH4, setElementNH4] = useState('25.0');
+  const [elementNO3, setElementNO3] = useState('125.0');
+
+  const [elementNH4divNO3, setElementNH4divNO3] = useState('0.200')
+
+  const [elementN, setElementN] = useState('150');
+  const [elementP, setElementP] = useState('50.0');
+  const [elementK, setElementK] = useState('200.0');
+
+  const [elementCa, setElementCa] = useState('150.0');
+  const [elementMg, setElementMg] = useState('50.0');
+  const [elementS, setElementS] = useState('200.0');
 
 
   const [numberDivN, onChangeNumberDivN] = useState('0.10');
@@ -22,6 +33,150 @@ export const ScrTabMacro = () => {
   const [numberDivCa, onChangeNumberDivCa] = useState('0.30');
   const [numberDivMg, onChangeNumberDivMg] = useState('0.40');
   const [numberDivS, onChangeNumberDivS] = useState('0.50');
+
+  const [CaNO32, setCaNO32] = useState({
+    gl: '',
+    ppm: '',
+    gr: '',
+    ml: '',
+    conc: '600',
+    Ca: '16.972',
+    NO3: '11.863',
+    NH4: '0',
+  })
+
+  const [KNO3, setKNO3] = useState({
+    gl: '',
+    ppm: '',
+    gr: '',
+    ml: '',
+    conc: '250',
+    K: '38.672',
+    NO3: '13.854',
+  })
+
+  const [NH4NO3, setNH4NO3] = useState({
+    gl: '',
+    ppm: '',
+    gr: '',
+    ml: '',
+    conc: '100',
+    NH4: '17.5',
+    NO3: '17.5',
+  })
+
+  const [MgNO32, setMgNO3] = useState({
+    gl: '',
+    ppm: '',
+    gr: '',
+    ml: '',
+    conc: '500',
+    Mg: '9.479',
+    NO3: '10.925',
+  })
+
+  const [MgSO4, setMgSO4] = useState({
+    gl: '',
+    ppm: '',
+    gr: '',
+    ml: '',
+    conc: '600',
+    Mg: '9.861',
+    S: '13.01',
+  })
+
+  const [KH2PO4, setKH2PO4] = useState({
+    gl: '',
+    ppm: '',
+    gr: '',
+    ml: '',
+    conc: '150',
+    K: '28.731',
+    P: '22.761',
+  })
+
+  const [K2SO4, setK2SO4] = useState({
+    gl: '',
+    ppm: '',
+    gr: '',
+    ml: '',
+    conc: '100',
+    K: '44.874',
+    S: '18.401',
+  })
+
+  const handleChangeN = (value: number) => {
+    let part = (+elementNO3 / +elementNH4)
+
+    const calculatedNH4divNO31 = elementNH4divNO3
+    console.log(calculatedNH4divNO31)
+
+    if (!part || !isFinite(part)) part = 1
+
+    if (!value) value = 1
+
+    if (elementN === '') return setElementN('1')
+
+    console.log('value: ', value)
+    console.log('part: ', part)
+
+    // const _elementNH4divNO3 = elementNH4divNO3
+    // const calculatedNH4 = value / (1+ +part)
+    // console.log('value: ', value / (part+1))
+    // console.log('value2: ', value - (value / (part+1)))
+
+
+    let calculatedNH4 = (value / (1/+elementNH4divNO3 + 1)).toFixed(0).toString()
+    console.log('1', calculatedNH4)
+
+    let calculatedNO3 = (value - (value / +(1/+elementNH4divNO3 + 1))).toFixed(0).toString()
+    console.log('2', calculatedNO3)
+
+    if (!calculatedNH4 || isNaN(+calculatedNH4)) calculatedNH4 = (+value/(1+1/+elementNH4divNO3)).toString()
+    if (!calculatedNO3 || isNaN(+calculatedNO3)) calculatedNO3 = (+calculatedNH4*(1+1/+elementNH4divNO3)).toString()
+    setElementNH4(calculatedNH4)
+    setElementNO3(calculatedNO3)
+    // setElementNH4divNO3(_elementNH4divNO3)
+
+
+    setElementN(value.toString())
+
+    // let calculatedNH4divNO3 = (+calculatedNH4 / +calculatedNO3).toFixed(3).toString()
+    // if (!calculatedNH4divNO3 || !isFinite(+calculatedNH4divNO3)) calculatedNH4divNO3 = '1'
+    setElementNH4divNO3(calculatedNH4divNO31)
+
+
+
+    // console.log((+elementNO3 / +elementNH4))
+    // console.log('part: ', part)
+    // console.log('calcNO3: ', calculatedNO3)
+
+    // setElementNH4(calculatedNH4)
+  }
+  const handleChangeNO3 = (value: number) => {
+    if (!value || !isFinite(value)) value = 1
+    setElementNO3(value.toString())
+    const calculatedNH4 = (+elementN - (+value)).toString()
+    setElementNH4(calculatedNH4)
+    let calculatedNH4divNO3 = (+calculatedNH4 / +value).toFixed(3).toString()
+    if (!calculatedNH4divNO3 || !isFinite(+calculatedNH4divNO3)) calculatedNH4divNO3 = '1'
+    setElementNH4divNO3(calculatedNH4divNO3)
+  }
+
+  const handleChangeNH4 = (value: number) => {
+
+    if (!value || !isFinite(value)) value = 1
+    // console.log(value)
+    setElementNH4(value.toString())
+    const calculatedNO3 = (+elementN - (+value)).toString()
+    setElementNO3(calculatedNO3)
+    let calculatedNH4divNO3 = (+value / +calculatedNO3).toFixed(3).toString()
+    if (!calculatedNH4divNO3 || !isFinite(+calculatedNH4divNO3)) calculatedNH4divNO3 = '1'
+    setElementNH4divNO3(calculatedNH4divNO3)
+  }
+
+  const [elementBuffNO3, setelementBuffNO3] = useState('')
+
 
   return (
     <ScrollView contentContainerStyle={{ backgroundColor: '#fff', padding: 10, paddingBottom: 25, gap: 4 }}>
@@ -42,19 +197,18 @@ export const ScrTabMacro = () => {
       <Divider style={{ marginBottom: 4 }} />
 
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
-        <InputElements element="N" number={numberN} onChange={onChangeNumberN} />
-        <InputElements element="P" number={numberP} onChange={onChangeNumberP} />
-        <InputElements element="K" number={numberK} onChange={onChangeNumberK} />
+        <InputElements element="N" number={elementN.toString()} onChange={handleChangeN} />
+        <InputElements element="NO₃" number={elementNO3} onChange={handleChangeNO3} />
+        <InputElements element="NH₄" number={elementNH4} onChange={handleChangeNH4} />
       </View>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
-        <InputElements element="Ca" number={numberN} onChange={onChangeNumberN} />
-        <InputElements element="Mg" number={numberP} onChange={onChangeNumberP} />
-        <InputElements element="S" number={numberK} onChange={onChangeNumberK} />
+        <InputElements element="P" number={elementP} onChange={setElementP} />
+        <InputElements element="K" number={elementK} onChange={setElementK} />
+        <InputElements element="Ca" number={elementCa} onChange={setElementCa} />
       </View>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
-        <InputElements element="NO₃" number={numberN} onChange={onChangeNumberN} />
-        <InputElements element="NH₄" number={numberP} onChange={onChangeNumberP} />
-        <InputElements element="NH₄" divider="NO₃" number={numberK} onChange={onChangeNumberK} />
+        <InputElements element="Mg" number={elementMg} onChange={setElementMg} />
+        <InputElements element="S" number={elementS} onChange={setElementS} />
       </View>
 
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 8 }}>
@@ -66,7 +220,9 @@ export const ScrTabMacro = () => {
         </View>
       </View>
 
-      <Divider style={{ marginBottom: 4 }}/>
+      <Divider style={{ marginBottom: 4 }} />
+
+      <InputElements element="NH₄" divider="NO₃" number={elementNH4divNO3.toString()} onChange={setElementNH4divNO3} /><Text style={{ color: '#111' }}>NH4 : NO3 - 1 : {(1 / +elementNH4divNO3).toFixed(1)}</Text>
 
       <ElementsRatiosTable />
 
