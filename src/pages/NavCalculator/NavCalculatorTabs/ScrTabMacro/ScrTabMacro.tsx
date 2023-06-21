@@ -34,6 +34,23 @@ export const ScrTabMacro = () => {
   const [numberDivMg, onChangeNumberDivMg] = useState('0.40');
   const [numberDivS, onChangeNumberDivS] = useState('0.50');
 
+
+  const [EC, setEC] = useState('2')
+  const [KMg, setKMg] = useState('7')
+  const [KCa, setKCa] = useState('1')
+  const [NCa, setNCa] = useState('0.9')
+  const [NH4dNO3, setNH4dNO3] = useState('6.77')
+  const [P, setP] = useState('60')
+  
+  const [bufferL2, setBufferL2] = useState('')
+  const [bufferM2, setBufferM2] = useState('')
+  const [bufferN2, setBufferN2] = useState('')
+  const [bufferP2, setBufferP2] = useState('')
+  const [bufferQ2, setBufferQ2] = useState(+KMg/(+KCa+(+KMg*+KCa)+(+KMg)+(+KMg*+NCa)))
+  const [bufferR2, setBufferR2] = useState('')
+
+  console.log('bufferQ2', bufferQ2)
+
   const [CaNO32, setCaNO32] = useState({
     gl: '',
     ppm: '',
