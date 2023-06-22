@@ -13,25 +13,39 @@ export const ScrTabMacro = () => {
 
   const [volume, setVolume] = useState('10')
 
-  const [text, onChangeText] = useState('Useless Text');
-
-
-  const [elementNH4, setElementNH4] = useState('25.0');
-  const [elementNO3, setElementNO3] = useState('125.0');
-
+  
+  const [elementNO3, setElementNO3] = useState('172');
+  const [elementNH4, setElementNH4] = useState('12');
+  const [elementN, setElementN] = useState((elementNH4 + elementNO3).toString());
   const [elementNH4divNO3, setElementNH4divNO3] = useState('0.200')
+
+  const [elementP, setElementP] = useState('60');
+  const [elementK, setElementK] = useState('226');
+
+  const [elementCa, setElementCa] = useState('202');
+  const [elementMg, setElementMg] = useState('29');
+  const [elementS, setElementS] = useState('77');
+  const [elementCl, setElementCl] = useState('0');
+
+  const [bufferEC, setBufferEC] = useState((6.78246839012758 * 10 ** -3 * +elementNH4 + 4.74075552672289 * 10 ** -3 * +elementCa + 7.81732153877802 * 10 ** -3 * +elementMg + 2.42977316149295 * 10 ** -3 * +elementK + 0.19).toString())
+
+  console.log('buffer EC: ', bufferEC)
+
+  const [bufferKMg, setBufferKMg] = useState((+elementK/+elementMg).toString())
+  const [bufferKCa, setbufferKCa] = useState((+elementK/+elementCa).toString())
+  const [bufferNCa, setBufferNCa] = useState((+elementN/+elementCa).toString())
+  const [bufferNH4dNO3, setBufferNH4dNO3] = useState((+elementNH4/+elementNO3).toString())
+  const [bufferP, setBufferP] = useState(elementP)
+
+
+
+
 
   const [numberDivN, onChangeNumberDivN] = useState('0.10');
   const [numberDivK, onChangeNumberDivK] = useState('0.20');
   const [numberDivCa, onChangeNumberDivCa] = useState('0.30');
   const [numberDivMg, onChangeNumberDivMg] = useState('0.40');
   const [numberDivS, onChangeNumberDivS] = useState('0.50');
-
-  // const [bufferP6, setBufferP6] = useState('6.77')
-
-
-  // const [bufferN6, setBufferN6] = useState('1')
-  // const [bufferO6, setBufferO6] = useState('0.9')
 
   const [EC, setEC] = useState('2')
   const [KMg, setKMg] = useState('7')
@@ -42,16 +56,6 @@ export const ScrTabMacro = () => {
 
   const [bufferL2, setBufferL2] = useState(((+NCa * +KMg) / (+KCa + (+KMg) * +KCa + (+KMg) + (+KMg) * +NCa)).toString())
 
-
-
-
-
-  const [bufferEC, setBufferEC] = useState('2')
-  const [bufferKMg, setBufferKMg] = useState('7')
-  const [bufferKCa, setbufferKCa] = useState('1')
-  const [bufferNCa, setBufferNCa] = useState('0.9')
-  const [bufferNH4dNO3, setBufferNH4dNO3] = useState('6.77')
-  const [bufferP, setBufferP] = useState('60')
 
   // const [bufferL2, setBufferL2] = useState('')
 
@@ -110,13 +114,6 @@ export const ScrTabMacro = () => {
   const [bufferR6, setBufferR6] = useState(Mg)
 
 
-  const [elementN, setElementN] = useState('150');
-  const [elementP, setElementP] = useState('50.0');
-  const [elementK, setElementK] = useState('200.0');
-
-  const [elementCa, setElementCa] = useState((+bufferQ2 * +bufferL6).toFixed(3).toString());
-  const [elementMg, setElementMg] = useState('50.0');
-  const [elementS, setElementS] = useState('200.0');
 
   const [bufferR5, setBufferR5] = useState('')
 
@@ -178,6 +175,64 @@ export const ScrTabMacro = () => {
   const [KNO3_mL, setKNO3_mL] = useState((+KNO3_grams / +KNO3_concentration * 1000).toString())
 
 
+
+  // **********
+
+  // MgS Ca_percent
+  const [MgS_Mg_percent, setMgS_Mg_percent] = useState('10.1')
+  // MgS NO3_percent
+  const [MgS_S_percent, setMgS_S_percent] = useState('13.3')
+  // MgS_concentration
+  const [MgS_concentration, setMgS_concentration] = useState('284.6')
+  // MgS ppm
+  const [MgS_ppm, setMgS_ppm] = useState((bufferR6 / +MgS_Mg_percent * 100).toString())
+  // MgS density
+  const [MgS_density, setMgS_density] = useState((+MgS_ppm / 1000).toString())
+  // MgS grams
+  const [MgS_grams, setMgS_grams] = useState((+MgS_density * +volume).toString())
+  // MgS mL
+  const [MgS_mL, setMgS_mL] = useState((+MgS_grams / +MgS_concentration * 1000).toString())
+
+
+
+  // **********
+
+  // KH2PO4 Ca_percent
+  const [KH2PO4_K_percent, setKH2PO4_K_percent] = useState('27.6')
+  // KH2PO4 NO3_percent
+  const [KH2PO4_P_percent, setKH2PO4_P_percent] = useState('21.8')
+  // KH2PO4_concentration
+  const [KH2PO4_concentration, setKH2PO4_concentration] = useState('140.9')
+  // KH2PO4 ppm
+  const [KH2PO4_ppm, setKH2PO4_ppm] = useState((+bufferO6 / +KH2PO4_P_percent * 100).toString())
+  // KH2PO4 density
+  const [KH2PO4_density, setKH2PO4_density] = useState((+KH2PO4_ppm / 1000).toString())
+  // KH2PO4 grams
+  const [KH2PO4_grams, setKH2PO4_grams] = useState((+KH2PO4_density * +volume).toString())
+  // KH2PO4 mL
+  const [KH2PO4_mL, setKH2PO4_mL] = useState((+KH2PO4_grams / +KH2PO4_concentration * 1000).toString())
+
+  // **********
+
+  // K2SO4 Ca_percent
+  const [K2SO4_K_percent, setK2SO4_Mg_percent] = useState('41.5')
+  // K2SO4 NO3_percent
+  const [K2SO4_S_percent, setK2SO4_S_percent] = useState('17.0')
+  // K2SO4_concentration
+  const [K2SO4_concentration, setK2SO4_concentration] = useState('168')
+
+  console.log(bufferQ6)
+  // K2SO4 ppm
+  const [K2SO4_ppm, setK2SO4_ppm] = useState((((+KNO3_K_percent / 100 * +KH2PO4_P_percent / 100 * +NH4NO3_NO3_percent / 100 * bufferN6 * +CaNO32_Ca_percent / 100) - (+KNO3_K_percent / 100 * +KH2PO4_P_percent / 100 * +NH4NO3_NO3_percent / 100 * bufferQ6 * +CaNO32_NH4_percent / 100) - (+KNO3_K_percent / 100 * +KH2PO4_P_percent / 100 * bufferM6 * +CaNO32_Ca_percent / 100 * +NH4NO3_NH4_percent / 100) + (+KNO3_K_percent / 100 * +KH2PO4_P_percent / 100 * bufferQ6 * +CaNO32_NO3_percent / 100 * +NH4NO3_NH4_percent / 100) + (bufferP6 * +KH2PO4_P_percent / 100 * +KNO3_NO3_percent / 100 * +CaNO32_Ca_percent / 100 * +NH4NO3_NH4_percent / 100) - (+bufferO6 * +KH2PO4_K_percent / 100 * +KNO3_NO3_percent / 100 * +CaNO32_Ca_percent / 100 * +NH4NO3_NH4_percent / 100)) / (+K2SO4_K_percent / 100 * +KH2PO4_P_percent / 100 * +KNO3_NO3_percent / 100 * +CaNO32_Ca_percent / 100 * +NH4NO3_NH4_percent / 100)).toString())
+
+  console.log('kso-ppm', K2SO4_ppm)
+  // K2SO4 density
+  const [K2SO4_density, setK2SO4_density] = useState((+K2SO4_ppm / 1000).toString())
+  // K2SO4 grams
+  const [K2SO4_grams, setK2SO4_grams] = useState((+K2SO4_density * +volume).toString())
+  // K2SO4 mL
+  const [K2SO4_mL, setK2SO4_mL] = useState((+K2SO4_grams / +K2SO4_concentration * 1000).toString())
+
   const handleChangeN = (value: number) => {
     let part = (+elementNO3 / +elementNH4)
 
@@ -190,15 +245,6 @@ export const ScrTabMacro = () => {
 
     if (elementN === '') return setElementN('1')
 
-    // console.log('value: ', value)
-    // console.log('part: ', part)
-
-    // const _elementNH4divNO3 = elementNH4divNO3
-    // const calculatedNH4 = value / (1+ +part)
-    // console.log('value: ', value / (part+1))
-    // console.log('value2: ', value - (value / (part+1)))
-
-
     let calculatedNH4 = (value / (1 / +elementNH4divNO3 + 1)).toFixed(0).toString()
     console.log('1', calculatedNH4)
 
@@ -209,23 +255,12 @@ export const ScrTabMacro = () => {
     if (!calculatedNO3 || isNaN(+calculatedNO3)) calculatedNO3 = (+calculatedNH4 * (1 + 1 / +elementNH4divNO3)).toString()
     setElementNH4(calculatedNH4)
     setElementNO3(calculatedNO3)
-    // setElementNH4divNO3(_elementNH4divNO3)
-
 
     setElementN(value.toString())
 
-    // let calculatedNH4divNO3 = (+calculatedNH4 / +calculatedNO3).toFixed(3).toString()
-    // if (!calculatedNH4divNO3 || !isFinite(+calculatedNH4divNO3)) calculatedNH4divNO3 = '1'
     setElementNH4divNO3(calculatedNH4divNO31)
-
-
-
-    // console.log((+elementNO3 / +elementNH4))
-    // console.log('part: ', part)
-    // console.log('calcNO3: ', calculatedNO3)
-
-    // setElementNH4(calculatedNH4)
   }
+
   const handleChangeNO3 = (value: number) => {
     if (!value || !isFinite(value)) value = 1
     setElementNO3(value.toString())
