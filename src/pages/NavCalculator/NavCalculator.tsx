@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 // import { MacroElementsScreen } from "./ScrMacro";
 // import { MicroElementsScreen } from "./ScrMicro";
@@ -8,6 +8,7 @@ import { TextInput, Text, View, StyleSheet, Modal, Alert, TouchableWithoutFeedba
 import { Button, Divider, Icon, Pressable } from "@react-native-material/core";
 import { NavCalculatorTabs } from "./NavCalculatorTabs";
 import { ButtonIconCircle } from "../../atoms/Buttons/ButtonIconCircle";
+import { useNavigation } from "@react-navigation/native";
 
 const BottomTab = createBottomTabNavigator()
 
@@ -32,20 +33,15 @@ export const NavCalculator = () => {
   const [stagesArr, setStagesArr] = useState(['Старт', 'Вега', 'Цвет', 'Плод', 'Конец'])
 
   const [newStage, setNewStage] = useState('')
+  const [volume, setVolume] = useState('1')
 
   // const newStageRef = useRef(null)
-
-  const handleSwitchOption = () => {
-    setSwitchOption(state => !state)
-  }
-
-
 
   const [inputText, setInputText] = useState('')
 
   return (
     <BottomTab.Navigator screenOptions={{ headerShown: false }}>
-      <BottomTab.Screen name="TopTabs" component={NavCalculatorTabs}
+      <BottomTab.Screen name="TopTabs" component={NavCalculatorTabs} initialParams={{ volume }}
         options={{
           tabBarLabel: () => (
             <View style={styles.bottomTabContainer}>
@@ -146,11 +142,11 @@ export const NavCalculator = () => {
                   <TextInput
                     style={{ fontSize: 18, fontWeight: '300', color: '#111', textAlign: 'auto', paddingVertical: 0 }}
                     placeholderTextColor='#111'
-                    placeholder="1 (л)"
-                    value={inputText}
-                    onChangeText={setInputText}
+                    placeholder="10 (л)"
+                    value={volume}
+                    onChangeText={setVolume}
                     keyboardType="numeric"
-                    defaultValue="1"
+                    defaultValue="10"
                     maxLength={11}
                   /></View>
               </View>

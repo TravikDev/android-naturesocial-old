@@ -19,7 +19,6 @@ const scrHeight = Dimensions.get('screen').height
 const scrWidth = Dimensions.get('screen').width
 
 
-
 const data = [
   {
     id: 123,
@@ -149,7 +148,7 @@ export const ScrPublicGardenSystems = ({ navigation }) => {
     setTimeout(() => {
       setRefreshing(false);
     }, 300);
-  }, []);
+  }, [])
 
   return (
     <View style={{ flex: 1, display: 'flex', backgroundColor: '#fff' }}>
@@ -178,7 +177,7 @@ export const ScrPublicGardenSystems = ({ navigation }) => {
                   leadingIcon='emoji-objects' />
               </View> */}
 
-              <View style={{ width: '100%' }}>
+              <View style={{ width: '100%', elevation: 3 }}>
                 <StateControlButton title='Влажность' value={`62`} designation={'%'}
                   leadingIcon='wash' />
               </View>

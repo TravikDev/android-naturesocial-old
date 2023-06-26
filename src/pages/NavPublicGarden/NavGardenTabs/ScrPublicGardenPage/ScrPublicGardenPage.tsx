@@ -74,7 +74,7 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
           <View style={styles.fullContainer}>
 
             <View style={{ marginVertical: 10, gap: 5 }}>
-              <View style={styles.pressableContainer}>
+              {/* <View style={styles.pressableContainer}>
                 <View>
                   <Text style={styles.gardenTitle}>{garden?.name}'s Garden</Text>
                 </View>
@@ -84,7 +84,7 @@ export const ScrPublicGardenPage = ({ route, navigation }) => {
                     <Text style={{ color: '#fff', fontWeight: 'bold', textTransform: 'uppercase' }}>Subscribe</Text>
                   </Pressable>
                 </View>
-              </View>
+              </View> */}
 
               <View style={styles.pressableContainer}>
                 <View>

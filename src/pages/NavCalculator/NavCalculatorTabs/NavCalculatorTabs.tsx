@@ -3,15 +3,19 @@ import { ScrTabMacro } from "./ScrTabMacro";
 import { ScrTabMicro } from "./ScrTabMicro";
 import { ScrTabConcentrates } from "./ScrTabConcentrates";
 import { ScrTabStages } from "./ScrTabStages";
+import { useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 
 const Tab = createMaterialTopTabNavigator()
 
-export const NavCalculatorTabs = () => {
+/* @ts-ignore */
+export const NavCalculatorTabs = ({ route }) => {
+
   return (
     <Tab.Navigator
       screenOptions={{
-
+       lazyPreloadDistance: 1, 
         // tabBarBadge: () => ,
         tabBarActiveTintColor: '#1A6111',
         tabBarInactiveTintColor: "#000",
@@ -22,7 +26,7 @@ export const NavCalculatorTabs = () => {
         },
       }}>
       <Tab.Screen name="Stages" component={ScrTabStages} options={{ title: 'Фазы' }} />
-      <Tab.Screen name="Macro" component={ScrTabMacro} options={{ title: 'Макро' }} />
+      <Tab.Screen name="Macro" component={ScrTabMacro} options={{ title: 'Макро' }} initialParams={{ volume: route.params?.volume}} />
       <Tab.Screen name="Micro" component={ScrTabMicro} options={{ title: 'Микро' }} />
       <Tab.Screen name="Concentrates" component={ScrTabConcentrates} options={{ title: 'Концентраты' }} />
 

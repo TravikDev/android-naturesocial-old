@@ -82,7 +82,7 @@ export const NavPublicGardenTabs = ({ route, navigation }) => {
         initialParams={route.params}
         component={ScrPublicGardenCultures}
         options={{
-          title: 'Культуры'
+          title: 'Циклы'
           // headerShown: false,
           // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
         }} />

@@ -317,7 +317,7 @@ const CustomDrawerContent = ({ navigation }) => {
           <ListItem
             onPress={() => navigation.navigate('Community')}
             title="Events"
-            leading={<Icon name="event-note" size={24} />}
+            leading={<Icon name="casino" size={24} />}
           />
 
           {/* <Pressable style={{ height: 48, display: 'flex', justifyContent: 'center', paddingLeft: 16 }}>

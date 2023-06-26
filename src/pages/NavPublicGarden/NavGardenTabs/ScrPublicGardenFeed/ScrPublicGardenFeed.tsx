@@ -205,6 +205,14 @@ export const ScrPublicGardenFeed = ({ navigation }) => {
                         Molestias, omnis aperiam est in blanditiis quo quod dolorum. Illo voluptate, voluptatem ducimus, alias iusto ipsam odit ad ratione tempore dicta.
                     </GardenFeedPostCard>
 
+                    <GardenFeedPostCard title='Second title' categories='Category 2, Category 3'>
+                        Molestias, omnis aperiam est in blanditiis quo quod dolorum. Illo voluptate, voluptatem ducimus, alias iusto ipsam odit ad ratione tempore dicta.
+                    </GardenFeedPostCard>
+
+                    <GardenFeedPostCard title='Second title' categories='Category 2, Category 3'>
+                        Molestias, omnis aperiam est in blanditiis quo quod dolorum. Illo voluptate, voluptatem ducimus, alias iusto ipsam odit ad ratione tempore dicta.
+                    </GardenFeedPostCard>
+
                 </View>
 
             </ScrollView >
