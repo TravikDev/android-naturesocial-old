@@ -7,13 +7,15 @@ export const InputElements = ({
   element = 'N',
   divider = '',
   number = '',
+  inputViewColor = '#fff',
+  inputTextColor = '#666',
   /* @ts-ignore */
   onChange = f => f }) => {
   return (
     <View style={styles.secondContainer}>
-      <View style={{ backgroundColor: '#e7e7e7', height: 48, width: 36, display: 'flex', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 1 }}>
+      <View style={{ marginVertical: 5, backgroundColor: '#e7e7e7', height: 48, width: 44, display: 'flex', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 1 }}>
         {divider
-          ? <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignContent: 'center' }}>
+          ? <View style={{ marginRight: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignContent: 'center' }}>
             <Text style={[{ borderBottomColor: '#333', borderBottomWidth: 1 }, styles.textLeftVar]}>
               {element}
             </Text>
@@ -22,16 +24,16 @@ export const InputElements = ({
               {divider}
             </Text>
           </View>
-          : <View style={{ display: 'flex', alignContent: 'center' }}><Text style={styles.textLeft}>{element}</Text></View>
+          : <View style={{ marginRight: 1, display: 'flex', justifyContent: 'center', alignContent: 'center' }}><Text style={styles.textLeft}>{element}</Text></View>
         }
       </View>
       {/* <TextInput style={styles.textRight}>135.00</Text> */}
-      <View style={{ width: 75, paddingLeft: 5 }}>
+      <View style={{ width: 70, paddingLeft: 12 }}>
         <TextInput
-          style={styles.textRight}
+          style={[styles.textRight, { color: inputTextColor }]}
           onChangeText={onChange}
           value={number}
-          placeholder="mg/litre"
+          placeholder="мг/л"
           keyboardType="numeric"
         />
       </View>
@@ -49,10 +51,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 25,
     borderColor: '#ccc',
-    borderWidth: 1
+    borderWidth: 1,
   },
   secondContainer: {
-    height: 32,
+    height: 40,
     // width: '31%',
     display: 'flex',
     flexDirection: 'row',
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
     fontWeight: '300'
   },
   textLeftVar: {
-    fontSize: 14,
+    fontSize: 12,
     color: "#111",
     fontWeight: '300'
   },
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#666",
     fontWeight: '300',
-    marginRight: -7
+    // marginRight: -7
   },
   textTitleStyle: {
     fontSize: 18,

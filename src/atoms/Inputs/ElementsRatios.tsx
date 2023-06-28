@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 
-const styles = StyleSheet.create({
+const stylesRatios = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -101,168 +101,164 @@ const styles = StyleSheet.create({
 
 export const ElementsRatiosTable = () => {
     return (
-        <View style={styles.container}>
+        <View style={stylesRatios.container}>
 
-{/* First Row */}
-
-            <View style={styles.itemFirst} />
-            <View style={styles.itemTop}>
-                <Text style={styles.textElement}>N</Text>
+            <View style={stylesRatios.itemFirst} />
+            <View style={stylesRatios.itemTop}>
+                <Text style={stylesRatios.textElement}>N</Text>
             </View>
-            <View style={styles.itemTop}>
-                <Text style={styles.textElement}>P</Text>
+            <View style={stylesRatios.itemTop}>
+                <Text style={stylesRatios.textElement}>P</Text>
             </View>
-            <View style={styles.itemTop}>
-                <Text style={styles.textElement}>K</Text>
+            <View style={stylesRatios.itemTop}>
+                <Text style={stylesRatios.textElement}>K</Text>
             </View>
-            <View style={styles.itemTop}>
-                <Text style={styles.textElement}>Ca</Text>
+            <View style={stylesRatios.itemTop}>
+                <Text style={stylesRatios.textElement}>Ca</Text>
             </View>
-            <View style={styles.itemTop}>
-                <Text style={styles.textElement}>Mg</Text>
+            <View style={stylesRatios.itemTop}>
+                <Text style={stylesRatios.textElement}>Mg</Text>
             </View>
-            <View style={styles.itemTopRight}>
-                <Text style={styles.textElement}>S</Text>
+            <View style={stylesRatios.itemTopRight}>
+                <Text style={stylesRatios.textElement}>S</Text>
             </View>
 
-{/* 2 Row */}
 
-            <View style={styles.itemLeft}>
-                <Text style={styles.textElement}>N</Text>
+            <View style={stylesRatios.itemLeft}>
+                <Text style={stylesRatios.textElement}>N</Text>
             </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>1</Text>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>1</Text>
             </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>2.01</Text>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>2.01</Text>
             </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>8.24</Text>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>8.24</Text>
             </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>0.99</Text>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>0.99</Text>
             </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>4.50</Text>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>4.50</Text>
             </View>
-            <View style={styles.itemRight}>
-                <Text style={styles.textElement}>2.32</Text>
-            </View>
-{/* 3 Row */}
-
-            <View style={styles.itemLeft}>
-                <Text style={styles.textElement}>P</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>0.11</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>1</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>8.24</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>0.99</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>4.50</Text>
-            </View>
-            <View style={styles.itemRight}>
-                <Text style={styles.textElement}>2.32</Text>
-            </View>
-{/* 4 Row */}
-
-            <View style={styles.itemLeft}>
-                <Text style={styles.textElement}>K</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>0.11</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>2.01</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>1</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>0.99</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>4.50</Text>
-            </View>
-            <View style={styles.itemRight}>
-                <Text style={styles.textElement}>2.32</Text>
-            </View>
-{/* 5 Row */}
-
-            <View style={styles.itemLeft}>
-                <Text style={styles.textElement}>Ca</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>0.11</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>2.01</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>8.24</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>1</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>4.50</Text>
-            </View>
-            <View style={styles.itemRight}>
-                <Text style={styles.textElement}>2.32</Text>
-            </View>
-{/* 6 Row */}
-
-            <View style={styles.itemLeft}>
-                <Text style={styles.textElement}>Mg</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>0.11</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>2.01</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>8.24</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>0.99</Text>
-            </View>
-            <View style={styles.item}>
-                <Text style={styles.textElement}>1</Text>
-            </View>
-            <View style={styles.itemRight}>
-                <Text style={styles.textElement}>2.32</Text>
+            <View style={stylesRatios.itemRight}>
+                <Text style={stylesRatios.textElement}>2.32</Text>
             </View>
 
-{/* Last Row */}
 
-            <View style={styles.itemBottomLeft}>
-                <Text style={styles.textElement}>S</Text>
+            <View style={stylesRatios.itemLeft}>
+                <Text style={stylesRatios.textElement}>P</Text>
             </View>
-            <View style={styles.itemBottom}>
-                <Text style={styles.textElement}>1.51</Text>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>0.11</Text>
             </View>
-            <View style={styles.itemBottom}>
-                <Text style={styles.textElement}>7.50</Text>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>1</Text>
             </View>
-            <View style={styles.itemBottom}>
-                <Text style={styles.textElement}>4.21</Text>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>8.24</Text>
             </View>
-            <View style={styles.itemBottom}>
-                <Text style={styles.textElement}>0.11</Text>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>0.99</Text>
             </View>
-            <View style={styles.itemBottom}>
-                <Text style={styles.textElement}>1.00</Text>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>4.50</Text>
             </View>
-            <View style={styles.itemLast}>
-                <Text style={styles.textElement}>1</Text>
+            <View style={stylesRatios.itemRight}>
+                <Text style={stylesRatios.textElement}>2.32</Text>
+            </View>
+
+
+            <View style={stylesRatios.itemLeft}>
+                <Text style={stylesRatios.textElement}>K</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>0.11</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>2.01</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>1</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>0.99</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>4.50</Text>
+            </View>
+            <View style={stylesRatios.itemRight}>
+                <Text style={stylesRatios.textElement}>2.32</Text>
+            </View>
+
+
+            <View style={stylesRatios.itemLeft}>
+                <Text style={stylesRatios.textElement}>Ca</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>0.11</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>2.01</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>8.24</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>1</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>4.50</Text>
+            </View>
+            <View style={stylesRatios.itemRight}>
+                <Text style={stylesRatios.textElement}>2.32</Text>
+            </View>
+
+
+            <View style={stylesRatios.itemLeft}>
+                <Text style={stylesRatios.textElement}>Mg</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>0.11</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>2.01</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>8.24</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>0.99</Text>
+            </View>
+            <View style={stylesRatios.item}>
+                <Text style={stylesRatios.textElement}>1</Text>
+            </View>
+            <View style={stylesRatios.itemRight}>
+                <Text style={stylesRatios.textElement}>2.32</Text>
+            </View>
+
+
+            <View style={stylesRatios.itemBottomLeft}>
+                <Text style={stylesRatios.textElement}>S</Text>
+            </View>
+            <View style={stylesRatios.itemBottom}>
+                <Text style={stylesRatios.textElement}>1.51</Text>
+            </View>
+            <View style={stylesRatios.itemBottom}>
+                <Text style={stylesRatios.textElement}>7.50</Text>
+            </View>
+            <View style={stylesRatios.itemBottom}>
+                <Text style={stylesRatios.textElement}>4.21</Text>
+            </View>
+            <View style={stylesRatios.itemBottom}>
+                <Text style={stylesRatios.textElement}>0.11</Text>
+            </View>
+            <View style={stylesRatios.itemBottom}>
+                <Text style={stylesRatios.textElement}>1.00</Text>
+            </View>
+            <View style={stylesRatios.itemLast}>
+                <Text style={stylesRatios.textElement}>1</Text>
             </View>
         </View>
     )

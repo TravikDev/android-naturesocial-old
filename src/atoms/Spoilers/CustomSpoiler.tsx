@@ -22,7 +22,7 @@ export const CustomSpoiler = ({ title, value, children, leadingIcon = '' }) => {
                     <Text style={styles.text}>{title}</Text>
                 </View>
                 <View style={styles.viewValue}>
-                    <Text style={styles.text}>{value}</Text>
+                    <Text style={[styles.text, (value < 0) && { color: '#991111' }]}>{value}</Text>
                 </View>
             </Pressable>
             {isExpanded && (
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         overflow: 'hidden',
+        marginTop: 4
     },
     pressableContainer: {
         height: 36,

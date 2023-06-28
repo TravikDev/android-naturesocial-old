@@ -241,8 +241,8 @@ const styles = StyleSheet.create({
   },
   bottomTabContainer: {
     width: "100%",
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
     backgroundColor: '#fff',
     display: 'flex',
     flexDirection: 'row',
