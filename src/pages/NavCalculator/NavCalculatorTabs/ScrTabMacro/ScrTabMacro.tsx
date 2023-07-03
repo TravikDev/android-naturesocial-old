@@ -858,9 +858,30 @@ export const ScrTabMacro = () => {
         </CustomSpoiler>
 
         <CustomSpoiler title='Нитрат аммония' value={(+NH4NO3_grams).toFixed(2).toString()}>
-          <View>
-            <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>NH4NO3</Text>
+          <View style={{ flexDirection: 'column', justifyContent: 'space-between', paddingHorizontal: 4, gap: 4 }}>
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
+              <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>CaNO32</Text>
+              <View style={{ alignItems: "center", flexDirection: 'row', gap: 4 }}>
+                <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>Ca:</Text>
+                <View style={{ padding: 5, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, width: 64 }}>
+                  <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>123</Text>
+                </View>
+              </View>
+            </View>
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 2 }}>
+              {/* <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KNO3</Text> */}
+              <View style={{ alignItems: "center", flexDirection: 'row', gap: 4 }}>
+                <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>NO3</Text>
+                <View style={{ padding: 5, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, width: 64 }}>
+                  <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>123</Text>
+                </View>
+              </View>
+            </View>
+
           </View>
+
         </CustomSpoiler>
 
         <CustomSpoiler title='Сульфат магния' value={(+MgS_grams).toFixed(2).toString()}>

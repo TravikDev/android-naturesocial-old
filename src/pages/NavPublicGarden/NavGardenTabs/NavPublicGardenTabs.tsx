@@ -8,7 +8,7 @@ import { ScrPublicGardenPage } from './ScrPublicGardenPage'
 import { ScrPublicGardenFeed } from './ScrPublicGardenFeed'
 import { ScrPublicGardenSystems } from './ScrPublicGardenSystems'
 import { ScrPublicGardenNutritions } from './ScrPublicGardenNutritions'
-import { ScrPublicGardenCultures } from './ScrPublicGardenCultures'
+import { ScrPublicGardenCycles } from './ScrPublicGardenCycles'
 
 const Tab = createMaterialTopTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -77,15 +77,17 @@ export const NavPublicGardenTabs = ({ route, navigation }) => {
           // headerShown: false,
           // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
         }} />
+
       <Tab.Screen
-        name="Cultures"
+        name="PublicGardenCycles"
         initialParams={route.params}
-        component={ScrPublicGardenCultures}
+        component={ScrPublicGardenCycles}
         options={{
           title: 'Циклы'
           // headerShown: false,
           // tabBarIcon: () => <Icon name='settings' size={26} color='#666' />
         }} />
+
 
     </Tab.Navigator>
   )

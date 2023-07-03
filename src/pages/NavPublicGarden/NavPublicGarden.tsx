@@ -19,8 +19,8 @@ export const NavPublicGarden = () => {
   const [calcType, setCalcType] = useState('HPG')
 
   const handleChangeCalcType = () => {
-    calcType === 'FREE' && setCalcType('HPG')
-    calcType === 'HPG' && setCalcType('FREE')
+    calcType === 'Manual' && setCalcType('HPG')
+    calcType === 'HPG' && setCalcType('Manual')
   }
 
   const navigation = useNavigation()
