@@ -8,7 +8,7 @@ import { Divider, Pressable } from '@react-native-material/core'
 // import { ScrollView } from 'react-native-gesture-handler'
 const scrWidth = Dimensions.get('screen').width
 
-export const ScrPublicGardenCycles = () => {
+export const ScrPublicGardenDiaries = () => {
 
 
   // const data: any[] = []
@@ -132,37 +132,19 @@ export const ScrPublicGardenCycles = () => {
     <View style={{
       // justifyContent: 'center',
       // alignItems:
-      width: '64%'
 
     }}>
       {/* // <View style={styles.item}> */}
-      <View style={{
-        paddingVertical: 4,
-        paddingHorizontal: 4,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-      }}>
-        <View style={{ padding: 10, flexDirection: 'row', gap: 10 }}>
-          <View style={{ flex: 1, gap: 10 }}>
-            <View style={{ flex: 1, backgroundColor: '#fff', borderWidth: 1, borderColor: '#ccc', borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
-              {/* <Text style={{ fontSize: 12, fontWeight: '300', color: '#111', top: 6 }}>сегодня</Text> */}
-              <Text style={{ fontSize: 42, fontWeight: '300', color: '#111' }}>23</Text>
-              <Text style={{ fontSize: 12, fontWeight: '300', color: '#111', top: -6 }}>дней</Text>
-            </View>
-            <View style={{ flexDirection: 'row', flex: 1, gap: 10 }}>
-              <View style={{ flex: 1, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: '#111', fontSize: 24 }}>{'<'}</Text>
-              </View>
-              <View style={{ flex: 1, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: '#111', fontSize: 24 }}>{'>'}</Text>
-              </View>
-            </View>
+      <View style={{ width: Dimensions.get('screen').width, padding: 10 }}>
+        <View style={{ borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexDirection: 'row', padding: 10 }}>
+          <View style={{ padding: 8, borderWidth: 1, borderRadius: 5, borderColor: '#ccc' }}>
+            <Text style={{ color: '#111', fontWeight: '300', fontSize: 42 }}>24</Text>
+            <Text style={{ color: '#111', fontWeight: '300', fontSize: 16 }}>сегодня</Text>
           </View>
-          <View style={{ flex: 4, height: 148, backgroundColor: '#fff', borderWidth: 1, borderColor: '#ccc', borderRadius: 5 }}><Text style={{ color: '#111' }} >{title}</Text></View>
-
+          <View>
+            <Text style={{ color: '#111' }}>Ops</Text>
+          </View>
         </View>
-        {/* <Text style={styles.title}>{title}</Text> */}
       </View>
     </View>
     // </View>
@@ -190,20 +172,21 @@ export const ScrPublicGardenCycles = () => {
         )}
       /> */}
 
-      <FlatList
-        data={DATA}
-        horizontal
-        pagingEnabled
-        renderItem={({ item }) => <Item title={item.title} />}
-        keyExtractor={item => item.id}
-        // alwaysBounceHorizontal
-        // snapToStart
-        // scrollsToTop
-        // showsVerticalScrollIndicator
-        ref={flatListRef}
+      <View>
+        <FlatList
+          data={DATA}
+          horizontal
+          pagingEnabled
+          renderItem={({ item }) => <Item title={item.title} />}
+          keyExtractor={item => item.id}
+          // alwaysBounceHorizontal
+          // snapToStart
+          // scrollsToTop
+          // showsVerticalScrollIndicator
+          ref={flatListRef}
 
-      />
-
+        />
+      </View>
       <FlatList
         data={DATA}
         horizontal

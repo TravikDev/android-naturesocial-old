@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { Divider, Icon, IconButton, ListItem } from "@react-native-material/core";
-import { Dimensions, StyleSheet, Text, View, TextInput, Switch } from "react-native";
+import { Dimensions, StyleSheet, Text, View, TextInput, Switch, TouchableHighlight, TouchableOpacity, Pressable } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { ElementsRatiosTable } from "../../../../atoms/inputs/ElementsRatios";
 import { CustomSpoiler } from "../../../../atoms/Spoilers/CustomSpoiler";
 import { InputElements } from "../../../../atoms/inputs/InputElements";
+import { ButtonIconCircle } from "../../../../atoms/Buttons/ButtonIconCircle";
 
 const srcWidth = Dimensions.get('window').width
 
@@ -550,7 +551,6 @@ export const ScrTabMacro = () => {
     // const calculatedNO3 = (+elementN - (+result)).toString()
     // setResultNO3(calculatedNO3)
 
-
   }
 
   const handleChangeCa = (value: string) => {
@@ -597,6 +597,253 @@ export const ScrTabMacro = () => {
 
   const [checked, toggleChecked] = useState(false)
 
+  const [isManual, toggleIsManual] = useState(true)
+
+  const [isExpanded, toggleIsExpanded] = useState(false)
+
+  const [fertilizers, setFertilizers] = useState([{
+    title: 'Селитра кальциевая',
+    percentCa: '0',
+    grams: '0',
+  }])
+
+  const [elementsArray, setElementsArray] = useState([''])
+  const [activeElement, setActiveElement] = useState('')
+  const [activePercent, setActivePercent] = useState('0')
+  const [activeGrams, setActiveGrams] = useState('')
+
+  const [inputTitle, setInputTitle] = useState('')
+
+
+  const [newFertilizers, setNewFertilizers] = useState([
+    {
+      title: 'Нитрат кальция',
+      grams: '1',
+      percents: [
+        {
+          title: 'Element',
+          percent: '0'
+        },
+        {
+          title: 'Ca',
+          percent: '13',
+        }
+      ]
+    }
+  ])
+
+  console.log(newFertilizers)
+
+  const handleAddNewFertilizers = (title: string) => {
+    setNewFertilizers(state => [...state, { title, percents: [{ title: 'Element', percent: '0' }], grams: '0' }])
+    setInputTitle('')
+  }
+
+  const handleAddUpdateNewElement = (fertilizer: string, title: string, percent: string) => {
+    setNewFertilizers(state => state.map((val) => {
+
+      if (val.title === fertilizer)
+        val.percents.map(val => {
+          if (val.title === title)
+            val.percent = percent
+          return val
+        })
+
+      return val
+    }))
+  }
+
+  const handleAddNewElement = (fertilizer: string) => {
+
+    setNewFertilizers(state => state.map((val) => {
+
+      if (val.title === fertilizer) {
+        const title = val.percents[0].title
+        const percent = val.percents[0].percent
+        val.percents.push({ title, percent })
+        val.percents[0].title = ''
+        val.percents[0].percent = ''
+      }
+      return val
+
+    },
+
+      // setNewFertilizers(state => state.map((val) => {
+
+      //   if (val.title === fertilizer) {
+
+      //   }
+      //   return val
+      // }
+      // ))
+
+
+    ))
+  }
+
+  const handleDeleteElement = (fertilizer: string, title: string) => {
+    setNewFertilizers(state => state.map((val) => {
+
+      if (val.title === fertilizer)
+        val.percents.filter(val => val.title !== title)
+      return val
+    }))
+  }
+
+  const handleDeleteFertilizer = (fertilizer: string) => {
+    setNewFertilizers(state => state.filter((val) => val.title !== fertilizer))
+  }
+
+
+
+  //// 
+  const [customNO3, setCustomNO3] = useState('0.0');
+  const [customNH4, setCustomNH4] = useState('0.0');
+
+  const [customN, setCustomN] = useState((+customNH4 + +customNO3).toString());
+
+  useMemo(() => {
+    setCustomN(state => (state += (+customNH4 + +customNO3)).toString())
+  }, [customNH4, customNO3])
+
+  // useMemo(() => {
+  //   setCustomN(state => (state += (+customNH4 + +customNO3)).toString())
+  // }, [])
+
+  const [customP, setCustomP] = useState('0.0');
+  const [customK, setCustomK] = useState('0.0');
+  const [customCa, setCustomCa] = useState('0.0');
+  const [customMg, setCustomMg] = useState('0.0');
+  const [customS, setCustomS] = useState('0.0');
+  const [customCl, setCustomCl] = useState('0.0');
+
+  const [customFe, setCustomFe] = useState('0.0');
+  const [customMn, setCustomMn] = useState('0.0');
+  const [customB, setCustomB] = useState('0.0');
+  const [customZn, setCustomZn] = useState('0.0');
+  const [customCu, setCustomCu] = useState('0.0');
+  const [customMo, setCustomMo] = useState('0.0');
+  const [customCo, setCustomCo] = useState('0.0');
+  const [customSi, setCustomSi] = useState('0.0');
+
+  // useMemo(() => {
+  //   setCustomN((+customNH4 + +customNO3).toString());
+  // }, [customNH4, customNO3])
+
+  // const res = newFertilizers.reduce((acc, fertilizer) => {
+  //   return acc += fertilizer.percents.reduce((acc, val) => {
+  //     if (val.title === 'NO3') acc += val.percent
+  //     return acc
+  //   }, 0)
+  // }, 0)
+
+  useMemo(() => {
+
+    const calculatedMacroElement = (elementTitle: string) => (newFertilizers.reduce((acc, fertilizer) => {
+      console.log(fertilizer.grams)
+      return acc += +fertilizer.grams / 100 * +fertilizer.percents.reduce((acc, val) => {
+        if (val.title === elementTitle) (acc += +val.percent).toString()
+        return acc
+      }, 0)
+    }, 0) * 1000 / +volume).toString()
+
+    const calculatedMicroElement = (elementTitle: string) => (newFertilizers.reduce((acc, fertilizer) => {
+      console.log(fertilizer.grams)
+      return acc += +fertilizer.grams / 100 * +fertilizer.percents.reduce((acc, val) => {
+        if (val.title === elementTitle) (acc += +val.percent).toString()
+        return acc
+      }, 0)
+    }, 0) * 1000 * 1000 / +volume).toString()
+
+    setCustomNO3(calculatedMacroElement('NO3'))
+    setCustomNH4(calculatedMacroElement('NH4'))
+    setCustomN(calculatedMacroElement('N'))
+    setCustomP(calculatedMacroElement('P'))
+    setCustomK(calculatedMacroElement('K'))
+    setCustomCa(calculatedMacroElement('Ca'))
+    setCustomMg(calculatedMacroElement('Mg'))
+    setCustomS(calculatedMacroElement('S'))
+    setCustomCl(calculatedMacroElement('Cl'))
+
+    setCustomFe(calculatedMicroElement('Fe'))
+    setCustomMn(calculatedMicroElement('Mn'))
+    setCustomB(calculatedMicroElement('B'))
+    setCustomZn(calculatedMicroElement('Zn'))
+    setCustomCu(calculatedMicroElement('Cu'))
+    setCustomMo(calculatedMicroElement('Mo'))
+    setCustomCo(calculatedMicroElement('Co'))
+    setCustomSi(calculatedMicroElement('Si'))
+
+    console.log(
+      customNO3, customNH4, 'lol:', customN, 'wat', customP, customK, customCa, customMg, customS, customCl,
+      customFe, customMn, customB, customZn, customCu, customMo, customCo, customSi,
+    )
+
+  }, [newFertilizers])
+
+  // useMemo(() => {
+
+  // setElementNO3(customNO3)
+  // setElementNH4(customNH4)
+  // setElementN(customN)
+  // setElementP(customP)
+  // setElementK(customK)
+  // setElementCa(customCa)
+  // setElementMg(customMg)
+  // setElementS(customS)
+  // setElementCl(customCl)
+
+  // console.log(typeof customNO3)
+
+  // console.log(customNO3, customNH4, customN, customP, customK, customCa, customMg, customS, customCl)
+
+  // if (+customNO3 === 0) handleChangeNO3('0.0')
+  // else handleChangeNO3(customNO3)
+
+  // if (+customNH4 === 0) handleChangeNH4('0.0')
+  // else handleChangeNH4(customNH4)
+
+  // if (+customNH4 === 0) handleChangeNH4('0.0')
+  // else handleChangeNH4(customNH4)
+
+  // if (+customP === 0) setResultP('0.0')
+  // else setResultP(customP)
+
+  // if (+customS === 0) setResultS('0.0')
+  // else setResultS(customS)
+
+  // if (+customCl === 0) setResultCl('0.0')
+  // else setResultCl(customCl)
+
+  // if (+customK === 0) handleChangeK('0.0')
+  // else handleChangeK(customK)
+
+  // if (+customCa === 0) handleChangeCa('0.0')
+  // else handleChangeCa(customCa)
+
+  // if (+customMg === 0) handleChangeMg('0.001')
+  // else handleChangeMg(customMg)
+
+  // setResultP(customP || '0.001')
+  // setResultS(customS || '0.001')
+  // setResultCl(customCl || '0.001')
+  // handleChangeK(customK || '0.001')
+  // handleChangeCa(customCa || '0.001')
+  // handleChangeMg(customMg || '0.001')
+
+
+  // }, [newFertilizers])
+
+  useEffect(() => {
+    console.log('work')
+
+    const x = 0
+
+    console.log('work')
+  }, [])
+
+
+
 
   // console.log('---------------- END ---------------')
 
@@ -606,42 +853,59 @@ export const ScrTabMacro = () => {
       <ScrollView contentContainerStyle={{ backgroundColor: '#fff', padding: 10, paddingBottom: 25, gap: 4 }}>
 
         {/* <Divider style={{ marginTop: 10 }} /> */}
-
-        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
-            Макропрофиль
-          </Text>
-          <View>
-            <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
-              мг / литр
-            </Text>
+        <View>
+          <View style={[{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, borderColor: '#ccc', borderRadius: 5, marginTop: 8, padding: 6, paddingLeft: 7 }, checked && { borderBottomRightRadius: 0, borderBottomLeftRadius: 0, }]}>
+            <View style={{ flexDirection: 'row', gap: 5 }}>
+              <Icon name='error-outline' color='#666' size={22} />
+              <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
+                {isManual ? 'Manual' : 'HPG'}
+              </Text>
+            </View>
+            <View>
+              <Switch value={isManual} onValueChange={() => toggleIsManual(state => !state)} thumbColor='#119911' trackColor={{ true: '#cccccc', false: '#cccccc' }} />
+            </View>
           </View>
-        </View>
 
-        <Divider style={{ marginBottom: 4 }} />
+          {!isManual &&
 
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}>
-          <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <InputElements element="N" number={(+resultN).toFixed(1).toString()} onChange={handleChangeN} />
-            <InputElements element="NO₃" number={(+resultNO3).toFixed(1).toString()} onChange={handleChangeNO3} inputTextColor="#119911" />
-            <InputElements element="NH₄" number={(+resultNH4).toFixed(1).toString()} onChange={handleChangeNH4} inputTextColor="#119911" />
-            <InputElements element="NH4" divider="NO3" number={(+NH4dNO3).toFixed(3).toString()} onChange={(val) => { setResultNH4NO3(val) }} inputTextColor="#119911" />
-          </View>
-          <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <InputElements element="P" number={(+resultP).toFixed(1).toString()} onChange={setResultP} inputTextColor="#119911" />
-            <InputElements element="S" number={(+resultS).toFixed(1).toString()} onChange={(val) => setResultS(val)} />
-            <InputElements element="Cl" number={(+resultCl).toFixed(1).toString()} onChange={setResultCl} />
+            <View>
+              <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
+                  Макропрофиль
+                </Text>
+                <View>
+                  <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
+                    мг / литр
+                  </Text>
+                </View>
+              </View>
 
-          </View>
-          <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <InputElements element="K" number={(+resultK).toFixed(1).toString()} onChange={handleChangeK} inputTextColor="#119911" />
-            <InputElements element="Ca" number={(+resultCa).toFixed(1).toString()} onChange={handleChangeCa} inputTextColor="#119911" />
-            <InputElements element="Mg" number={(+resultMg).toFixed(1).toString()} onChange={handleChangeMg} inputTextColor="#119911" />
-            <InputElements element="EC" number={(+EC).toFixed(3).toString()} onChange={(val) => { setResultEC(val) }} inputTextColor="#119911" />
-          </View>
+              <Divider style={{ marginBottom: 4 }} />
+
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}>
+                <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <InputElements element="N" number={(+resultN).toFixed(1).toString()} onChange={handleChangeN} />
+                  <InputElements element="NO₃" number={(+resultNO3).toFixed(1).toString()} onChange={handleChangeNO3} inputTextColor="#119911" />
+                  <InputElements element="NH₄" number={(+resultNH4).toFixed(1).toString()} onChange={handleChangeNH4} inputTextColor="#119911" />
+                  <InputElements element="NH4" divider="NO3" number={(+NH4dNO3).toFixed(3).toString()} onChange={(val) => { setResultNH4NO3(val) }} inputTextColor="#119911" />
+                </View>
+                <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <InputElements element="P" number={(+resultP).toFixed(1).toString()} onChange={setResultP} inputTextColor="#119911" />
+                  <InputElements element="S" number={(+resultS).toFixed(1).toString()} onChange={(val) => setResultS(val)} />
+                  <InputElements element="Cl" number={(+resultCl).toFixed(1).toString()} onChange={setResultCl} />
+
+                </View>
+                <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <InputElements element="K" number={(+resultK).toFixed(1).toString()} onChange={handleChangeK} inputTextColor="#119911" />
+                  <InputElements element="Ca" number={(+resultCa).toFixed(1).toString()} onChange={handleChangeCa} inputTextColor="#119911" />
+                  <InputElements element="Mg" number={(+resultMg).toFixed(1).toString()} onChange={handleChangeMg} inputTextColor="#119911" />
+                  <InputElements element="EC" number={(+EC).toFixed(3).toString()} onChange={(val) => { setResultEC(val) }} inputTextColor="#119911" />
+                </View>
+              </View>
+            </View>
+          }
         </View>
         {/* <View style={{ display: 'flex', flexDirection: 'row', gap: 5, justifyContent: 'flex-end' }}>
-        
       </View> */}
         <View style={{}}>
           <View style={[{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, borderColor: '#ccc', borderRadius: 5, marginTop: 8, padding: 6, paddingLeft: 7 }, checked && { borderBottomRightRadius: 0, borderBottomLeftRadius: 0, }]}>
@@ -829,91 +1093,399 @@ export const ScrTabMacro = () => {
 
         </View>
 
-        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 5 }}>
-          <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
-            Составы солей
-          </Text>
-          <View>
-            <Text style={{ fontSize: 16, fontWeight: '400', color: '#111', top: 0 }}>граммы</Text>
+        <View style={{}}>
+          <View style={[{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderWidth: 1, borderColor: '#ccc', borderRadius: 5, marginTop: 8, padding: 6, paddingLeft: 7 }, checked && { borderBottomRightRadius: 0, borderBottomLeftRadius: 0, }]}>
+            <View style={{ flexDirection: 'row', gap: 5 }}>
+              <Icon name='error-outline' color='#666' size={22} />
+              <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
+                {isManual ? 'Manual' : 'HPG'}
+              </Text>
+            </View>
+            <View>
+              <Switch value={isManual} onValueChange={() => toggleIsManual(state => !state)} thumbColor='#119911' trackColor={{ true: '#cccccc', false: '#cccccc' }} />
+            </View>
           </View>
+
+          {/* MANUAL */}
+          {
+            isManual
+              ?
+              <View style={{ gap: 4 }}>
+
+                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
+                    Макропрофиль
+                  </Text>
+                  <View>
+                    <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
+                      мг / литр
+                    </Text>
+                  </View>
+                </View>
+
+                <Divider style={{ marginBottom: 4 }} />
+
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}>
+                  <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <InputElements element="N" number={customN} inputTextColor="#119911" />
+                    <InputElements element="NO₃" number={customNO3} />
+                    <InputElements element="NH₄" number={customNH4} />
+                    {/* <InputElements element="NH4" divider="NO3" number={} onChange={} inputTextColor="#119911" /> */}
+                  </View>
+                  <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <InputElements element="P" number={customP} inputTextColor="#119911" />
+                    <InputElements element="S" number={customS} inputTextColor="#119911" />
+                    <InputElements element="Cl" number={customCl} />
+
+                  </View>
+                  <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <InputElements element="K" number={customK} inputTextColor="#119911" />
+                    <InputElements element="Ca" number={customCa} inputTextColor="#119911" />
+                    <InputElements element="Mg" number={customMg} inputTextColor="#119911" />
+                    {/* <InputElements element="EC" number={} onChange={} inputTextColor="#119911" /> */}
+                  </View>
+                </View>
+
+
+
+                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
+                    Микропрофиль
+                  </Text>
+                  <View>
+                    <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
+                      мкг / литр
+                    </Text>
+                  </View>
+                </View>
+
+                <Divider style={{ marginBottom: 4 }} />
+
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}>
+                  <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <InputElements element="Fe" number={customFe} onChange={setCustomFe} inputTextColor="#119911" />
+                    <InputElements element="Zn" number={customZn} onChange={setCustomZn} inputTextColor="#119911" />
+                    <InputElements element="Co" number={customCo} onChange={setCustomCo} />
+                    {/* <InputElements element="NH4" divider="NO3" number={} onChange={() => {}} inputTextColor="#119911" /> */}
+                  </View>
+                  <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <InputElements element="Mn" number={customMn} onChange={setCustomMn} inputTextColor="#119911" />
+                    <InputElements element="Cu" number={customCu} onChange={setCustomCu} inputTextColor="#119911" />
+                    <InputElements element="Si" number={customSi} onChange={setCustomSi} />
+
+                  </View>
+                  <View style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <InputElements element="B" number={customB} onChange={setCustomB} inputTextColor="#119911" />
+                    <InputElements element="Mo" number={customMo} onChange={setCustomMo} inputTextColor="#119911" />
+                    {/* <InputElements element="Mg" number={(+resultMg).toFixed(1).toString()} onChange={handleChangeMg} inputTextColor="#119911" /> */}
+                    {/* <InputElements element="EC" number={(+EC).toFixed(3).toString()} onChange={(val) => { onChangeResultEC(val) }} inputTextColor="#119911" /> */}
+                  </View>
+                </View>
+
+
+                <View>
+                  <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 5 }}>
+                    <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
+                      Составы солей
+                    </Text>
+                    <View>
+                      <Text style={{ fontSize: 16, fontWeight: '400', color: '#111', top: 0, right: 48 }}>граммы</Text>
+                    </View>
+                  </View>
+
+                  <Divider style={{ marginBottom: 4 }} />
+
+                  <View style={{ gap: 5 }}>
+
+                    {/* //// start */}
+
+                    {!!newFertilizers.length
+                      ?
+                      newFertilizers.map(fertilizer => (
+                        <View style={{ flexDirection: 'row', gap: 5, alignItems: 'flex-start' }} key={fertilizer.title}>
+                          <View style={{ flex: 1 }}>
+                            <View style={{ overflow: 'hidden', borderRadius: 5, borderWidth: 1, borderColor: '#ccc' }}>
+                              <Pressable
+                                style={[{ justifyContent: 'space-between', flexDirection: 'row', height: 40, padding: 6 }, !isExpanded && { borderBottomWidth: 0 }, isExpanded && { backgroundColor: '#e7e7e7' }]}
+                                //   title={title}
+                                //   trailing={() => <Icon name={isExpanded ? 'expand-more' : 'chevron-right'} {...props} />}
+                                onPress={() => toggleIsExpanded(state => !state)}
+                              >
+                                <View style={{ padding: 2, paddingHorizontal: 4, justifyContent: 'center', alignItems: 'center' }}>
+                                  <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>{fertilizer.title}</Text>
+
+
+                                </View>
+
+                                <View style={{ borderWidth: 1, borderColor: '#ccc', borderRadius: 5, backgroundColor: '#fff', height: 28, justifyContent: 'center', alignItems: 'center' }}>
+                                  <TextInput value={fertilizer.grams} onChangeText={(value) => {
+                                    setNewFertilizers(state => {
+                                      return state.map(val => {
+                                        if (val.title === fertilizer.title)
+                                          val.grams = value
+                                        return val
+                                      })
+                                    })
+                                  }} style={{ width: 64, color: '#111', fontWeight: '300', fontSize: 16, paddingVertical: 0 }} />
+                                </View>
+
+                              </Pressable>
+                              {isExpanded && (
+                                <View style={{ paddingHorizontal: 6, gap: 6, paddingVertical: 6 }}>
+
+                                  <View style={{ paddingHorizontal: 0, }}>
+                                    <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                                      <Text style={{ fontSize: 14, fontWeight: '400', color: '#111' }}>
+                                        Элемент
+                                      </Text>
+                                      <View style={{ right: 108 }}>
+                                        <Text style={{ fontSize: 14, fontWeight: '400', color: '#111', top: 0 }}>%</Text>
+                                      </View>
+                                    </View>
+
+                                    <Divider style={{ marginBottom: 0 }} />
+
+                                  </View>
+
+                                  <View style={{ gap: 6, paddingHorizontal: 0, flexDirection: 'column' }}>
+                                    {/* <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>{fertilizer}</Text> */}
+
+                                    {fertilizer.percents.map((val, idx) => {
+                                      if (idx === 0) return
+                                      return (
+
+                                        <View key={val.title} style={{ flexDirection: 'row', flex: 1, gap: 6 }}>
+
+
+
+                                          <View style={{ flex: 2, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexDirection: 'row', padding: 2 }}>
+                                            <View style={{}}>
+                                              <TextInput style={{ paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }} placeholder='Элемент' placeholderTextColor='#111' value={val.title} onChangeText={(value) => { setActiveElement(value) }} />
+                                            </View>
+
+                                          </View>
+
+
+                                          <View style={{ width: 80, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexWrap: "wrap", flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 2 }}>
+                                            <View style={{}}>
+                                              <TextInput style={{ paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }}
+                                                placeholder="Процент"
+                                                placeholderTextColor='#111'
+                                                value={val.percent}
+                                                onChangeText={setActivePercent} />
+                                            </View>
+                                          </View>
+
+
+                                          <View style={{ width: 32, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, overflow: 'hidden', justifyContent: 'center', alignItems: 'center' }}>
+                                            <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => { handleDeleteElement(fertilizer.title, val.title) }}>
+                                              <Text style={{ color: '#111', fontSize: 14, fontWeight: '300' }}>–</Text>
+                                            </TouchableOpacity>
+                                          </View>
+
+                                        </View>
+
+                                      )
+                                    })}
+
+
+                                  </View>
+
+
+
+
+
+                                  <View style={{ gap: 6, paddingHorizontal: 0, flexDirection: 'row' }}>
+                                    {/* <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>{fertilizer}</Text> */}
+
+                                    <View style={{ flexDirection: 'row', flex: 1, gap: 6 }}>
+
+
+                                      <View style={{ flex: 2, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexDirection: 'row', padding: 2 }}>
+                                        <View style={{}}>
+                                          <TextInput style={{ flex: 1, paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }}
+                                            placeholder={'Название элемента'}
+                                            placeholderTextColor='#111'
+                                            value={fertilizer.percents[0].title}
+                                            defaultValue=""
+                                            onChangeText={(value) => {
+                                              console.log(value)
+                                              setNewFertilizers(state => state.map(val => {
+                                                console.log(val.title, fertilizer.title)
+                                                if (val.title === fertilizer.title)
+                                                  val.percents[0].title = value
+                                                console.log(val.percents[0].title)
+                                                return val
+                                              })
+                                              )
+                                            }}
+                                          />
+                                        </View>
+                                      </View>
+
+                                      <View style={{ width: 80, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexWrap: "wrap", flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 2 }}>
+                                        <View style={{}}>
+                                          <TextInput style={{ paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }}
+                                            placeholder="Процент"
+                                            placeholderTextColor='#111'
+                                            value={fertilizer.percents[0].percent}
+                                            defaultValue=""
+                                            onChangeText={(value) => {
+                                              console.log(value)
+                                              setNewFertilizers(state => state.map(val => {
+                                                console.log(val.title, fertilizer.title)
+                                                if (val.title === fertilizer.title)
+                                                  val.percents[0].percent = value
+                                                console.log(val.percents[0].title)
+                                                return val
+                                              })
+                                              )
+                                            }} />
+                                        </View>
+                                      </View>
+                                    </View>
+
+
+                                    <View style={{ width: 32, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, overflow: 'hidden', justifyContent: 'center', alignItems: 'center' }}>
+                                      <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => handleAddNewElement(fertilizer.title)}>
+                                        <Text style={{ color: '#111', fontSize: 14, fontWeight: '300' }}>+</Text>
+                                      </TouchableOpacity>
+                                    </View>
+
+                                  </View>
+
+                                </View>
+                              )}
+                            </View>
+                          </View>
+
+
+                          <View style={{ justifyContent: 'flex-start' }}>
+                            <View style={{ borderRadius: 5, overflow: 'hidden', alignItems: 'flex-start' }}>
+                              <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, borderColor: '#ccc', height: 42, width: 42 }} onPress={() => handleDeleteFertilizer(fertilizer.title)}>
+                                <Text style={{ color: '#111', fontSize: 18, fontWeight: '300' }}>–</Text>
+                                {/* <Icon color="#111" name="add" size={32} /> */}
+                              </TouchableOpacity>
+                            </View>
+                          </View>
+                        </View>
+                      ))
+                      :
+                      <></>
+                    }
+
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                      <View style={{ flex: 1, padding: 2, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, height: 42 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 6 }}>
+                          <TextInput style={{ flex: 1, fontSize: 16, fontWeight: '300', color: '#111', paddingVertical: 0 }} value={inputTitle} onChangeText={setInputTitle} placeholderTextColor='#666' placeholder="Введите название удобрения" />
+                        </View>
+                      </View>
+                      <View style={{ width: 42, height: 42, borderRadius: 5, overflow: 'hidden', borderWidth: 1, borderColor: '#ccc', alignItems: 'center' }}>
+                        <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', height: 42, width: 42 }} onPress={() => handleAddNewFertilizers(inputTitle)}>
+                          <Text style={{ color: '#111', fontSize: 18, fontWeight: '300', alignItems: 'center' }}>+</Text>
+                          {/* <Icon color="#111" name="add" size={32} /> */}
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+
+
+                  </View>
+                </View>
+              </View>
+              :
+              <View>
+                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 5 }}>
+                  <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
+                    Составы солей
+                  </Text>
+                  <View>
+                    <Text style={{ fontSize: 16, fontWeight: '400', color: '#111', top: 0 }}>граммы</Text>
+
+                  </View>
+                </View>
+
+                <Divider style={{ marginBottom: 0 }} />
+
+                {/* <View style={{ gap: 4 }}> */}
+
+                <CustomSpoiler title='Нитрат кальция' value={(+CaNO32_grams).toFixed(2).toString()}>
+                  <View style={{ paddingHorizontal: 4 }}>
+                    <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>resultCa(resultNO3)2 · 4H2O</Text>
+                    <TextInput style={{ color: '#111' }} inputMode="numeric" value={CaNO32_Ca_percent} onChangeText={setCaNO32_Ca_percent} />
+                    <TextInput style={{ color: '#111' }} inputMode="numeric" value={CaNO32_NH4_percent} onChangeText={setCaNO32_NH4_percent} />
+                    <TextInput style={{ color: '#111' }} inputMode="numeric" value={CaNO32_NO3_percent} onChangeText={setCaNO32_NO3_percent} />
+                  </View>
+                </CustomSpoiler>
+
+                <CustomSpoiler title='Нитрат калия' value={(+KNO3_grams).toFixed(2).toString()}>
+                  <View>
+                    <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KNO3</Text>
+                  </View>
+                </CustomSpoiler>
+
+                <CustomSpoiler title='Нитрат аммония' value={(+NH4NO3_grams).toFixed(2).toString()}>
+                  <View style={{ flexDirection: 'column', justifyContent: 'space-between', paddingHorizontal: 4, gap: 4 }}>
+
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
+                      <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>CaNO32</Text>
+                      <View style={{ alignItems: "center", flexDirection: 'row', gap: 4 }}>
+                        <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>Ca:</Text>
+                        <View style={{ padding: 5, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, width: 64 }}>
+                          <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>123</Text>
+                        </View>
+                      </View>
+                    </View>
+
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 2 }}>
+                      {/* <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KNO3</Text> */}
+                      <View style={{ alignItems: "center", flexDirection: 'row', gap: 4 }}>
+                        <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>NO3</Text>
+                        <View style={{ padding: 5, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, width: 64 }}>
+                          <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>123</Text>
+                        </View>
+                      </View>
+                    </View>
+
+                  </View>
+
+                </CustomSpoiler>
+
+                <CustomSpoiler title='Сульфат магния' value={(+MgS_grams).toFixed(2).toString()}>
+                  <View>
+                    <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>MgSO4 · 7H2O</Text>
+                  </View>
+                </CustomSpoiler>
+
+
+                <CustomSpoiler title='Монофосфат калия' value={(+KH2PO4_grams).toFixed(2).toString()}>
+                  <View>
+                    <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KH2PO4</Text>
+                  </View>
+                </CustomSpoiler>
+
+                <CustomSpoiler title='Сульфат калия' value={(+K2SO4_grams).toFixed(2).toString()}>
+                  <View>
+                    <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>K2SO4</Text>
+                  </View>
+                </CustomSpoiler>
+
+                <CustomSpoiler title='Нитрат магния' value={0}>
+                  <View>
+                    <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>resultMg(resultNO3)2 · 6H2O</Text>
+                  </View>
+                </CustomSpoiler>
+              </View>
+          }
+
         </View>
 
-        <Divider style={{ marginBottom: 0 }} />
 
-        {/* <View style={{ gap: 4 }}> */}
-
-        <CustomSpoiler title='Нитрат кальция' value={(+CaNO32_grams).toFixed(2).toString()}>
-          <View style={{ paddingHorizontal: 4 }}>
-            <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>resultCa(resultNO3)2 · 4H2O</Text>
-            <TextInput style={{ color: '#111' }} inputMode="numeric" value={CaNO32_Ca_percent} onChangeText={setCaNO32_Ca_percent} />
-            <TextInput style={{ color: '#111' }} inputMode="numeric" value={CaNO32_NH4_percent} onChangeText={setCaNO32_NH4_percent} />
-            <TextInput style={{ color: '#111' }} inputMode="numeric" value={CaNO32_NO3_percent} onChangeText={setCaNO32_NO3_percent} />
-          </View>
-        </CustomSpoiler>
-
-        <CustomSpoiler title='Нитрат калия' value={(+KNO3_grams).toFixed(2).toString()}>
-          <View>
-            <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KNO3</Text>
-          </View>
-        </CustomSpoiler>
-
-        <CustomSpoiler title='Нитрат аммония' value={(+NH4NO3_grams).toFixed(2).toString()}>
-          <View style={{ flexDirection: 'column', justifyContent: 'space-between', paddingHorizontal: 4, gap: 4 }}>
-
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
-              <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>CaNO32</Text>
-              <View style={{ alignItems: "center", flexDirection: 'row', gap: 4 }}>
-                <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>Ca:</Text>
-                <View style={{ padding: 5, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, width: 64 }}>
-                  <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>123</Text>
-                </View>
-              </View>
-            </View>
-
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 2 }}>
-              {/* <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KNO3</Text> */}
-              <View style={{ alignItems: "center", flexDirection: 'row', gap: 4 }}>
-                <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>NO3</Text>
-                <View style={{ padding: 5, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, width: 64 }}>
-                  <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>123</Text>
-                </View>
-              </View>
-            </View>
-
-          </View>
-
-        </CustomSpoiler>
-
-        <CustomSpoiler title='Сульфат магния' value={(+MgS_grams).toFixed(2).toString()}>
-          <View>
-            <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>MgSO4 · 7H2O</Text>
-          </View>
-        </CustomSpoiler>
-
-
-        <CustomSpoiler title='Монофосфат калия' value={(+KH2PO4_grams).toFixed(2).toString()}>
-          <View>
-            <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>KH2PO4</Text>
-          </View>
-        </CustomSpoiler>
-
-        <CustomSpoiler title='Сульфат калия' value={(+K2SO4_grams).toFixed(2).toString()}>
-          <View>
-            <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>K2SO4</Text>
-          </View>
-        </CustomSpoiler>
-
-        <CustomSpoiler title='Нитрат магния' value={0}>
-          <View>
-            <Text style={{ fontSize: 16, fontWeight: '300', color: '#111' }}>resultMg(resultNO3)2 · 6H2O</Text>
-          </View>
-        </CustomSpoiler>
 
         {/* </View> */}
 
-      </ScrollView>
+      </ScrollView >
 
-    </View>
+    </View >
   );
 }
 
@@ -1105,5 +1677,6 @@ const stylesRatios = StyleSheet.create({
     fontWeight: '300',
     fontSize: 16,
     color: '#111',
-  }
+  },
+
 });
