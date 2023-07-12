@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { Divider, Icon, IconButton, ListItem } from "@react-native-material/core";
-import { Dimensions, StyleSheet, Text, View, TextInput, Switch, TouchableHighlight, TouchableOpacity, Pressable } from "react-native";
+import { Divider, Icon, IconButton, ListItem, Pressable } from "@react-native-material/core";
+import { Dimensions, StyleSheet, Text, View, TextInput, Switch, TouchableHighlight, TouchableOpacity, Modal, Alert, TouchableWithoutFeedback, FlatList } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { ElementsRatiosTable } from "../../../../atoms/inputs/ElementsRatios";
 import { CustomSpoiler } from "../../../../atoms/Spoilers/CustomSpoiler";
@@ -621,7 +621,7 @@ export const ScrTabMacro = () => {
       grams: '1',
       percents: [
         {
-          title: 'Element',
+          title: '',
           percent: '0'
         },
         {
@@ -683,9 +683,9 @@ export const ScrTabMacro = () => {
 
   const handleDeleteElement = (fertilizer: string, title: string) => {
     setNewFertilizers(state => state.map((val) => {
-
+      // console.log(val.title, val.percents.map(val => console.log(val)), fertilizer, title)
       if (val.title === fertilizer)
-        val.percents.filter(val => val.title !== title)
+        val.percents = val.percents.filter(val => val.title !== title)
       return val
     }))
   }
@@ -831,8 +831,11 @@ export const ScrTabMacro = () => {
   // handleChangeCa(customCa || '0.001')
   // handleChangeMg(customMg || '0.001')
 
-
   // }, [newFertilizers])
+
+  const handleChooseElement = () => {
+
+  }
 
   useEffect(() => {
     console.log('work')
@@ -842,6 +845,104 @@ export const ScrTabMacro = () => {
     console.log('work')
   }, [])
 
+
+  const [modalChosenElement, toggleModalChosenElement] = useState(false)
+
+  const DATA_STAGES = [
+    'N', 'NO3', 'NH4', 'P', 'P2O5', 'K', 'K2O', 'Ca', 'CaO', 'Mg', 'MgO', 'S', 'SO4', 'Cl', 'Fe', 'B', 'Mn', 'Zn', 'Cu', 'Mo', 'Co', 'Si',
+  ]
+
+  const DATA_STAGES2 = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'N',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'NO3',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'NH4',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'P',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'K',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Ca',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Mg',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'S',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Cl',
+    },
+
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'P2O5',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'K2O',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'CaO',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'MgO',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'SO4',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Fe',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'B',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Mn',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Zn',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Cu',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Mo',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Co',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Si',
+    },
+  ]
 
 
 
@@ -1205,6 +1306,7 @@ export const ScrTabMacro = () => {
                         <View style={{ flexDirection: 'row', gap: 5, alignItems: 'flex-start' }} key={fertilizer.title}>
                           <View style={{ flex: 1 }}>
                             <View style={{ overflow: 'hidden', borderRadius: 5, borderWidth: 1, borderColor: '#ccc' }}>
+
                               <Pressable
                                 style={[{ justifyContent: 'space-between', flexDirection: 'row', height: 40, padding: 6 }, !isExpanded && { borderBottomWidth: 0 }, isExpanded && { backgroundColor: '#e7e7e7' }]}
                                 //   title={title}
@@ -1218,15 +1320,19 @@ export const ScrTabMacro = () => {
                                 </View>
 
                                 <View style={{ borderWidth: 1, borderColor: '#ccc', borderRadius: 5, backgroundColor: '#fff', height: 28, justifyContent: 'center', alignItems: 'center' }}>
-                                  <TextInput value={fertilizer.grams} onChangeText={(value) => {
-                                    setNewFertilizers(state => {
-                                      return state.map(val => {
-                                        if (val.title === fertilizer.title)
-                                          val.grams = value
-                                        return val
+                                  <TextInput
+                                    inputMode="numeric"
+                                    keyboardType="numeric"
+                                    value={fertilizer.grams}
+                                    onChangeText={(value) => {
+                                      setNewFertilizers(state => {
+                                        return state.map(val => {
+                                          if (val.title === fertilizer.title)
+                                            val.grams = value
+                                          return val
+                                        })
                                       })
-                                    })
-                                  }} style={{ width: 64, color: '#111', fontWeight: '300', fontSize: 16, paddingVertical: 0 }} />
+                                    }} style={{ width: 64, color: '#111', fontWeight: '300', fontSize: 16, paddingVertical: 0 }} />
                                 </View>
 
                               </Pressable>
@@ -1270,6 +1376,8 @@ export const ScrTabMacro = () => {
                                             <View style={{}}>
                                               <TextInput style={{ paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }}
                                                 placeholder="Процент"
+                                                inputMode="numeric"
+                                                keyboardType="numeric"
                                                 placeholderTextColor='#111'
                                                 value={val.percent}
                                                 onChangeText={setActivePercent} />
@@ -1301,9 +1409,83 @@ export const ScrTabMacro = () => {
                                     <View style={{ flexDirection: 'row', flex: 1, gap: 6 }}>
 
 
-                                      <View style={{ flex: 2, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexDirection: 'row', padding: 2 }}>
-                                        <View style={{}}>
-                                          <TextInput style={{ flex: 1, paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }}
+                                      <Modal
+                                        animationType="fade"
+                                        transparent={true}
+                                        // hitSlop={{ left: 100, }}
+                                        needsOffscreenAlphaCompositing
+
+
+                                        visible={modalChosenElement}
+
+                                        // presentationStyle='overFullScreen'
+                                        onRequestClose={() => {
+                                          Alert.alert('Модальное окно было закрыто.');
+                                          toggleModalChosenElement(false);
+                                        }}>
+                                        <TouchableWithoutFeedback onPress={() => { toggleModalChosenElement(false) }}>
+                                          <View style={{}} />
+                                        </TouchableWithoutFeedback>
+                                        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                                          <View style={{ width: '80%', backgroundColor: '#fff', borderWidth: 1, borderRadius: 5, borderColor: '#ccc' }}>
+                                            <View style={{ padding: 4 }}>
+
+                                              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', left: 5, paddingBottom: 5 }}>
+                                                <View style={{ justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
+                                                  <Text style={{ fontSize: 20, fontWeight: '400', color: '#111' }}>Выберите элемент</Text>
+                                                  <ButtonIconCircle func={() => toggleModalChosenElement(false)} iconTitle='close' color='#111' size={42} />
+                                                </View>
+                                                {/* <Icon name="close" size={28} /> */}
+                                              </View>
+                                              <Divider style={{ marginBottom: 10 }} />
+
+                                              <View style={{ gap: 0, maxHeight: 500, minHeight: 300, width: 300 }}>
+
+                                                <FlatList
+                                                  contentContainerStyle={{ justifyContent: 'center' }}
+                                                  data={DATA_STAGES}
+                                                  numColumns={2}
+                                                  // horizontal
+                                                  ItemSeparatorComponent={() => <View style={{ height: 10, width: 10 }}></View>}
+                                                  columnWrapperStyle={false}
+                                                  // ListFooterComponent={() => <View></View>}
+                                                  renderItem={(stage) => {
+                                                    // console.log('stage: ', stage)
+                                                    return (
+                                                      <View style={{
+                                                        borderRadius: 10, overflow: 'hidden', width: '22%', marginRight: 5, marginLeft: 5
+                                                        // marginLeft: 4, marginTop: 4
+                                                      }}>
+                                                        <View style={{ padding: 10, backgroundColor: '#eee', borderRadius: 10, justifyContent: 'space-between' }}>
+                                                          <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>{stage.item}</Text>
+                                                          {/* {console.log('stage idx: ', stage.index)} */}
+                                                          {/* <Switch
+                                                            value={stagesIncludedArr[stage.index]}
+                                                            onValueChange={(bool) => handleIncludedStages(stage.index, bool)} /> */}
+                                                        </View>
+                                                      </View>
+                                                    )
+                                                  }}
+                                                // keyExtractor={item => item.}
+                                                />
+
+
+                                              </View>
+
+                                            </View>
+
+                                            {/* </View> */}
+                                          </View>
+                                        </View>
+                                      </Modal>
+
+                                      <View style={{
+                                        flex: 2, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexDirection: 'row', overflow: 'hidden'
+                                      }}>
+                                        <Pressable
+                                          onPress={() => { toggleModalChosenElement(true) }}
+                                          style={{ flex: 1 }}>
+                                          {/* <TextInput style={{ flex: 1, paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }}
                                             placeholder={'Название элемента'}
                                             placeholderTextColor='#111'
                                             value={fertilizer.percents[0].title}
@@ -1319,17 +1501,22 @@ export const ScrTabMacro = () => {
                                               })
                                               )
                                             }}
-                                          />
-                                        </View>
+                                          /> */}
+
+                                          <Text style={{ flex: 1, padding: 6, color: '#111', fontSize: 14, fontWeight: '300' }}>{fertilizer.percents[0].title || !fertilizer.percents[0].title && 'Выберите элемент' }</Text>
+
+                                        </Pressable>
                                       </View>
 
                                       <View style={{ width: 80, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexWrap: "wrap", flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 2 }}>
                                         <View style={{}}>
                                           <TextInput style={{ paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }}
                                             placeholder="Процент"
+                                            inputMode="numeric"
+                                            keyboardType="numeric"
                                             placeholderTextColor='#111'
                                             value={fertilizer.percents[0].percent}
-                                            defaultValue=""
+                                            defaultValue="0"
                                             onChangeText={(value) => {
                                               console.log(value)
                                               setNewFertilizers(state => state.map(val => {
