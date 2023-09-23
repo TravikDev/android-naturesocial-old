@@ -508,6 +508,8 @@ export const ScrTabMacro = () => {
     // console.log(value)
     const result = (+value).toString()
 
+    // if(isNaN(+result)) setElementN('0')
+
     if (!value || !isFinite(+value)) value = '1'
 
     const resultNO3 = (+value / (1 + (+NH4dNO3))).toString()
@@ -639,23 +641,52 @@ export const ScrTabMacro = () => {
     setInputTitle('')
   }
 
-  const handleAddUpdateNewElement = (fertilizer: string, title: string, percent: string) => {
+  const handleUpdateElement = (fertilizer: string) => {
     setNewFertilizers(state => state.map((val) => {
 
       if (val.title === fertilizer)
         val.percents.map(val => {
-          if (val.title === title)
-            val.percent = percent
-          return val
+          // if (val.title === title)
+          //   val.percent = percent
+          // return val
         })
 
       return val
     }))
   }
 
-  const handleAddNewElement = (fertilizer: string) => {
+  const handleAddNewElementTitle = (fertilizer: string, stage: string) => {
+
+    console.log(fertilizer, stage)
 
     setNewFertilizers(state => state.map((val) => {
+
+      console.log(val.title)
+
+      if (val.title === fertilizer) {
+
+        val.percents.forEach(val => { console.log('val.title: ', val.title, 'active:', activeChosenElement) })
+        // const title = val.percents[0].title
+        // const percent = val.percents[0].percent
+        val.percents[0].title = stage
+        // val.percents[0].percent = ''
+      }
+      return val
+
+    },
+
+    ))
+
+    toggleModalChosenElement(false)
+  }
+
+  const handleAddNewElement = (fertilizer: string) => {
+
+    // console.log(fertilizer, stage)
+
+    setNewFertilizers(state => state.map((val) => {
+
+      console.log(val.title)
 
       if (val.title === fertilizer) {
         const title = val.percents[0].title
@@ -687,6 +718,8 @@ export const ScrTabMacro = () => {
       if (val.title === fertilizer)
         val.percents = val.percents.filter(val => val.title !== title)
       return val
+
+
     }))
   }
 
@@ -833,9 +866,6 @@ export const ScrTabMacro = () => {
 
   // }, [newFertilizers])
 
-  const handleChooseElement = () => {
-
-  }
 
   useEffect(() => {
     console.log('work')
@@ -847,10 +877,28 @@ export const ScrTabMacro = () => {
 
 
   const [modalChosenElement, toggleModalChosenElement] = useState(false)
+  const [activeChosenElement, setActiveChosenElement] = useState('')
 
-  const DATA_STAGES = [
-    'N', 'NO3', 'NH4', 'P', 'P2O5', 'K', 'K2O', 'Ca', 'CaO', 'Mg', 'MgO', 'S', 'SO4', 'Cl', 'Fe', 'B', 'Mn', 'Zn', 'Cu', 'Mo', 'Co', 'Si',
+  const DATA_STAGES_MACRO = [
+    'N', 'Cl', 'NH4', 'NO3', 'P', 'P2O5', 'K', 'K2O', 'Ca', 'CaO', 'Mg', 'MgO', 'S', 'SO4',
   ]
+
+  // const [chosenElement, setChosenElement] = useState('')
+
+  const DATA_STAGES_MICRO = [
+    'Fe', 'B', 'Mn', 'Zn', 'Cu', 'Mo', 'Co', 'Si',
+  ]
+
+  // const handleChooseElement = (element: string) => {
+
+  //   console.log(element)
+
+  //   toggleModalChosenElement(false);
+
+  //   setNewFertilizers()
+
+  // }
+
 
   const DATA_STAGES2 = [
     {
@@ -951,6 +999,8 @@ export const ScrTabMacro = () => {
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
 
+
+
       <ScrollView contentContainerStyle={{ backgroundColor: '#fff', padding: 10, paddingBottom: 25, gap: 4 }}>
 
         {/* <Divider style={{ marginTop: 10 }} /> */}
@@ -976,7 +1026,7 @@ export const ScrTabMacro = () => {
                 </Text>
                 <View>
                   <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
-                    мг / литр
+                    мг/л
                   </Text>
                 </View>
               </View>
@@ -1285,16 +1335,16 @@ export const ScrTabMacro = () => {
 
 
                 <View>
-                  <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 5 }}>
+                  <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Text style={{ fontSize: 16, fontWeight: '400', color: '#111' }}>
                       Составы солей
                     </Text>
                     <View>
-                      <Text style={{ fontSize: 16, fontWeight: '400', color: '#111', top: 0, right: 48 }}>граммы</Text>
+                      <Text style={{ fontSize: 16, fontWeight: '400', color: '#111', top: 0, right: 58 }}>граммы</Text>
                     </View>
                   </View>
 
-                  <Divider style={{ marginBottom: 4 }} />
+                  <Divider style={{ marginBottom: 8, marginTop: 4 }} />
 
                   <View style={{ gap: 5 }}>
 
@@ -1349,7 +1399,7 @@ export const ScrTabMacro = () => {
                                       </View>
                                     </View>
 
-                                    <Divider style={{ marginBottom: 0 }} />
+                                    {/* <Divider style={{ marginBottom: 0 }} /> */}
 
                                   </View>
 
@@ -1362,33 +1412,32 @@ export const ScrTabMacro = () => {
 
                                         <View key={val.title} style={{ flexDirection: 'row', flex: 1, gap: 6 }}>
 
-
-
-                                          <View style={{ flex: 2, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexDirection: 'row', padding: 2 }}>
-                                            <View style={{}}>
-                                              <TextInput style={{ paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }} placeholder='Элемент' placeholderTextColor='#111' value={val.title} onChangeText={(value) => { setActiveElement(value) }} />
-                                            </View>
+                                          <View style={{ flex: 1, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexDirection: 'row', overflow: 'hidden' }}>
+                                            <Pressable style={{ flex: 1, padding: 2 }} onPress={() => toggleModalChosenElement(true)}>
+                                              <Text style={{ padding: 4, color: '#111', fontSize: 14, fontWeight: '300' }}>{val.title}</Text>
+                                            </Pressable>
 
                                           </View>
 
 
                                           <View style={{ width: 80, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexWrap: "wrap", flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 2 }}>
                                             <View style={{}}>
-                                              <TextInput style={{ paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }}
+                                              <TextInput
+                                                style={{ paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }}
                                                 placeholder="Процент"
                                                 inputMode="numeric"
                                                 keyboardType="numeric"
                                                 placeholderTextColor='#111'
                                                 value={val.percent}
-                                                onChangeText={setActivePercent} />
+                                                onChangeText={(val) => { setActivePercent(val) }} />
                                             </View>
                                           </View>
 
 
                                           <View style={{ width: 32, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, overflow: 'hidden', justifyContent: 'center', alignItems: 'center' }}>
-                                            <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => { handleDeleteElement(fertilizer.title, val.title) }}>
+                                            <Pressable style={{ justifyContent: 'center', alignItems: 'center', flex: 1, width: '100%' }} onPress={() => { handleDeleteElement(fertilizer.title, val.title) }}>
                                               <Text style={{ color: '#111', fontSize: 14, fontWeight: '300' }}>–</Text>
-                                            </TouchableOpacity>
+                                            </Pressable>
                                           </View>
 
                                         </View>
@@ -1408,7 +1457,6 @@ export const ScrTabMacro = () => {
 
                                     <View style={{ flexDirection: 'row', flex: 1, gap: 6 }}>
 
-
                                       <Modal
                                         animationType="fade"
                                         transparent={true}
@@ -1423,54 +1471,85 @@ export const ScrTabMacro = () => {
                                           Alert.alert('Модальное окно было закрыто.');
                                           toggleModalChosenElement(false);
                                         }}>
-                                        <TouchableWithoutFeedback onPress={() => { toggleModalChosenElement(false) }}>
-                                          <View style={{}} />
+                                        <TouchableWithoutFeedback style={{ width: '100%', height: '100%' }} onPress={() => { toggleModalChosenElement(false) }}>
+                                          <View style={{ position: 'absolute', zIndex: 5, height: '100%', width: '100%', backgroundColor: '#11111166', }} />
                                         </TouchableWithoutFeedback>
-                                        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                                        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
                                           <View style={{ width: '80%', backgroundColor: '#fff', borderWidth: 1, borderRadius: 5, borderColor: '#ccc' }}>
                                             <View style={{ padding: 4 }}>
 
-                                              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', left: 5, paddingBottom: 5 }}>
+                                              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', left: 5, paddingBottom: 5, paddingHorizontal: 4 }}>
                                                 <View style={{ justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', width: '100%' }}>
                                                   <Text style={{ fontSize: 20, fontWeight: '400', color: '#111' }}>Выберите элемент</Text>
-                                                  <ButtonIconCircle func={() => toggleModalChosenElement(false)} iconTitle='close' color='#111' size={42} />
+                                                  <ButtonIconCircle func={() => { toggleModalChosenElement(false); setActiveChosenElement('') }} iconTitle='close' color='#111' size={42} />
                                                 </View>
                                                 {/* <Icon name="close" size={28} /> */}
                                               </View>
                                               <Divider style={{ marginBottom: 10 }} />
 
-                                              <View style={{ gap: 0, maxHeight: 500, minHeight: 300, width: 300 }}>
+                                            </View>
 
-                                                <FlatList
-                                                  contentContainerStyle={{ justifyContent: 'center' }}
-                                                  data={DATA_STAGES}
-                                                  numColumns={2}
-                                                  // horizontal
-                                                  ItemSeparatorComponent={() => <View style={{ height: 10, width: 10 }}></View>}
-                                                  columnWrapperStyle={false}
-                                                  // ListFooterComponent={() => <View></View>}
-                                                  renderItem={(stage) => {
-                                                    // console.log('stage: ', stage)
-                                                    return (
-                                                      <View style={{
-                                                        borderRadius: 10, overflow: 'hidden', width: '22%', marginRight: 5, marginLeft: 5
+                                            <View style={{ gap: 0, maxHeight: 480, minHeight: 350, width: '100%' }}>
+
+
+                                              <ScrollView style={{}}>
+
+                                                {/* Macro */}
+                                                <View style={{ gap: 16 }}>
+
+                                                  <View style={{ paddingHorizontal: 12 }}>
+                                                    <Text style={{ color: '#111', fontSize: 16, fontWeight: '400' }}>Макроэлементы</Text>
+                                                  </View>
+
+                                                  <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', gap: 12, paddingHorizontal: 12 }}>
+                                                    {DATA_STAGES_MACRO.map(stage => (
+                                                      <View key={stage} style={{
+                                                        borderRadius: 10, overflow: 'hidden', width: '47%'
                                                         // marginLeft: 4, marginTop: 4
                                                       }}>
-                                                        <View style={{ padding: 10, backgroundColor: '#eee', borderRadius: 10, justifyContent: 'space-between' }}>
-                                                          <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>{stage.item}</Text>
+                                                        <Pressable
+                                                          style={[{ padding: 10, backgroundColor: '#eee', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }, !stage && { backgroundColor: '#ffff' }]}
+                                                          onPress={() => { handleAddNewElementTitle(fertilizer.title, stage); setActiveChosenElement('') }}
+                                                        >
+                                                          <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>{stage}</Text>
                                                           {/* {console.log('stage idx: ', stage.index)} */}
                                                           {/* <Switch
                                                             value={stagesIncludedArr[stage.index]}
                                                             onValueChange={(bool) => handleIncludedStages(stage.index, bool)} /> */}
-                                                        </View>
+                                                        </Pressable>
                                                       </View>
-                                                    )
-                                                  }}
-                                                // keyExtractor={item => item.}
-                                                />
+                                                    ))}
+                                                  </View>
+
+                                                  {/* Micro */}
+                                                  <View style={{ paddingHorizontal: 12 }}>
+                                                    <Text style={{ color: '#111', fontSize: 16, fontWeight: '400' }}>Микроэлементы</Text>
+                                                  </View>
+
+                                                  <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', gap: 12, paddingHorizontal: 12, paddingBottom: 12 }}>
+                                                    {DATA_STAGES_MICRO.map(stage => (
+                                                      <View key={stage} style={{
+                                                        borderRadius: 10, overflow: 'hidden', width: '46%'
+                                                        // marginLeft: 4, marginTop: 4
+                                                      }}>
+                                                        <Pressable
+                                                          style={[{ padding: 10, backgroundColor: '#eee', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }, !stage && { backgroundColor: '#ffff' }]}
+                                                          onPress={() => { handleAddNewElementTitle(fertilizer.title, stage); setActiveChosenElement('') }}
+                                                        >
+                                                          <Text style={{ color: '#111', fontSize: 16, fontWeight: '300' }}>{stage}</Text>
+                                                          {/* {console.log('stage idx: ', stage.index)} */}
+                                                          {/* <Switch
+                                                            value={stagesIncludedArr[stage.index]}
+                                                            onValueChange={(bool) => handleIncludedStages(stage.index, bool)} /> */}
+                                                        </Pressable>
+                                                      </View>
+                                                    ))}
+                                                  </View>
+                                                </View>
+
+                                              </ScrollView>
 
 
-                                              </View>
 
                                             </View>
 
@@ -1483,7 +1562,7 @@ export const ScrTabMacro = () => {
                                         flex: 2, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, flexDirection: 'row', overflow: 'hidden'
                                       }}>
                                         <Pressable
-                                          onPress={() => { toggleModalChosenElement(true) }}
+                                          onPress={() => { toggleModalChosenElement(true); setActiveChosenElement(fertilizer.percents[0].title) }}
                                           style={{ flex: 1 }}>
                                           {/* <TextInput style={{ flex: 1, paddingVertical: 0, color: '#111', fontSize: 14, fontWeight: '300' }}
                                             placeholder={'Название элемента'}
@@ -1503,7 +1582,7 @@ export const ScrTabMacro = () => {
                                             }}
                                           /> */}
 
-                                          <Text style={{ flex: 1, padding: 6, color: '#111', fontSize: 14, fontWeight: '300' }}>{fertilizer.percents[0].title || !fertilizer.percents[0].title && 'Выберите элемент' }</Text>
+                                          <Text style={{ flex: 1, padding: 6, color: '#111', fontSize: 14, fontWeight: '300' }}>{fertilizer.percents[0].title || !fertilizer.percents[0].title && 'Выберите элемент'}</Text>
 
                                         </Pressable>
                                       </View>
@@ -1534,9 +1613,11 @@ export const ScrTabMacro = () => {
 
 
                                     <View style={{ width: 32, borderWidth: 1, borderColor: '#ccc', borderRadius: 5, overflow: 'hidden', justifyContent: 'center', alignItems: 'center' }}>
-                                      <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => handleAddNewElement(fertilizer.title)}>
+                                      <Pressable style={{ justifyContent: 'center', alignItems: 'center', flex: 1, width: '100%' }}
+                                      onPress={() => handleAddNewElement(fertilizer.title)}
+                                      >
                                         <Text style={{ color: '#111', fontSize: 14, fontWeight: '300' }}>+</Text>
-                                      </TouchableOpacity>
+                                      </Pressable>
                                     </View>
 
                                   </View>
@@ -1549,10 +1630,10 @@ export const ScrTabMacro = () => {
 
                           <View style={{ justifyContent: 'flex-start' }}>
                             <View style={{ borderRadius: 5, overflow: 'hidden', alignItems: 'flex-start' }}>
-                              <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, borderColor: '#ccc', height: 42, width: 42 }} onPress={() => handleDeleteFertilizer(fertilizer.title)}>
+                              <Pressable style={{ justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, borderColor: '#ccc', height: 42, width: 42 }} onPress={() => handleDeleteFertilizer(fertilizer.title)}>
                                 <Text style={{ color: '#111', fontSize: 18, fontWeight: '300' }}>–</Text>
                                 {/* <Icon color="#111" name="add" size={32} /> */}
-                              </TouchableOpacity>
+                              </Pressable>
                             </View>
                           </View>
                         </View>
@@ -1568,10 +1649,10 @@ export const ScrTabMacro = () => {
                         </View>
                       </View>
                       <View style={{ width: 42, height: 42, borderRadius: 5, overflow: 'hidden', borderWidth: 1, borderColor: '#ccc', alignItems: 'center' }}>
-                        <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', height: 42, width: 42 }} onPress={() => handleAddNewFertilizers(inputTitle)}>
+                        <Pressable style={{ justifyContent: 'center', alignItems: 'center', height: 42, width: 42 }} onPress={() => handleAddNewFertilizers(inputTitle)}>
                           <Text style={{ color: '#111', fontSize: 18, fontWeight: '300', alignItems: 'center' }}>+</Text>
                           {/* <Icon color="#111" name="add" size={32} /> */}
-                        </TouchableOpacity>
+                        </Pressable>
                       </View>
                     </View>
 

@@ -33,7 +33,7 @@ export const NavCalculator = () => {
   const [stagesArr, setStagesArr] = useState(['Старт', 'Вега', 'Цвет', 'Плод', 'Конец'])
 
   const [newStage, setNewStage] = useState('')
-  const [volume, setVolume] = useState('1')
+  const [volume, setVolume] = useState('10')
 
   // const newStageRef = useRef(null)
 

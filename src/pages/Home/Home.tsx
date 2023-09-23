@@ -319,6 +319,11 @@ const CustomDrawerContent = ({ navigation }) => {
             title="Events"
             leading={<Icon name="casino" size={24} />}
           />
+          <ListItem
+            onPress={() => navigation.navigate('Calculator')}
+            title="Calculator"
+            leading={<Icon name="calculate" size={24} />}
+          />
 
           {/* <Pressable style={{ height: 48, display: 'flex', justifyContent: 'center', paddingLeft: 16 }}>
             <Text style={{ color: '#333', fontSize: 16 }}>Library</Text>
@@ -422,6 +427,16 @@ const CustomDrawerContent = ({ navigation }) => {
             title="Theme"
             leading={<Icon name="calculate" size={24} />}
           />
+          <ListItem
+            onPress={() => navigation.navigate('Home')}
+            title="News"
+            leading={<Icon name="campaign" size={24} />}
+          />
+        </SpoilerMenu>
+
+
+        <SpoilerMenu title='Offline'>
+
           <ListItem
             onPress={() => navigation.navigate('Home')}
             title="News"
